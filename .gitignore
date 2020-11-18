@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+HoIsec/HoIsec/x64/
+
+HoIsec/x64/
+
+HoIsec/HoIsec/Debug/
+
+HoIsec/Debug/
+
+HoIsec/.vs/
