@@ -5,16 +5,16 @@ int Territory::count = 0;
 std::string Territory::TerritoryTypesToString(TerritoryTypes type) {
 
 	switch (type) {
-		case TerritoryTypes::TERRITORY:		return "Territory";
-		case TerritoryTypes::INITIAL:		return "InitialTerritory";
-		case TerritoryTypes::PLAIN:			return "Plain";
-		case TerritoryTypes::DUNE:			return "Dune";
-		case TerritoryTypes::CASTLE:		return "Castle";
-		case TerritoryTypes::FORTRESS:		return "Fortress";
-		case TerritoryTypes::MOUNTAIN:		return "Mountain";
-		case TerritoryTypes::MINE:			return "Mine";
-		case TerritoryTypes::FISHINGSITE:	return "FishingSite";
-		case TerritoryTypes::PIRATEREFUGE:	return "PirateRefuge";
+		case TerritoryTypes::TERRITORY:		return "Territorio";
+		case TerritoryTypes::INITIAL:		return "TerritorioInicial";
+		case TerritoryTypes::PLAIN:			return "Planicie";
+		case TerritoryTypes::DUNE:			return "Duna";
+		case TerritoryTypes::CASTLE:		return "Castelo";
+		case TerritoryTypes::FORTRESS:		return "Fortaleza";
+		case TerritoryTypes::MOUNTAIN:		return "Montanha";
+		case TerritoryTypes::MINE:			return "Mina";
+		case TerritoryTypes::FISHINGSITE:	return "Pescaria";
+		case TerritoryTypes::PIRATEREFUGE:	return "RefugioPiratas";
 
 		default:							return " ";
 	}

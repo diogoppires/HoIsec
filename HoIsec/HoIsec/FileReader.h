@@ -6,13 +6,15 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include "data.h"
 
 class FileReader {
 private:
 	std::ifstream fileI;
 
-	bool verifyData(std::string data);
+	bool is_number(const std::string& s);
+	bool verifyData(const std::string& data);
 public:
 	//Constructor
 	FileReader(std::string fileName);
