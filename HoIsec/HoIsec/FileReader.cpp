@@ -5,14 +5,14 @@ FileReader::FileReader(std::string fileName) {
 	std::cout << "[FileReader]: Constructor..." << std::endl;
 }
 
-void FileReader::readFile(std::string& type, int& num)
+std::vector<std::string> FileReader::readFile()
 {
 	std::string text;
-	std::istringstream iss;
-
 	if (fileI.is_open()) {
+		std::vector<std::string> info;
 		while (getline(fileI, text)) {
-			std::cout << text << std::endl;
+			std::cout << text << std::endl;			//[DEBUG]
+			info.push_back(text);
 		}
 	}
 	else {
