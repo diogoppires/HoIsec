@@ -12,8 +12,7 @@
 #define MAX_MILIFORCE 3
 #define MAX_MILIFORCE_WITH_DRONE 5
 
-
-enum TerritotyTypes {
+enum class TerritoryTypes {
 	TERRITORY,
 	INITIAL,
 	PLAIN,
@@ -26,29 +25,12 @@ enum TerritotyTypes {
 	PIRATEREFUGE
 };
 
-enum Phases {
+enum class Phases {
 	CONQUER,
 	COLLECTION,
 	SHOP,
 	EVENTS,
 	NONE
 };
-
-std::string TerritotyTypesToString(TerritotyTypes type) {
-
-	switch (type) {
-	case TERRITORY: return "Territory";
-	case INITIAL: return "InitialTerritory";
-	case PLAIN: return "Plain";
-	case DUNE: return "Dune";
-	case CASTLE: return "Castle";
-	case FORTRESS:return "Fortress";
-	case MOUNTAIN:return "Mountain";
-	case MINE:return "Mine";
-	case FISHINGSITE:return "FishingSite";
-	case PIRATEREFUGE:return "PirateRefuge";
-	default: return "";
-	}
-}
 
 #endif // !DATA_H

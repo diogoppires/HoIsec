@@ -14,7 +14,7 @@ std::string World::toString() {
 std::vector<Territory> World::getTerritories() const {
 	return territories;
 }
-void World::addTerritories(TerritotyTypes type, int num) {
+void World::addTerritories(TerritoryTypes type, int num) {
 	for (int i = 0; i < num; i++)
 	{
 		territories.push_back(Territory(type));

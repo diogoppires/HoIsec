@@ -3,6 +3,7 @@
 #define GAMEDATA_H
 #include "World.h"
 #include "Empire.h"
+#include "FileReader.h"
 #include "data.h"
 #include <iostream>
 #include <sstream>
@@ -14,12 +15,14 @@ class GameData
 	int year;
 	int turn;
 	Phases phase;
+
+	void getTypeAndNumber(std::string& type, int& num, std::string info);
 public:
 	GameData();
 	~GameData();
 	bool verifyTerritory(std::string name); // conquista
-	void createTerritories(TerritotyTypes type,int quant); // cria
-	bool loadTerritories(std::string territories); // carrega
+	void createTerritories(TerritoryTypes type, int quant); // cria
+	bool loadTerritories(std::string fileName); // carrega
 	int conquerTerritories(std::string name); // conquista
 	std::string toString();
 
@@ -29,7 +32,6 @@ public:
 	void setTurn(int turn);
 	Phases getPhase() const;
 	void setPhase(Phases phase);
-
 };
 #endif // !GAMEDATA_H
 
