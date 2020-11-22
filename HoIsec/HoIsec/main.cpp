@@ -11,5 +11,4 @@ int main() {
 
 	FileReader f("dados.txt");
 	f.readFile();
-
 }

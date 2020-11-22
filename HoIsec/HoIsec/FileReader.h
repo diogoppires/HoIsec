@@ -3,6 +3,7 @@
 #define FILEREADER_H
 #include <fstream>
 #include <string>
+#include <vector>
 #include <iostream>
 
 class FileReader {
@@ -12,7 +13,7 @@ public:
 	//Constructor
 	FileReader(std::string fileName);
 	
-	void readFile(std::string& type, int& num);
+	std::vector<std::string> readFile();
 
 	//Destructor
 	~FileReader();
