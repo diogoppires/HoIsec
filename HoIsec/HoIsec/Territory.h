@@ -16,8 +16,9 @@ class Territory
 	int goldCreation;
 	int winPoints;
 
+	std::string TerritoryTypesToString(TerritoryTypes type);
 public:
-	Territory(TerritotyTypes type);
+	Territory(TerritoryTypes type);
 
 	~Territory();
 
@@ -41,7 +42,7 @@ public:
 
 	void setWinPoints(int winPoints);
 
-	std::string buildName(TerritotyTypes type,int value);
+	std::string buildName(TerritoryTypes type,int value);
 
 };
 

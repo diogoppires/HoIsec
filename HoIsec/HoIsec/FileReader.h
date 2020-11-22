@@ -5,16 +5,18 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
+#include "data.h"
 
 class FileReader {
 private:
 	std::ifstream fileI;
+
+	bool verifyData(std::string data);
 public:
 	//Constructor
 	FileReader(std::string fileName);
-	
 	std::vector<std::string> readFile();
-
 	//Destructor
 	~FileReader();
 };

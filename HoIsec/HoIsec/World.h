@@ -14,7 +14,7 @@ public:
 	~World();
 	std::string toString();
 	std::vector<Territory> getTerritories() const;
-	void addTerritories(TerritotyTypes type, int num);
+	void addTerritories(TerritoryTypes type, int num);
 	void clearTerritories();
 };
 
