@@ -16,7 +16,7 @@ private:
 	void fillConquerMenu(std::vector<std::string>& conquerMenu);
 	void fillExchangeMenu(std::vector<std::string>& exchangeMenu);
 	void fillShopMenu(std::vector<std::string>& shopMenu);
-	void getWords(std::vector<std::string>& words, std::string msg);
+	void getWords(std::vector<std::string>& words, std::string& cmd, std::string msg);
 
 	//Commands
 	void opLoad(std::string fullmsg);

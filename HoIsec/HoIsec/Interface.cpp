@@ -7,13 +7,13 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 	initMenu.push_back("~~> carrega <nomeFicheiro>\n");
 	initMenu.push_back("~~> cria <tipo> <n>\n\n");
 	initMenu.push_back("~~> ativa <nome>\n");
-	initMenu.push_back("~~> apaga <name>\n\n");
+	initMenu.push_back("~~> apaga <nome>\n\n");
 	initMenu.push_back("~~> ajuda\n");
 	initMenu.push_back("~~> sair\n");
 }
 void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 {
-	conquerMenu.push_back("Comandos do Jogo - 1a Fase | Conquistar ou Passar\n\n");
+	conquerMenu.push_back(" -- Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
 	conquerMenu.push_back("~~> conquista<nome>\n");
 	conquerMenu.push_back("~~> passa\n");
 	conquerMenu.push_back("~~> lista <nome>\n");
@@ -60,9 +60,17 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back("~~> sair\n");
 }
 
-void Interface::getWords(std::vector<std::string>& words, std::string msg)
-{
 
+//This method will break a string up in order to save his arguments into a vector
+//for a later usage.
+void Interface::getWords(std::vector<std::string>& words, std::string& cmd, std::string msg)
+{
+	std::istringstream iss(msg);
+	std::string word;
+	iss >> cmd;
+	while (iss >> word) {
+		words.push_back(word);
+	}
 }
 
 //Commands
@@ -147,7 +155,7 @@ std::string Interface::readString(const std::string msg)
 {
 	std::cout << msg;
 	std::string s;
-	std::cin >> s;
+	getline(std::cin, s);
 	return s;
 }
 std::string Interface::choose(const std::vector<std::string> menu)
@@ -158,27 +166,30 @@ std::string Interface::choose(const std::vector<std::string> menu)
 
 	std::string opt;
 	while (opt.size() == 0) {
-		opt = readString("\noption ~~> ");
+		opt = readString("\nopcao ~~> ");
 	}
 	return opt;
 }
 
 Interface::Interface()
 {
-
 	//DEBUGGING
 	std::cout << "[Interface]: Creating" << std::endl;
 }
 void Interface::run()
 {
 	std::vector<std::string> menu;
+	std::vector<std::string> words;
 	fillInitMenu(menu);
+	std::string fullstr;
 	std::string cmd;
 	do {
 		//Need to be informed by GameData in order to show the correct menu.
-		cmd = choose(menu);
+		fullstr = choose(menu);
+		getWords(words, cmd, fullstr);
 
-	} while (cmd != "exit");
+
+	} while (cmd != "sair");
 
 }
 Interface::~Interface()
