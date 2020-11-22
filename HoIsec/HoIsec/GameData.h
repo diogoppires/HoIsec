@@ -16,6 +16,7 @@ class GameData
 	int turn;
 	Phases phase;
 
+	TerritoryTypes StringToTerritoryTypes(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
 public:
 	GameData();

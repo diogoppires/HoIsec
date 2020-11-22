@@ -9,6 +9,6 @@ int main() {
 	//std::cout << emp.toString();
 	//std::cout << "_____________\n";
 
-	FileReader f("dados.txt");
+	FileReader f("test.txt");
 	f.readFile();
 }

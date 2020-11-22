@@ -1,11 +1,24 @@
 #include "FileReader.h"
 
+bool FileReader::is_number(const std::string& s)
+{
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it)) ++it;
+	return !s.empty() && it == s.end();
+}
 
-bool FileReader::verifyData(std::string data)
+bool FileReader::verifyData(const std::string& data)
 {
 	std::istringstream iss(data);
-	std::string auxStr, auxStr2;
-	iss >> auxStr;	
+	std::string auxType, auxNumber;
+	iss >> auxType >> auxNumber;
+	std::transform(auxType.begin(), auxType.end(), auxType.begin(), ::tolower);
+	if (auxType == "territorio" && is_number(auxNumber)) {
+		std::cout << "[FileReader]: Valido!" << std::endl;
+		return true;
+	}
+	std::cout << "[FileReader]: Invalido!" << std::endl;
+	return false;
 }
 
 FileReader::FileReader(std::string fileName) {
@@ -30,7 +43,6 @@ std::vector<std::string> FileReader::readFile()
 	}
 	return info;
 }
-
 
 FileReader::~FileReader()
 {
