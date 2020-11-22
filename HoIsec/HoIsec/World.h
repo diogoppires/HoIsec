@@ -10,7 +10,7 @@ class World
 {
 	std::vector<Territory> territories;
 public:
-	World() {}
+	World(){}
 	~World();
 	std::string toString();
 	std::vector<Territory> getTerritories() const;
