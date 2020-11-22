@@ -1,6 +1,7 @@
 #pragma once
 #ifndef DATA_H
 #define DATA_H
+#include <string>
 
 #define DEFAULT_RESISTANCE 5
 #define DEFAULT_PRODCREATION 1

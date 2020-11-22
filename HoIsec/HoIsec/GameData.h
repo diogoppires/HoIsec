@@ -17,10 +17,10 @@ class GameData
 public:
 	GameData();
 	~GameData();
-	bool verifyTerritory(std::string name);
-	bool createTerritories(TerritotyTypes type,int quant);
-	bool loadTerritories();
-	int conquerTerritories(std::string name);
+	bool verifyTerritory(std::string name); // conquista
+	void createTerritories(TerritotyTypes type,int quant); // cria
+	bool loadTerritories(std::string territories); // carrega
+	int conquerTerritories(std::string name); // conquista
 	std::string toString();
 
 	int getYear() const;

@@ -3,7 +3,7 @@
 int Territory::count = 0;
 
 Territory::Territory(TerritotyTypes type) {
-	name = buildName(++count);
+	name = buildName(type,++count);
 	resistance = DEFAULT_RESISTANCE;
 	prodCreation = DEFAULT_PRODCREATION;
 	goldCreation = DEFAULT_GOLDCREATION;
@@ -59,10 +59,10 @@ void Territory::setWinPoints(int winPoints) {
 	this->winPoints = winPoints;
 }
 
-std::string Territory::buildName(int value) {
+std::string Territory::buildName(TerritotyTypes type,int value) {
 	std::ostringstream oss;
 
-	oss << "Territory" << value;
+	oss << TerritotyTypesToString(type) << value;
 
 	return oss.str();
 }
