@@ -171,8 +171,8 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	return opt;
 }
 
-Interface::Interface()
-{
+Interface::Interface(GameData* gD) : gD(gD)
+{	
 	//DEBUGGING
 	std::cout << "[Interface]: Creating" << std::endl;
 }
@@ -189,10 +189,13 @@ void Interface::run()
 		getWords(words, cmd, fullstr);
 
 
+
 	} while (cmd != "sair");
 
 }
 Interface::~Interface()
-{
+{	
+	delete(gD);
+	//DEBUG
 	std::cout << "[Interface]: Destroying..." << std::endl;
 }

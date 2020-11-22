@@ -17,12 +17,13 @@ class GameData
 	Phases phase;
 
 	TerritoryTypes StringToTerritoryTypes(const std::string type);
+	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
 public:
 	GameData();
 	~GameData();
 	bool verifyTerritory(std::string name); // conquista
-	void createTerritories(TerritoryTypes type, int quant); // cria
+	bool createTerritories(std::string type, int quant); // cria
 	bool loadTerritories(std::string fileName); // carrega
 	int conquerTerritories(std::string name); // conquista
 	std::string toString();
