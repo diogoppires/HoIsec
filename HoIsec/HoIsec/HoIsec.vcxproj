@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Army.cpp" />
     <ClCompile Include="Empire.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SafeBox.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="Army.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="Empire.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="SafeBox.h" />
     <ClInclude Include="Storage.h" />
