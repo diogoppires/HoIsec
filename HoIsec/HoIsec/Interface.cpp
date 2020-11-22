@@ -3,60 +3,66 @@
 //Menus
 void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
-	initMenu.push_back("Game Commands - Main Menu\n\n");
-	initMenu.push_back("~~> load <fileName>\n");
-	initMenu.push_back("~~> create <type> <number>\n\n");
-	initMenu.push_back("~~> activate <name>\n");
-	initMenu.push_back("~~> delete <name>\n\n");
-	initMenu.push_back("~~> help\n");
-	initMenu.push_back("~~> exit\n");
+	initMenu.push_back(" -- Menu Principal --\n\n");
+	initMenu.push_back("~~> carrega <nomeFicheiro>\n");
+	initMenu.push_back("~~> cria <tipo> <n>\n\n");
+	initMenu.push_back("~~> ativa <nome>\n");
+	initMenu.push_back("~~> apaga <name>\n\n");
+	initMenu.push_back("~~> ajuda\n");
+	initMenu.push_back("~~> sair\n");
 }
 void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 {
-	conquerMenu.push_back("Game Commands - 1st Phase | Conquer or Pass\n\n");
-	conquerMenu.push_back("~~> conquer<name>\n");
-	conquerMenu.push_back("~~> pass\n");
-	conquerMenu.push_back("~~> list <name>\n\n");
-	conquerMenu.push_back("~~> save <name>\n");
-	conquerMenu.push_back("~~> activate <name>\n");
-	conquerMenu.push_back("~~> delete <name>\n\n");
-	conquerMenu.push_back("~~> [DEBUG]take <which one> <name>\n");
-	conquerMenu.push_back("~~> [DEBUG]modify <gold|products> <N>\n");
-	conquerMenu.push_back("~~> [DEBUG]fevent <event-name>\n\n");
-	conquerMenu.push_back("~~> help\n");
-	conquerMenu.push_back("~~> exit\n");
+	conquerMenu.push_back("Comandos do Jogo - 1a Fase | Conquistar ou Passar\n\n");
+	conquerMenu.push_back("~~> conquista<nome>\n");
+	conquerMenu.push_back("~~> passa\n");
+	conquerMenu.push_back("~~> lista <nome>\n");
+	conquerMenu.push_back("~~> avanca\n\n");
+	conquerMenu.push_back("~~> grava <nome>\n");
+	conquerMenu.push_back("~~> ativa <nome>\n");
+	conquerMenu.push_back("~~> apaga <nome>\n\n");
+	conquerMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
+	conquerMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	conquerMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
+	conquerMenu.push_back("~~> ajuda\n");
+	conquerMenu.push_back("~~> sair\n");
 }
 void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 {
-	exchangeMenu.push_back("Game Commands - 2nd Phase | Resources Time\n\n");
-	exchangeMenu.push_back("~~> moregold\n"); 
-	exchangeMenu.push_back("~~> moreprod\n");
-	exchangeMenu.push_back("~~> list <name>\n");
-	exchangeMenu.push_back("~~> nextphase\n\n");
-	exchangeMenu.push_back("~~> save <name>\n");
-	exchangeMenu.push_back("~~> activate <name>\n");
-	exchangeMenu.push_back("~~> delete <name>\n\n");
-	exchangeMenu.push_back("~~> [DEBUG]take <which one> <name>\n");
-	exchangeMenu.push_back("~~> [DEBUG]modify <gold|products> <N>\n");
-	exchangeMenu.push_back("~~> [DEBUG]fevent <event-name>\n\n");
-	exchangeMenu.push_back("~~> help\n");
-	exchangeMenu.push_back("~~> exit\n");
+	exchangeMenu.push_back("Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
+	exchangeMenu.push_back("~~> maisour\n"); 
+	exchangeMenu.push_back("~~> maisprod\n");
+	exchangeMenu.push_back("~~> lista <nome>\n");
+	exchangeMenu.push_back("~~> avanca\n\n");
+	exchangeMenu.push_back("~~> grava <name>\n");
+	exchangeMenu.push_back("~~> ativa <name>\n");
+	exchangeMenu.push_back("~~> apaga <name>\n\n");
+	exchangeMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
+	exchangeMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	exchangeMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
+	exchangeMenu.push_back("~~> ajuda\n");
+	exchangeMenu.push_back("~~> sair\n");
 }
 void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 {
-	shopMenu.push_back("Game Commands - 3rd Phase | Shopping\n\n");
-	shopMenu.push_back("~~> moremilitary\n");
-	shopMenu.push_back("~~> obtain <type>\n");
-	shopMenu.push_back("~~> list <name>\n");
-	shopMenu.push_back("~~> nextphase\n\n");
-	shopMenu.push_back("~~> save <name>\n");
-	shopMenu.push_back("~~> activate <name>\n");
-	shopMenu.push_back("~~> delete <name>\n\n");
-	shopMenu.push_back("~~> [DEBUG]take <which one> <name>\n");
-	shopMenu.push_back("~~> [DEBUG]modify <gold|products> <N>\n");
-	shopMenu.push_back("~~> [DEBUG]fevent <event-name>\n\n");
-	shopMenu.push_back("~~> help\n");
-	shopMenu.push_back("~~> exit\n");
+	shopMenu.push_back("Comandos do Jogo - 3a Fase | Loja HOIsec\n\n");
+	shopMenu.push_back("~~> maismilitar\n");
+	shopMenu.push_back("~~> adquire <tipo>\n");
+	shopMenu.push_back("~~> lista <nome>\n");
+	shopMenu.push_back("~~> avanca\n\n");
+	shopMenu.push_back("~~> grava <nome>\n");
+	shopMenu.push_back("~~> ativa <nome>\n");
+	shopMenu.push_back("~~> apaga <nome>\n\n");
+	shopMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
+	shopMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	shopMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
+	shopMenu.push_back("~~> ajuda\n");
+	shopMenu.push_back("~~> sair\n");
+}
+
+void Interface::getWords(std::vector<std::string>& words, std::string msg)
+{
+
 }
 
 //Commands
