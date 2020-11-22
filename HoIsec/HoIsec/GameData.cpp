@@ -30,9 +30,17 @@ TerritoryTypes GameData::StringToTerritoryTypes(const std::string type) {
 	else if (type == "pescaria") {
 		return TerritoryTypes::FISHINGSITE;
 	}
-	else{
+	else if (type == "refugiopirata"){
 		return TerritoryTypes::PIRATEREFUGE;
 	}
+	else {
+		return TerritoryTypes::NONE;
+	}
+}
+
+bool GameData::isTerritory(const std::string type)
+{
+	return StringToTerritoryTypes(type) != TerritoryTypes::NONE;
 }
 
 //This method will be responsible to deliver the variables 'type' and 'num'
@@ -60,8 +68,12 @@ bool GameData::verifyTerritory(std::string name) {
 	return false;
 }
 
-void GameData::createTerritories(TerritoryTypes type, int quant){
-
+bool GameData::createTerritories(std::string type, int quant){
+	if (!isTerritory(type)) {
+		return false;
+	}
+	world.addTerritories(StringToTerritoryTypes(type), quant);
+	return true;
 }
 
 //Receive from a file territories types and the number of times the user wants to create a territory.

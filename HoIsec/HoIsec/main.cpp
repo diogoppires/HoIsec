@@ -1,14 +1,12 @@
-#include "FileReader.h"
+#include "GameData.h"
+#include "Interface.h"
 
 int main() {
-	//Interface i;
-	//i.run();
-
-	//Empire emp;
-	//std::cout << "_____________\n";
-	//std::cout << emp.toString();
-	//std::cout << "_____________\n";
-
-	FileReader f("test.txt");
-	f.readFile();
+	GameData* gd = new GameData();
+	Interface i(gd);
+	i.run();
+	/*Empire emp;
+	std::cout << "_____________\n";
+	std::cout << emp.toString();
+	std::cout << "_____________\n";*/
 }

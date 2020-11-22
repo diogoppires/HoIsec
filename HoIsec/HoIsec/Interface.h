@@ -5,11 +5,13 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include "GameData.h"
+
 
 class Interface 
 {
 private:
-	//GameData gD;
+	GameData* gD;
 
 	//Menus
 	void fillInitMenu(std::vector<std::string>& initMenu);
@@ -39,7 +41,7 @@ private:
 	std::string choose(const std::vector<std::string> menu);
 public:
 	//Constructor
-	Interface();
+	Interface(GameData* gD);
 	void run();
 	//Destructor
 	~Interface();

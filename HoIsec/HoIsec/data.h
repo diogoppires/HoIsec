@@ -22,7 +22,8 @@ enum class TerritoryTypes {
 	MOUNTAIN,
 	MINE,
 	FISHINGSITE,
-	PIRATEREFUGE
+	PIRATEREFUGE,
+	NONE
 };
 
 enum class Phases {
