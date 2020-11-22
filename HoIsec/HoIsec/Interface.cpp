@@ -186,7 +186,7 @@ void Interface::run()
 	do {
 		//Need to be informed by GameData in order to show the correct menu.
 		fullstr = choose(menu);
-		getWords(words, fullstr, cmd);
+		getWords(words, cmd, fullstr);
 
 
 	} while (cmd != "sair");
