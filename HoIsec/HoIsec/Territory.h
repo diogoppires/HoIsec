@@ -9,6 +9,7 @@
 
 class Territory
 {
+	ConvertEnum converter;
 	static int count;
 	std::string name;
 	int resistance;
@@ -16,7 +17,7 @@ class Territory
 	int goldCreation;
 	int winPoints;
 
-	std::string TerritoryTypesToString(TerritoryTypes type);
+	
 public:
 	Territory(TerritoryTypes type);
 

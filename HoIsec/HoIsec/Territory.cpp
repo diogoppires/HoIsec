@@ -2,25 +2,7 @@
 
 int Territory::count = 0;
 
-std::string Territory::TerritoryTypesToString(TerritoryTypes type) {
-
-	switch (type) {
-		case TerritoryTypes::TERRITORY:		return "Territorio";
-		case TerritoryTypes::INITIAL:		return "TerritorioInicial";
-		case TerritoryTypes::PLAIN:			return "Planicie";
-		case TerritoryTypes::DUNE:			return "Duna";
-		case TerritoryTypes::CASTLE:		return "Castelo";
-		case TerritoryTypes::FORTRESS:		return "Fortaleza";
-		case TerritoryTypes::MOUNTAIN:		return "Montanha";
-		case TerritoryTypes::MINE:			return "Mina";
-		case TerritoryTypes::FISHINGSITE:	return "Pescaria";
-		case TerritoryTypes::PIRATEREFUGE:	return "RefugioPiratas";
-
-		default:							return " ";
-	}
-}
-
-Territory::Territory(TerritoryTypes type) {
+Territory::Territory(TerritoryTypes type) :converter(){
 	name = buildName(type, ++count);
 	resistance = DEFAULT_RESISTANCE;
 	prodCreation = DEFAULT_PRODCREATION;
@@ -80,6 +62,6 @@ void Territory::setWinPoints(int winPoints) {
 std::string Territory::buildName(TerritoryTypes type,int value) {
 	std::ostringstream oss;
 
-	oss << TerritoryTypesToString(type) << value;
+	oss << converter.TerritoryTypesToString(type) << value;
 	return oss.str();
 }

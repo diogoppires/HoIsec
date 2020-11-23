@@ -7,13 +7,18 @@ bool FileReader::is_number(const std::string& s)
 	return !s.empty() && it == s.end();
 }
 
+bool FileReader::verifyArgs(std::string territory, std::string quant) {
+	return converter.StringToTerritoryTypes(territory) != TerritoryTypes::NONE && is_number(quant);
+}
+
 bool FileReader::verifyData(const std::string& data)
 {
-	std::istringstream iss(data);
-	std::string auxType, auxNumber;
-	iss >> auxType >> auxNumber;
-	std::transform(auxType.begin(), auxType.end(), auxType.begin(), ::tolower);
-	if (auxType == "territorio" && is_number(auxNumber)) {
+	std::string line = data,auxType, auxNumber, command;
+	std::transform(line.begin(), line.end(), line.begin(), ::tolower);
+	std::istringstream iss(line);
+	
+	iss >> command >> auxType >> auxNumber;
+	if (command == "cria" && verifyArgs(auxType,auxNumber)) {
 		std::cout << "[FileReader]: Valido!" << std::endl;
 		return true;
 	}
@@ -21,10 +26,14 @@ bool FileReader::verifyData(const std::string& data)
 	return false;
 }
 
-FileReader::FileReader(std::string fileName) {
+
+
+FileReader::FileReader(std::string fileName): converter() {
 	fileI.open(fileName);
 	std::cout << "[FileReader]: Constructor..." << std::endl;
 }
+
+
 
 std::vector<std::string> FileReader::readFile()
 {
