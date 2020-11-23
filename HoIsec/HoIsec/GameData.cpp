@@ -1,46 +1,8 @@
 #include "GameData.h"
 
-
-TerritoryTypes GameData::StringToTerritoryTypes(const std::string type) {
-
-	if (type == "territorio") {
-		return TerritoryTypes::TERRITORY;
-	}
-	else if (type == "territorioinicial") {
-		return TerritoryTypes::INITIAL;
-	}
-	else if (type == "planicie") {
-		return TerritoryTypes::PLAIN;
-	}
-	else if (type == "duna") {
-		return TerritoryTypes::DUNE;
-	}
-	else if (type == "castelo") {
-		return TerritoryTypes::CASTLE;
-	}
-	else if (type == "fortaleza") {
-		return TerritoryTypes::FORTRESS;
-	}
-	else if (type == "montanha") {
-		return TerritoryTypes::MOUNTAIN;
-	}
-	else if (type == "mina") {
-		return TerritoryTypes::MINE;
-	}
-	else if (type == "pescaria") {
-		return TerritoryTypes::FISHINGSITE;
-	}
-	else if (type == "refugiopirata"){
-		return TerritoryTypes::PIRATEREFUGE;
-	}
-	else {
-		return TerritoryTypes::NONE;
-	}
-}
-
 bool GameData::isTerritory(const std::string type)
 {
-	return StringToTerritoryTypes(type) != TerritoryTypes::NONE;
+	return converter.StringToTerritoryTypes(type) != TerritoryTypes::NONE;
 }
 
 //This method will be responsible to deliver the variables 'type' and 'num'
@@ -54,7 +16,7 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 	num = std::stoi(aux, nullptr, 0);
 }
 
-GameData::GameData() : world(), empire() {
+GameData::GameData() : world(), empire(),converter() {
 	year = 1;
 	turn = 1;
 	phase = Phases::NONE;
@@ -72,7 +34,7 @@ bool GameData::createTerritories(std::string type, int quant){
 	if (!isTerritory(type)) {
 		return false;
 	}
-	world.addTerritories(StringToTerritoryTypes(type), quant);
+	world.addTerritories(converter.StringToTerritoryTypes(type), quant);
 	return true;
 }
 
@@ -89,7 +51,7 @@ bool GameData::loadTerritories(std::string fileName) {
 	std::vector<std::string>::iterator it;
 	for (it = infoReceived.begin(); it != infoReceived.end(); it++) {
 		getTypeAndNumber(type, num, (*it));
-		world.addTerritories(StringToTerritoryTypes(type), num);
+		world.addTerritories(converter.StringToTerritoryTypes(type), num);
 	}
 	return true;
 }

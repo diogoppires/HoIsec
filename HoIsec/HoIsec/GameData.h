@@ -10,13 +10,13 @@
 
 class GameData
 {
+	ConvertEnum converter;
 	World world;
 	Empire empire;
 	int year;
 	int turn;
 	Phases phase;
-
-	TerritoryTypes StringToTerritoryTypes(const std::string type);
+	
 	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
 public:
