@@ -64,7 +64,7 @@ public:
 		else if (type == "pescaria") {
 			return TerritoryTypes::FISHINGSITE;
 		}
-		else if (type == "refugiopirata") {
+		else if (type == "refugio_pirata") {
 			return TerritoryTypes::PIRATEREFUGE;
 		}
 		else {
@@ -74,16 +74,16 @@ public:
 
 	std::string TerritoryTypesToString(TerritoryTypes type) {
 		switch (type) {
-		case TerritoryTypes::TERRITORY:		return "Territorio";
-		case TerritoryTypes::INITIAL:		return "TerritorioInicial";
-		case TerritoryTypes::PLAIN:			return "Planicie";
-		case TerritoryTypes::DUNE:			return "Duna";
-		case TerritoryTypes::CASTLE:		return "Castelo";
-		case TerritoryTypes::FORTRESS:		return "Fortaleza";
-		case TerritoryTypes::MOUNTAIN:		return "Montanha";
-		case TerritoryTypes::MINE:			return "Mina";
-		case TerritoryTypes::FISHINGSITE:	return "Pescaria";
-		case TerritoryTypes::PIRATEREFUGE:	return "RefugioPiratas";
+		case TerritoryTypes::TERRITORY:		return "territorio";
+		case TerritoryTypes::INITIAL:		return "territorioinicial";
+		case TerritoryTypes::PLAIN:			return "planicie";
+		case TerritoryTypes::DUNE:			return "duna";
+		case TerritoryTypes::CASTLE:		return "castelo";
+		case TerritoryTypes::FORTRESS:		return "fortaleza";
+		case TerritoryTypes::MOUNTAIN:		return "montanha";
+		case TerritoryTypes::MINE:			return "mina";
+		case TerritoryTypes::FISHINGSITE:	return "pescaria";
+		case TerritoryTypes::PIRATEREFUGE:	return "refugio_piratas";
 
 		default:							return " ";
 		}

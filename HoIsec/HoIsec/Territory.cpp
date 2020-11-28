@@ -18,9 +18,9 @@ Territory::~Territory() {
 std::string Territory::toString() {
 	std::ostringstream oss;
 
-	oss << "[Territorio] Nome: " << name << " | Resistencia: " << resistance <<
-		" | Quantidade de produtos gerados por turno: " << prodCreation << " | Quantidade de ouro gerado por turno: " <<
-		goldCreation << " | Pontos de vitoria: " << winPoints << std::endl;
+	oss << "[Territorio]\n\tNome: " << name << "\n\tResistencia: " << resistance <<
+		"\n\tQuantidade de produtos gerados por turno: " << prodCreation << "\n\tQuantidade de ouro gerado por turno: " <<
+		goldCreation << "\n\tPontos de vitoria: " << winPoints << std::endl;
 	return oss.str();
 }
 
