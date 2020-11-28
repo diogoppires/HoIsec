@@ -8,7 +8,7 @@
 
 class World
 {
-	std::vector<Territory> territories;
+	std::vector<Territory*> territories;
 public:
 	World(){}
 	~World();
