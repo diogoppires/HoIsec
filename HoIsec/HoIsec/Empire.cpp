@@ -48,7 +48,7 @@ bool Empire::spendProds(int quant)
 	return storage.subProducts(quant);
 }
 
-void Empire::attack(Territory* territory)
+void Empire::attack(Territory** territory)
 {
 }
 

@@ -44,7 +44,6 @@ public:
 	void setWinPoints(int winPoints);
 
 	std::string buildName(TerritoryTypes type,int value);
-
 };
 
 
