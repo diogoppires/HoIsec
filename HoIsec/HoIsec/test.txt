@@ -1,5 +1,4 @@
 cria TERRITORIO 5
-CRIA TerRitOrIo 5
 5 territorio
 territorio 5
 123 123

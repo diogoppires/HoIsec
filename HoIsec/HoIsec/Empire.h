@@ -4,16 +4,17 @@
 #include <vector>
 #include "Storage.h"
 #include "SafeBox.h"
+#include "Army.h"
 #include "Territory.h"
 
 class Territory;
 class Empire
 {
 private:
-	std::vector<Territory*>empire;
+	std::vector<Territory**>empire;
 	Storage storage;
 	SafeBox safe;
-	//Army
+	Army army;
 	bool stockExchange;
 	bool centralBank;
 public:
@@ -31,7 +32,7 @@ public:
 	bool spendGold(int quant);
 	bool spendProds(int quant);
 
-	void attack(Territory* territory);
+	void attack(Territory** territory);
 
 	//toString
 	std::string toString() const;

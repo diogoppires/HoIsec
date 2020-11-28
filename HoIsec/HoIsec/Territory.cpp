@@ -8,6 +8,7 @@ Territory::Territory(TerritoryTypes type) :converter(){
 	prodCreation = DEFAULT_PRODCREATION;
 	goldCreation = DEFAULT_GOLDCREATION;
 	winPoints = DEFAULT_WINPOINTS;
+	std::cout << "[Territorio] Construindo... " << name << std::endl;
 }
 
 Territory::~Territory() {
