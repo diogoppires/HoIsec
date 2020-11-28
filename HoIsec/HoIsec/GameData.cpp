@@ -9,7 +9,9 @@ bool GameData::isTerritory(const std::string type)
 //the data stored inside the string 'info' that came from a file
 void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 {
+	std::string command;
 	std::istringstream iss(info);
+	iss >> command;
 	iss >> type;
 	std::string aux;
 	iss >> aux;
@@ -54,6 +56,14 @@ bool GameData::loadTerritories(std::string fileName) {
 		world.addTerritories(converter.StringToTerritoryTypes(type), num);
 	}
 	return true;
+}
+
+std::string GameData::listTerritories() {
+	return world.toString();
+}
+
+std::string GameData::listTerritories(std::string name) {
+	return world.getInfoTerritory(name);
 }
 
 int GameData::conquerTerritories(std::string name) {

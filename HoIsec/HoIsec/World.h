@@ -13,6 +13,7 @@ public:
 	World(){}
 	~World();
 	std::string toString();
+	std::string getInfoTerritory(std::string name);
 	std::vector<Territory> getTerritories() const;
 	void addTerritories(TerritoryTypes type, int num);
 	void clearTerritories();
