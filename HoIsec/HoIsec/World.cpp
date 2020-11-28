@@ -11,6 +11,17 @@ std::string World::toString() {
 	}
 	return oss.str();
 }
+
+std::string World::getInfoTerritory(std::string name) {
+	for(Territory t :territories)
+	{
+		if (t.getName() == name) {
+			return t.toString();
+		}
+	}
+	return "[ERRO] Não existe territorio com esse nome!\n";
+}
+
 std::vector<Territory> World::getTerritories() const {
 	return territories;
 }

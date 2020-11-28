@@ -22,7 +22,7 @@ private:
 
 	//Commands
 	void opLoad(std::string fullmsg);
-	void opCreate(std::string fullmsg);
+	void opCreate(std::string fullmsg,int quant);
 	void opConquer(std::string fullmsg);
 	void opPass(std::string fullmsg);
 	void opMoreGold(std::string fullmsg);
@@ -30,6 +30,7 @@ private:
 	void opMoreMilitary(std::string fullmsg);
 	void opObtainTech(std::string fullmsg);
 	void opList(std::string fullmsg);
+	void opList();
 	void opSave(std::string fullmsg);
 	void opRecover(std::string fullmsg);
 	void opDelete(std::string fullmsg);

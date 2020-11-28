@@ -3,14 +3,15 @@
 #include "FileReader.h"
 
 int main() {
-	/*GameData* gd = new GameData();
+	GameData* gd = new GameData();
 	Interface i(gd);
-	i.run();*/
+	i.run();
+
 	/*Empire emp;
 	std::cout << "_____________\n";
 	std::cout << emp.toString();
 	std::cout << "_____________\n";*/
 
-	FileReader reader("test.txt");
-	reader.readFile();
+	/*FileReader reader("test.txt");
+	reader.readFile();*/
 }

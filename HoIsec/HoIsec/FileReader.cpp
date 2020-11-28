@@ -13,12 +13,12 @@ bool FileReader::verifyArgs(std::string territory, std::string quant) {
 
 bool FileReader::verifyData(const std::string& data)
 {
-	std::string line = data,auxType, auxNumber, command;
-	std::transform(line.begin(), line.end(), line.begin(), ::tolower);
-	std::istringstream iss(line);
+	std::string auxType, auxNumber, command;
+	std::istringstream iss(data);
 	
 	iss >> command >> auxType >> auxNumber;
 	if (command == "cria" && verifyArgs(auxType,auxNumber)) {
+
 		std::cout << "[FileReader]: Valido!" << std::endl;
 		return true;
 	}
@@ -41,15 +41,17 @@ std::vector<std::string> FileReader::readFile()
 	std::string text;
 	if (fileI.is_open()) {
 		while (getline(fileI, text)) {
+			std::transform(text.begin(), text.end(), text.begin(), ::tolower);
 			if (verifyData(text) == true) {
 				info.push_back(text);
 			}
 		}
-		return info;
 	}
 	else {
 		std::cerr << "[ERROR] Error opening file!"; // cout e cerr are equal but they can be directioned to distinct files.
 	}
+
+	
 	return info;
 }
 

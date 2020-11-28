@@ -3,7 +3,7 @@
 //Menus
 void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
-	initMenu.push_back(" -- Menu Principal --\n\n");
+	initMenu.push_back("\n\n-- Menu Principal --\n\n");
 	initMenu.push_back("~~> carrega <nomeFicheiro>\n");
 	initMenu.push_back("~~> cria <tipo> <n>\n\n");
 	initMenu.push_back("~~> ativa <nome>\n");
@@ -77,12 +77,23 @@ void Interface::getWords(std::vector<std::string>& words, std::string& cmd, std:
 void Interface::opLoad(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	
+	if (gD->loadTerritories(fullmsg)) {
+		std::cout << "[HoIsec] Territorios adicionados com sucesso...\n";
+	}
+	else {
+		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
+	}
 }
-void Interface::opCreate(std::string fullmsg)
+void Interface::opCreate(std::string fullmsg,int quant)
 {
-	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	system("cls");	
+	if (gD->createTerritories(fullmsg,quant)) {
+		std::cout << "[HoIsec] Territorios adicionados com sucesso...\n";
+	}
+	else {
+		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
+	}
 }
 void Interface::opConquer(std::string fullmsg)
 {
@@ -114,10 +125,15 @@ void Interface::opObtainTech(std::string fullmsg)
 	system("cls");
 	std::cout << "NOT IMPLEMENTED YET\n";
 }
+void Interface::opList()
+{
+	system("cls");
+	std::cout << gD->listTerritories();
+}
 void Interface::opList(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	std::cout << gD->listTerritories(fullmsg);
 }
 void Interface::opSave(std::string fullmsg)
 {
@@ -168,6 +184,8 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	while (opt.size() == 0) {
 		opt = readString("\nopcao ~~> ");
 	}
+	std::transform(opt.begin(), opt.end(), opt.begin(), ::tolower);
+
 	return opt;
 }
 
@@ -184,10 +202,65 @@ void Interface::run()
 	std::string fullstr;
 	std::string cmd;
 	do {
+		words.clear();
+
 		//Need to be informed by GameData in order to show the correct menu.
 		fullstr = choose(menu);
 		getWords(words, cmd, fullstr);
 
+		if (cmd == "carrega" && words.size() == 1) {
+			opLoad(words[0]);
+		}
+		else if (cmd == "cria" && words.size() == 2) {
+			opCreate(words[0], std::stoi(words[1]));
+		}
+		else if (cmd == "conquista" && words.size() == 1) {
+
+		}
+		else if (cmd == "passa" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "maisouro" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "maisprod" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "maismilitar" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "adquire" && words.size() == 1) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "lista") {
+			if (words.empty()) {
+				opList();
+			}
+			else if(words.size() == 1){
+				opList(words[0]);
+			}
+		}
+		else if (cmd == "avanca" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "grava" && words.size() == 0) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "ativa" && words.size() == 1) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "apaga" && words.size() == 1) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "toma" && words.size() == 2) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "modifica" && words.size() == 2) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
+		else if (cmd == "fevento" && words.size() == 1) {
+			std::cout << "NOT IMPLEMENTED YET\n";
+		}
 
 
 	} while (cmd != "sair");

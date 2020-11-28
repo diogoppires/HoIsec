@@ -11,15 +11,15 @@ Territory::Territory(TerritoryTypes type) :converter(){
 }
 
 Territory::~Territory() {
-	std::cout << "[Territory] Destroying " << name << std::endl;
+	std::cout << "[Territorio] Destruindo... " << name << std::endl;
 }
 
 std::string Territory::toString() {
 	std::ostringstream oss;
 
-	oss << "[TERRITORY] Name: " << name << " | Resistance: " << resistance <<
-		" | Product Creation: " << prodCreation << " | Gold Creation: " <<
-		goldCreation << " | Victory Points: " << winPoints << std::endl;
+	oss << "[Territorio] Nome: " << name << " | Resistencia: " << resistance <<
+		" | Quantidade de produtos gerados por turno: " << prodCreation << " | Quantidade de ouro gerado por turno: " <<
+		goldCreation << " | Pontos de vitoria: " << winPoints << std::endl;
 	return oss.str();
 }
 
