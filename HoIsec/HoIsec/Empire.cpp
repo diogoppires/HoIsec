@@ -1,8 +1,8 @@
 #include "Empire.h"
 
-Empire::Empire() : storage(), safe()
+Empire::Empire(Territory** initial) : storage(), safe()
 {
-	//Push_back do initTerritory
+	empire.push_back(initial);
 	stockExchange = false;
 	centralBank = false;
 	std::cout << "[Empire]: Constroying... " << std::endl;

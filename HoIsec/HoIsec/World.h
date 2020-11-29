@@ -11,11 +11,12 @@ class World
 private:
 	std::vector<Territory*> territories;
 public:
-	World(){}
+	World();
 	~World();
 	std::string toString();
 	std::string getInfoTerritory(std::string name);
 	std::vector<Territory*> getTerritories() const;
+	Territory* getInitialTerritory() const;
 	void addTerritories(TerritoryTypes type, int num);
 	void clearTerritories();
 

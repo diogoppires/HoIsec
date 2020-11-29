@@ -1,5 +1,11 @@
 #include "World.h"
 
+
+World::World()
+{
+	addTerritories(TerritoryTypes::TERRITORY, 1);
+}
+
 World::~World() {
 	for (Territory* t : territories)
 	{
@@ -29,6 +35,16 @@ std::string World::getInfoTerritory(std::string name) {
 
 std::vector<Territory*> World::getTerritories() const {
 	return territories;
+}
+Territory* World::getInitialTerritory() const
+{
+	for (Territory* t : territories)
+	{
+		if (t->getName() == INITIALTERRITORY_NAME) {
+			return t;
+		}
+	}
+	return nullptr;
 }
 void World::addTerritories(TerritoryTypes type, int num) {
 	for (int i = 0; i < num; i++) {
