@@ -189,8 +189,10 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	return opt;
 }
 
-Interface::Interface(GameData* gD) : gD(gD)
+//This pointer doesn't receive all the information at Empire <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Interface::Interface(GameData* gD)
 {	
+	this->gD = gD;
 	//DEBUGGING
 	std::cout << "[Interface]: Creating" << std::endl;
 }

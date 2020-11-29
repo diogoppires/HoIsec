@@ -19,7 +19,7 @@ private:
 	bool centralBank;
 public:
 	//Constructor
-	Empire(Territory** initial);
+	Empire(Territory* initial);
 
 	//Getter
 	int getGold() const;

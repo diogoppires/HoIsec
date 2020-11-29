@@ -59,7 +59,7 @@ bool GameData::loadTerritories(std::string fileName) {
 }
 
 std::string GameData::listTerritories() {
-	return world.toString();
+	return empire.toString();
 }
 
 std::string GameData::listTerritories(std::string name) {

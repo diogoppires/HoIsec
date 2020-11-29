@@ -1,8 +1,8 @@
 #include "Empire.h"
 
-Empire::Empire(Territory** initial) : storage(), safe()
+Empire::Empire(Territory* initial) : storage(), safe()
 {
-	empire.push_back(initial);
+	empire.push_back(&initial);
 	stockExchange = false;
 	centralBank = false;
 	std::cout << "[Empire]: Constroying... " << std::endl;
@@ -59,7 +59,11 @@ std::string Empire::toString() const
 		oss << "[TERRITORIES]: NONE" << std::endl;
 	}
 	else {
-		//Conversion to string from vector
+		for (Territory** t : empire)
+		{
+			oss << (*t)->toString();
+		}
+		return oss.str();
 	}
 	oss << storage.toString();
 	oss << safe.toString();
@@ -83,5 +87,10 @@ std::string Empire::toString() const
 
 Empire::~Empire()
 {
+	for (Territory** t : empire)
+	{
+		delete t;
+		std::cout << "[Empire] Estou dentro vetor 'empire' a destruir" << std::endl;
+	}
 	std::cout << "[Empire]: Destryoing... " << std::endl;
 }
