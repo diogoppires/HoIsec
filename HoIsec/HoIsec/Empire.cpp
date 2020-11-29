@@ -87,10 +87,5 @@ std::string Empire::toString() const
 
 Empire::~Empire()
 {
-	for (Territory** t : empire)
-	{
-		delete t;
-		std::cout << "[Empire] Estou dentro vetor 'empire' a destruir" << std::endl;
-	}
 	std::cout << "[Empire]: Destryoing... " << std::endl;
 }
