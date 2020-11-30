@@ -9,17 +9,16 @@
 
 class Territory
 {
-	ConvertEnum converter;
+	Utils converter;
 	static int count;
 	std::string name;
 	int resistance;
 	int prodCreation;
 	int goldCreation;
 	int winPoints;
-
-	
+	bool conquered;
 public:
-	Territory(TerritoryTypes type);
+	Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints);
 
 	~Territory();
 
@@ -42,6 +41,12 @@ public:
 	int getWinPoints() const;
 
 	void setWinPoints(int winPoints);
+
+	bool isConquered() const;
+
+	void changeConquered();
+
+	void changeNotConquered();
 
 	std::string buildName(TerritoryTypes type,int value);
 };

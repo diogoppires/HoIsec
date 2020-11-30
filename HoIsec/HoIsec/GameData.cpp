@@ -18,7 +18,7 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 	num = std::stoi(aux, nullptr, 0);
 }
 
-GameData::GameData() : world(), empire(world.getInitialTerritory()),converter() {
+GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIALTERRITORY_NAME)), converter() {
 	year = 1;
 	turn = 1;
 	phase = Phases::NONE;
@@ -67,8 +67,16 @@ std::string GameData::listTerritories(std::string name) {
 }
 
 int GameData::conquerTerritories(std::string name) {
-	return 1;
+	Territory* chosenTerr = world.getSpecificTerritory(name);
+	if (chosenTerr->isConquered()) {
+		return -1;			//-1 if the territory was already conquered.
+	}
+	if (chosenTerr != nullptr) {
+		return empire.attack(chosenTerr);	// 0 if the battle was lost/ 1 if the battle was won.
+	}
+	return -2;				//-2 if the territory doens't exist
 }
+
 std::string GameData::toString() {
 	return "default";
 }

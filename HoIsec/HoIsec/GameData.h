@@ -8,9 +8,10 @@
 #include <iostream>
 #include <sstream>
 
+
 class GameData
 {
-	ConvertEnum converter;
+	Utils converter;
 	World world;
 	Empire empire;
 	int year;
@@ -36,15 +37,6 @@ public:
 	void setTurn(int turn);
 	Phases getPhase() const;
 	void setPhase(Phases phase);
-
-	GameData& operator=(const GameData& other) {
-		this->converter = other.converter;
-		this->world = other.world;
-		this->empire = other.empire;
-		this->year = other.year;
-		this->turn = other.turn;
-		this->phase = other.phase;
-	}
 };
 #endif // !GAMEDATA_H
 

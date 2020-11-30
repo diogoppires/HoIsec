@@ -12,7 +12,7 @@
 class FileReader {
 private:
 	std::ifstream fileI;
-	ConvertEnum converter;
+	Utils converter;
 
 	bool is_number(const std::string& s);
 	bool verifyData(const std::string& data);

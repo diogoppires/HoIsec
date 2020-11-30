@@ -2,6 +2,8 @@
 #ifndef DATA_H
 #define DATA_H
 #include <string>
+#include <cstdlib>
+#include <time.h>
 
 #define DEFAULT_RESISTANCE 5
 #define DEFAULT_PRODCREATION 1
@@ -13,6 +15,7 @@
 //ARMY
 #define MAX_MILIFORCE 3
 #define MAX_MILIFORCE_WITH_DRONE 5
+#define MILIFORCE_LOST 1
 
 enum class TerritoryTypes {
 	TERRITORY,
@@ -36,7 +39,7 @@ enum class Phases {
 	NONE
 };
 
-class ConvertEnum {
+class Utils {
 public:
 	TerritoryTypes StringToTerritoryTypes(const std::string type) {
 		if (type == "territorio") {
@@ -89,6 +92,16 @@ public:
 
 		default:							return " ";
 		}
+	}
+
+	int generateArmy() {
+		srand((unsigned)time(0));
+		return (rand() % 3) + 1;
+	}
+
+	int generateLuckFactor() {
+		srand((unsigned)time(0));
+		return (rand() % 6) + 1;
 	}
 };
 
