@@ -2,19 +2,20 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 #include <vector>
+#include "data.h"
 #include "Storage.h"
 #include "SafeBox.h"
 #include "Army.h"
 #include "Territory.h"
 
-class Territory;
 class Empire
 {
 private:
-	std::vector<Territory**>empire;
+	std::vector<Territory*>empire;
 	Storage storage;
 	SafeBox safe;
 	Army army;
+	Utils utils;
 	bool stockExchange;
 	bool centralBank;
 public:
@@ -32,7 +33,7 @@ public:
 	bool spendGold(int quant);
 	bool spendProds(int quant);
 
-	void attack(Territory** territory);
+	bool attack(Territory* territory);
 
 	//toString
 	std::string toString() const;

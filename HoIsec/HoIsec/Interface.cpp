@@ -59,6 +59,14 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back("~~> ajuda\n");
 	shopMenu.push_back("~~> sair\n");
 }
+void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
+	firstMenu.push_back("Comandos do Jogo\n\n");
+	firstMenu.push_back("~~> cria <tipo> <n>\n");
+	firstMenu.push_back("~~> carrega <nomeFicheiro>\n");
+	firstMenu.push_back("~~> conquista<nome>\n");
+	firstMenu.push_back("~~> lista <nome>\n");
+	firstMenu.push_back("~~> sair\n\n");
+}
 
 
 //This method will break a string up in order to save his arguments into a vector
@@ -98,7 +106,16 @@ void Interface::opCreate(std::string fullmsg,int quant)
 void Interface::opConquer(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->conquerTerritories(fullmsg)) {
+		case -2: std::cout << "[HoIsec] Nome de territorio invalido...\n";
+				break;
+		case -1: std::cout << "[HoIsec] O " << fullmsg << " ja pertence ao teu imperio!\n";
+				break;
+		case 0: std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
+				break;
+		case 1: std::cout << "[HoIsec] A batalha foi vencida! Agora o \n" << fullmsg << " faz parte do seu imperio!\n";
+				break;
+	}
 }
 void Interface::opPass(std::string fullmsg)
 {
@@ -189,7 +206,7 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	return opt;
 }
 
-//This pointer doesn't receive all the information at Empire <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
@@ -200,7 +217,7 @@ void Interface::run()
 {
 	std::vector<std::string> menu;
 	std::vector<std::string> words;
-	fillInitMenu(menu);
+	fillFirstMenu(menu);
 	std::string fullstr;
 	std::string cmd;
 	do {
@@ -217,7 +234,7 @@ void Interface::run()
 			opCreate(words[0], std::stoi(words[1]));
 		}
 		else if (cmd == "conquista" && words.size() == 1) {
-
+			opConquer(words[0]);
 		}
 		else if (cmd == "passa" && words.size() == 0) {
 			std::cout << "NOT IMPLEMENTED YET\n";

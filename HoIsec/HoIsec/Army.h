@@ -13,7 +13,7 @@ class Army
 	bool territoryDef;
 
 public:
-	Army() {}
+	Army(int miliForce);
 	~Army();
 	bool addMiliForce(int value);
 	bool subMiliForce(int value);

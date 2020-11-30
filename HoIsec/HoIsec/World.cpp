@@ -33,22 +33,24 @@ std::string World::getInfoTerritory(std::string name) {
 	return "[ERRO] Não existe territorio com esse nome!\n";
 }
 
-std::vector<Territory*> World::getTerritories() const {
-	return territories;
-}
-Territory* World::getInitialTerritory() const
+Territory* World::getSpecificTerritory(std::string name) const
 {
 	for (Territory* t : territories)
 	{
-		if (t->getName() == INITIALTERRITORY_NAME) {
+		if (t->getName() == name) {
 			return t;
 		}
 	}
 	return nullptr;
 }
+
+std::vector<Territory*> World::getTerritories() const {
+	return territories;
+}
+
 void World::addTerritories(TerritoryTypes type, int num) {
 	for (int i = 0; i < num; i++) {
-		territories.push_back(new Territory(type));
+		territories.push_back(new Territory(type, DEFAULT_RESISTANCE, DEFAULT_PRODCREATION, DEFAULT_GOLDCREATION, DEFAULT_WINPOINTS));
 	}
 }
 void World::clearTerritories() {

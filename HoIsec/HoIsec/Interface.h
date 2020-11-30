@@ -7,7 +7,7 @@
 #include <sstream>
 #include "GameData.h"
 
-
+class GameData;
 class Interface 
 {
 private:
@@ -18,6 +18,7 @@ private:
 	void fillConquerMenu(std::vector<std::string>& conquerMenu);
 	void fillExchangeMenu(std::vector<std::string>& exchangeMenu);
 	void fillShopMenu(std::vector<std::string>& shopMenu);
+	void fillFirstMenu(std::vector<std::string>& firstMenu);
 	void getWords(std::vector<std::string>& words, std::string& cmd, std::string msg);
 
 	//Commands

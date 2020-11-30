@@ -2,12 +2,13 @@
 
 int Territory::count = 0;
 
-Territory::Territory(TerritoryTypes type) :converter(){
+Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints):converter(){
 	name = buildName(type, ++count);
-	resistance = DEFAULT_RESISTANCE;
-	prodCreation = DEFAULT_PRODCREATION;
-	goldCreation = DEFAULT_GOLDCREATION;
-	winPoints = DEFAULT_WINPOINTS;
+	this->resistance = resistance;
+	this->prodCreation = prodCreation;
+	this->goldCreation = goldCreation;
+	this->winPoints = winPoints;
+	this->conquered = false;
 	std::cout << "[Territorio] Construindo... " << name << std::endl;
 }
 
@@ -58,6 +59,21 @@ int Territory::getWinPoints() const {
 
 void Territory::setWinPoints(int winPoints) {
 	this->winPoints = winPoints;
+}
+
+bool Territory::isConquered() const
+{
+	return conquered;
+}
+
+void Territory::changeConquered()
+{
+	conquered = true;
+}
+
+void Territory::changeNotConquered()
+{
+	conquered = false;
 }
 
 std::string Territory::buildName(TerritoryTypes type,int value) {

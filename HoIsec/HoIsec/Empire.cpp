@@ -1,8 +1,9 @@
 #include "Empire.h"
 
-Empire::Empire(Territory* initial) : storage(), safe()
+Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
 {
-	empire.push_back(&initial);
+	initial->changeConquered();
+	empire.push_back(initial);
 	stockExchange = false;
 	centralBank = false;
 	std::cout << "[Empire]: Constroying... " << std::endl;
@@ -48,8 +49,16 @@ bool Empire::spendProds(int quant)
 	return storage.subProducts(quant);
 }
 
-void Empire::attack(Territory** territory)
+bool Empire::attack(Territory* territory)
 {
+	int sumForces = army.getMiliforce() + utils.generateLuckFactor();
+	if (sumForces >= territory->getResistance()) {
+		empire.push_back(territory);
+		territory->changeConquered();
+		return true;
+	}
+	army.subMiliForce(MILIFORCE_LOST);
+	return false;
 }
 
 std::string Empire::toString() const
@@ -59,9 +68,9 @@ std::string Empire::toString() const
 		oss << "[TERRITORIES]: NONE" << std::endl;
 	}
 	else {
-		for (Territory** t : empire)
+		for (Territory* t : empire)
 		{
-			oss << (*t)->toString();
+			oss << t->toString();
 		}
 		return oss.str();
 	}

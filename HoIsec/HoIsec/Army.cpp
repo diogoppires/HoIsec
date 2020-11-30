@@ -1,6 +1,12 @@
 #include "Army.h"
 
 
+Army::Army(int miliForce)
+{
+	this->miliForce = miliForce;
+	std::cout << "[ARMY] Constroying army" << std::endl;
+}
+
 Army::~Army() {
 	std::cout << "[ARMY] Destroying army" << std::endl;
 }
