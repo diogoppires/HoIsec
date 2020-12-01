@@ -7,17 +7,20 @@
 #include "data.h"
 class Army
 {
+private:
 	int miliForce;
 	bool miliDrone;
 	bool missiles;
 	bool territoryDef;
+
+	int maxMiliForce;
 
 public:
 	Army(int miliForce);
 	~Army();
 	bool addMiliForce(int value);
 	bool subMiliForce(int value);
-	int getMiliforce() const;
+	int getMiliForce() const;
 	void setMiliDroneTrue();
 	void setMiliDroneFalse();
 	bool getMiliDrone() const;
@@ -27,6 +30,7 @@ public:
 	void setTerritoryDefTrue();
 	void setTerritoryDefFalse();
 	bool getTerritoryDef() const;
+	int getMaxMiliForce() const;
 };
 
 #endif // !ARMY_H

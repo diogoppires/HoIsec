@@ -19,10 +19,10 @@ bool FileReader::verifyData(const std::string& data)
 	iss >> command >> auxType >> auxNumber;
 	if (command == "cria" && verifyArgs(auxType,auxNumber)) {
 
-		std::cout << "[FileReader]: Valido!" << std::endl;
+		//std::cout << "[FileReader]: Valido!" << std::endl;
 		return true;
 	}
-	std::cout << "[FileReader]: Invalido!" << std::endl;
+	//std::cout << "[FileReader]: Invalido!" << std::endl;
 	return false;
 }
 
@@ -30,7 +30,8 @@ bool FileReader::verifyData(const std::string& data)
 
 FileReader::FileReader(std::string fileName): converter() {
 	fileI.open(fileName);
-	std::cout << "[FileReader]: Constructor..." << std::endl;
+	std::cout << "[FILEREADER] Construindo...\n";
+
 }
 
 
@@ -58,5 +59,5 @@ std::vector<std::string> FileReader::readFile()
 FileReader::~FileReader()
 {
 	fileI.close();
-	std::cout << "[FileReader]: Destructor..." << std::endl;
+	std::cout << "[FILEREADER] Destruindo...\n";
 }

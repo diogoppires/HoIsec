@@ -22,10 +22,12 @@ GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIALTERRITO
 	year = 1;
 	turn = 1;
 	phase = Phases::NONE;
+	luckyFactor = 0;
+	std::cout << "[GAMEDATA] Construindo...\n";
 }
 
 GameData::~GameData() {
-
+	std::cout << "[GAMEDATA] Destruindo...\n";
 }
 
 bool GameData::verifyTerritory(std::string name) {
@@ -58,8 +60,14 @@ bool GameData::loadTerritories(std::string fileName) {
 	return true;
 }
 
-std::string GameData::listTerritories() {
-	return empire.toString();
+std::string GameData::listTerritoriesConquered() {
+
+	return world.toStringConquerd();
+}
+
+std::string GameData::listTerritoriesNotConquered()
+{
+	return world.toStringNotConquerd();
 }
 
 std::string GameData::listTerritories(std::string name) {
@@ -68,18 +76,24 @@ std::string GameData::listTerritories(std::string name) {
 
 int GameData::conquerTerritories(std::string name) {
 	Territory* chosenTerr = world.getSpecificTerritory(name);
-	if (chosenTerr->isConquered()) {
-		return -1;			//-1 if the territory was already conquered.
-	}
+
 	if (chosenTerr != nullptr) {
-		return empire.attack(chosenTerr);	// 0 if the battle was lost/ 1 if the battle was won.
+
+		if (chosenTerr->isConquered()) {
+			return -1; //-1 if the territory was already conquered.
+		}
+		generateLuckyFactor();
+		return empire.attack(chosenTerr,getLuckyFactor()); // 0 if the battle was lost/ 1 if the battle was won.
 	}
-	return -2;				//-2 if the territory doens't exist
+	return -2; //-2 if the territory doens't exist
 }
 
-std::string GameData::toString() {
-	return "default";
+Empire& GameData::getEmpire()
+{
+	return empire;
 }
+
+
 
 int GameData::getYear() const { 
 	return year; 
@@ -99,4 +113,13 @@ Phases GameData::getPhase() const {
 void GameData::setPhase(Phases phase) {
 	this->phase = phase;
 }
+
+int GameData::getLuckyFactor() const {
+	return luckyFactor;
+}
+
+void GameData::generateLuckyFactor(){
+	this->luckyFactor = converter.generateLuckFactor();
+}
+
 

@@ -6,7 +6,13 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.gene
 	empire.push_back(initial);
 	stockExchange = false;
 	centralBank = false;
-	std::cout << "[Empire]: Constroying... " << std::endl;
+
+	score = 0;
+	prodCreation = 0;
+	goldCreation = 0;
+	updateEmpire();
+
+	std::cout << "[EMPIRE] Construindo... " << std::endl;
 }
 
 int Empire::getGold() const
@@ -14,9 +20,44 @@ int Empire::getGold() const
 	return safe.getSafeBox();
 }
 
+int Empire::getGoldCreation() const
+{
+	return goldCreation;
+}
+
 int Empire::getProds() const
 {
 	return storage.getProducts();
+}
+
+int Empire::getProdsCreation() const
+{
+	return prodCreation;
+}
+
+int Empire::getScore() const
+{
+	return score;
+}
+
+int Empire::getMiliForce() const
+{
+	return army.getMiliForce();
+}
+
+int Empire::getMaxMiliForce() const
+{
+	return army.getMaxMiliForce();
+}
+
+int Empire::getMaxStorage() const
+{
+	return storage.getMaxProducts();
+}
+
+int Empire::getMaxSafeBox() const
+{
+	return safe.getMaxSafeBox();
 }
 
 int Empire::haveStockExchange() const
@@ -27,6 +68,19 @@ int Empire::haveStockExchange() const
 int Empire::haveCentralBank() const
 {
 	return centralBank;
+}
+
+void Empire::updateEmpire()
+{
+	int auxScore = 0,auxProd = 0,auxGold = 0;
+	for (Territory* territory : empire) {
+		auxScore += territory->getWinPoints();
+		auxProd += territory->getProdCreation();
+		auxGold += territory->getGoldCreation();
+	}
+	score = auxScore;
+	prodCreation = auxProd;
+	goldCreation = auxGold;
 }
 
 bool Empire::receiveGold(int quant)
@@ -49,12 +103,13 @@ bool Empire::spendProds(int quant)
 	return storage.subProducts(quant);
 }
 
-bool Empire::attack(Territory* territory)
+bool Empire::attack(Territory* territory,int luckyFactor)
 {
-	int sumForces = army.getMiliforce() + utils.generateLuckFactor();
+	int sumForces = army.getMiliForce() + luckyFactor;
 	if (sumForces >= territory->getResistance()) {
 		empire.push_back(territory);
 		territory->changeConquered();
+		updateEmpire();
 		return true;
 	}
 	army.subMiliForce(MILIFORCE_LOST);
@@ -96,5 +151,5 @@ std::string Empire::toString() const
 
 Empire::~Empire()
 {
-	std::cout << "[Empire]: Destryoing... " << std::endl;
+	std::cout << "[EMPIRE] Destruindo... " << std::endl;
 }

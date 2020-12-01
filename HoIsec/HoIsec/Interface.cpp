@@ -4,68 +4,68 @@
 void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
 	initMenu.push_back("\n\n-- Menu Principal --\n\n");
-	initMenu.push_back("~~> carrega <nomeFicheiro>\n");
-	initMenu.push_back("~~> cria <tipo> <n>\n\n");
-	initMenu.push_back("~~> ativa <nome>\n");
-	initMenu.push_back("~~> apaga <nome>\n\n");
-	initMenu.push_back("~~> ajuda\n");
-	initMenu.push_back("~~> sair\n");
+	initMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
+	initMenu.push_back(" ~~> cria <tipo> <n>\n\n");
+	initMenu.push_back(" ~~> ativa <nome>\n");
+	initMenu.push_back(" ~~> apaga <nome>\n\n");
+	initMenu.push_back(" ~~> ajuda\n");
+	initMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 {
-	conquerMenu.push_back(" -- Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
-	conquerMenu.push_back("~~> conquista<nome>\n");
-	conquerMenu.push_back("~~> passa\n");
-	conquerMenu.push_back("~~> lista <nome>\n");
-	conquerMenu.push_back("~~> avanca\n\n");
-	conquerMenu.push_back("~~> grava <nome>\n");
-	conquerMenu.push_back("~~> ativa <nome>\n");
-	conquerMenu.push_back("~~> apaga <nome>\n\n");
-	conquerMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
-	conquerMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	conquerMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
-	conquerMenu.push_back("~~> ajuda\n");
-	conquerMenu.push_back("~~> sair\n");
+	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
+	conquerMenu.push_back(" ~~> conquista<nome>\n");
+	conquerMenu.push_back(" ~~> passa\n");
+	conquerMenu.push_back(" ~~> lista <nome>\n");
+	conquerMenu.push_back(" ~~> avanca\n\n");
+	conquerMenu.push_back(" ~~> grava <nome>\n");
+	conquerMenu.push_back(" ~~> ativa <nome>\n");
+	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
+	conquerMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
+	conquerMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	conquerMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	conquerMenu.push_back(" ~~> ajuda\n");
+	conquerMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 {
-	exchangeMenu.push_back("Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
-	exchangeMenu.push_back("~~> maisour\n"); 
-	exchangeMenu.push_back("~~> maisprod\n");
-	exchangeMenu.push_back("~~> lista <nome>\n");
-	exchangeMenu.push_back("~~> avanca\n\n");
-	exchangeMenu.push_back("~~> grava <name>\n");
-	exchangeMenu.push_back("~~> ativa <name>\n");
-	exchangeMenu.push_back("~~> apaga <name>\n\n");
-	exchangeMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
-	exchangeMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	exchangeMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
-	exchangeMenu.push_back("~~> ajuda\n");
-	exchangeMenu.push_back("~~> sair\n");
+	exchangeMenu.push_back("\n - Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
+	exchangeMenu.push_back(" ~~> maisour\n"); 
+	exchangeMenu.push_back(" ~~> maisprod\n");
+	exchangeMenu.push_back(" ~~> lista <nome>\n");
+	exchangeMenu.push_back(" ~~> avanca\n\n");
+	exchangeMenu.push_back(" ~~> grava <name>\n");
+	exchangeMenu.push_back(" ~~> ativa <name>\n");
+	exchangeMenu.push_back(" ~~> apaga <name>\n\n");
+	exchangeMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
+	exchangeMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	exchangeMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	exchangeMenu.push_back(" ~~> ajuda\n");
+	exchangeMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 {
-	shopMenu.push_back("Comandos do Jogo - 3a Fase | Loja HOIsec\n\n");
-	shopMenu.push_back("~~> maismilitar\n");
-	shopMenu.push_back("~~> adquire <tipo>\n");
-	shopMenu.push_back("~~> lista <nome>\n");
-	shopMenu.push_back("~~> avanca\n\n");
-	shopMenu.push_back("~~> grava <nome>\n");
-	shopMenu.push_back("~~> ativa <nome>\n");
-	shopMenu.push_back("~~> apaga <nome>\n\n");
-	shopMenu.push_back("~~> [DEBUG]toma <qual> <nome>\n");
-	shopMenu.push_back("~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	shopMenu.push_back("~~> [DEBUG]fevent <nome-evento>\n\n");
-	shopMenu.push_back("~~> ajuda\n");
-	shopMenu.push_back("~~> sair\n");
+	shopMenu.push_back("\n - Comandos do Jogo - 3a Fase | Loja HoIsec\n\n");
+	shopMenu.push_back(" ~~> maismilitar\n");
+	shopMenu.push_back(" ~~> adquire <tipo>\n");
+	shopMenu.push_back(" ~~> lista <nome>\n");
+	shopMenu.push_back(" ~~> avanca\n\n");
+	shopMenu.push_back(" ~~> grava <nome>\n");
+	shopMenu.push_back(" ~~> ativa <nome>\n");
+	shopMenu.push_back(" ~~> apaga <nome>\n\n");
+	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
+	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	shopMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	shopMenu.push_back(" ~~> ajuda\n");
+	shopMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
-	firstMenu.push_back("Comandos do Jogo\n\n");
-	firstMenu.push_back("~~> cria <tipo> <n>\n");
-	firstMenu.push_back("~~> carrega <nomeFicheiro>\n");
-	firstMenu.push_back("~~> conquista<nome>\n");
-	firstMenu.push_back("~~> lista <nome>\n");
-	firstMenu.push_back("~~> sair\n\n");
+	firstMenu.push_back("\n - Comandos do Jogo -\n\n");
+	firstMenu.push_back(" ~~> cria <tipo> <n>\n");
+	firstMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
+	firstMenu.push_back(" ~~> conquista <nome>\n");
+	firstMenu.push_back(" ~~> lista <nome>\n");
+	firstMenu.push_back(" ~~> sair\n\n");
 }
 
 
@@ -113,7 +113,7 @@ void Interface::opConquer(std::string fullmsg)
 				break;
 		case 0: std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
 				break;
-		case 1: std::cout << "[HoIsec] A batalha foi vencida! Agora o \n" << fullmsg << " faz parte do seu imperio!\n";
+		case 1: std::cout << "[HoIsec] A batalha foi vencida! Agora o " << fullmsg << "\nfaz parte do seu imperio!\n";
 				break;
 	}
 }
@@ -145,7 +145,10 @@ void Interface::opObtainTech(std::string fullmsg)
 void Interface::opList()
 {
 	system("cls");
-	std::cout << gD->listTerritories();
+	std::cout << "Territorios do Imperio:\n\n";
+	std::cout << gD->listTerritoriesConquered();
+	std::cout << "Territorios Livres:\n\n";
+	std::cout << gD->listTerritoriesNotConquered();
 }
 void Interface::opList(std::string fullmsg)
 {
@@ -193,13 +196,23 @@ std::string Interface::readString(const std::string msg)
 }
 std::string Interface::choose(const std::vector<std::string> menu)
 {
+	std::cout << "\n------------------------------------------------------\n";
+	std::cout << "[ ANO: " << gD->getYear() << " || TURNO: " << gD->getTurn() << " ]";
+	std::cout << "\n------------------------------------------------------\n";
+	std::cout << "\t\t\tIMPERIO";
+	std::cout << "\n PONTUACAO: " << gD->getEmpire().getScore();
+	std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
+	std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
+	std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
+	std::cout << "\n------------------------------------------------------\n";
+
 	for (unsigned int i = 0; i < menu.size(); i++) {
 		std::cout << menu[i];
 	}
 
 	std::string opt;
 	while (opt.size() == 0) {
-		opt = readString("\nopcao ~~> ");
+		opt = readString("\nopcao >>> ");
 	}
 	std::transform(opt.begin(), opt.end(), opt.begin(), ::tolower);
 
@@ -211,7 +224,7 @@ Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
 	//DEBUGGING
-	std::cout << "[Interface]: Creating" << std::endl;
+	std::cout << "[INTERFACE] Construindo..." << std::endl;
 }
 void Interface::run()
 {
@@ -280,7 +293,13 @@ void Interface::run()
 		else if (cmd == "fevento" && words.size() == 1) {
 			std::cout << "NOT IMPLEMENTED YET\n";
 		}
-
+		else if (cmd == "sair") {
+			std::cout << "[HoIsec] O jogo vai terminar...\n";
+		}
+		else {
+			system("cls");
+			std::cout << "[HoIsec] Comando desconhecido...\n";
+		}
 
 	} while (cmd != "sair");
 
@@ -289,5 +308,6 @@ Interface::~Interface()
 {	
 	delete(gD);
 	//DEBUG
-	std::cout << "[Interface]: Destroying..." << std::endl;
+	std::cout << "[INTERFACE] Destruindo..." << std::endl;
+
 }
