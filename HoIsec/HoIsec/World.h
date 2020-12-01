@@ -15,6 +15,8 @@ public:
 	World(const World& copy) = delete;
 	~World();
 	std::string toString();
+	std::string toStringConquerd();
+	std::string toStringNotConquerd();
 	std::string getInfoTerritory(std::string name);
 	Territory* getSpecificTerritory(std::string name) const;
 	std::vector<Territory*> getTerritories() const;

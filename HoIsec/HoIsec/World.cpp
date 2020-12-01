@@ -4,15 +4,17 @@
 World::World()
 {
 	addTerritories(TerritoryTypes::TERRITORY, 1);
+	std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
 World::~World() {
+
+	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
 	for (Territory* t : territories)
 	{
 		delete t;
-		std::cout << "[WORLD] Estou dentro vetor 'Territorios' a destruir" << std::endl;
 	}
-	std::cout << "[WORLD] Destroying world" << std::endl;
+	std::cout << "[WORLD] Destruindo..." << std::endl;
 }
 std::string World::toString() { 
 	std::ostringstream oss;
@@ -23,6 +25,25 @@ std::string World::toString() {
 	return oss.str();
 }
 
+std::string World::toStringConquerd() {
+	std::ostringstream oss;
+	for (Territory* t : territories)
+	{
+		if(t->isConquered())
+			oss << t->toString();
+	}
+	return oss.str();
+}
+
+std::string World::toStringNotConquerd() {
+	std::ostringstream oss;
+	for (Territory* t : territories)
+	{
+		if (!t->isConquered())
+			oss << t->toString();
+	}
+	return oss.str();
+}
 std::string World::getInfoTerritory(std::string name) {
 	for(Territory* t :territories)
 	{

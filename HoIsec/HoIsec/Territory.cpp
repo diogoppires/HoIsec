@@ -9,17 +9,17 @@ Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int 
 	this->goldCreation = goldCreation;
 	this->winPoints = winPoints;
 	this->conquered = false;
-	std::cout << "[Territorio] Construindo... " << name << std::endl;
+	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
 }
 
 Territory::~Territory() {
-	std::cout << "[Territorio] Destruindo... " << name << std::endl;
+	std::cout << "[TERRITORY] Destruindo... " << name << std::endl;
 }
 
 std::string Territory::toString() {
 	std::ostringstream oss;
 
-	oss << "[Territorio]\n\tNome: " << name << "\n\tResistencia: " << resistance <<
+	oss << "TIPO = 'Territorio'\n\tNome: " << name << "\n\tResistencia: " << resistance <<
 		"\n\tQuantidade de produtos gerados por turno: " << prodCreation << "\n\tQuantidade de ouro gerado por turno: " <<
 		goldCreation << "\n\tPontos de vitoria: " << winPoints << std::endl;
 	return oss.str();
@@ -75,6 +75,7 @@ void Territory::changeNotConquered()
 {
 	conquered = false;
 }
+
 
 std::string Territory::buildName(TerritoryTypes type,int value) {
 	std::ostringstream oss;
