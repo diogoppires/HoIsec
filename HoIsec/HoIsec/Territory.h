@@ -9,8 +9,8 @@
 
 class Territory
 {
+protected:
 	Utils converter;
-	static int count;
 	std::string name;
 	int resistance;
 	int prodCreation;
@@ -18,7 +18,7 @@ class Territory
 	int winPoints;
 	bool conquered;
 public:
-	Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints);
+	Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints, int counter);
 
 	~Territory();
 
@@ -49,6 +49,8 @@ public:
 	void changeNotConquered();
 
 	std::string buildName(TerritoryTypes type,int value);
+
+	virtual std::string getTerritoryType() const = 0;
 };
 
 

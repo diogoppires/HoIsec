@@ -25,6 +25,18 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{1af740dc-eee1-4087-b1c6-9ec2d78ba862}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TerritoriesTypes">
+      <UniqueIdentifier>{1ba7235f-29b0-47ef-8ae5-cec57c0bb390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TerritoriesTypes">
+      <UniqueIdentifier>{188b425b-910a-496c-8c54-ef49e550d345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ContinentTypes">
+      <UniqueIdentifier>{24e1595a-7a95-47ff-9777-cb2c5b5dbf8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ContinentTypes">
+      <UniqueIdentifier>{0da28a22-5c6d-45d3-818f-5973402ccb43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Army.cpp">
@@ -57,6 +69,24 @@
     <ClCompile Include="Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Plain.cpp">
+      <Filter>Source Files\ContinentTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Continent.cpp">
+      <Filter>Source Files\TerritoriesTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="InitTerritory.cpp">
+      <Filter>Source Files\TerritoriesTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Island.cpp">
+      <Filter>Source Files\TerritoriesTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
+      <Filter>Source Files\ContinentTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Fortress.cpp">
+      <Filter>Source Files\ContinentTypes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h">
@@ -88,6 +118,24 @@
     </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Plain.h">
+      <Filter>Header Files\ContinentTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <Filter>Header Files\ContinentTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="InitTerritory.h">
+      <Filter>Header Files\TerritoriesTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Island.h">
+      <Filter>Header Files\TerritoriesTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Continent.h">
+      <Filter>Header Files\TerritoriesTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Fortress.h">
+      <Filter>Header Files\ContinentTypes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

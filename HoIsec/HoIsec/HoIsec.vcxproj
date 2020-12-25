@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,11 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Army.cpp" />
+    <ClCompile Include="Continent.cpp" />
     <ClCompile Include="Empire.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="Fortress.cpp" />
     <ClCompile Include="GameData.cpp" />
+    <ClCompile Include="InitTerritory.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mountain.cpp" />
+    <ClCompile Include="Plain.cpp" />
     <ClCompile Include="SafeBox.cpp" />
     <ClCompile Include="Storage.cpp" />
     <ClCompile Include="Territory.cpp" />
@@ -32,11 +38,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h" />
+    <ClInclude Include="Continent.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="Empire.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="Fortress.h" />
     <ClInclude Include="GameData.h" />
+    <ClInclude Include="InitTerritory.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Island.h" />
+    <ClInclude Include="Mountain.h" />
+    <ClInclude Include="Plain.h" />
     <ClInclude Include="SafeBox.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="Territory.h" />

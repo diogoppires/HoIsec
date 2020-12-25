@@ -8,7 +8,6 @@ World::World()
 }
 
 World::~World() {
-
 	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
 	for (Territory* t : territories)
 	{
