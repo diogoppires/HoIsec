@@ -25,17 +25,23 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{1af740dc-eee1-4087-b1c6-9ec2d78ba862}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TerritoriesTypes">
-      <UniqueIdentifier>{1ba7235f-29b0-47ef-8ae5-cec57c0bb390}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TerritoriesTypes">
-      <UniqueIdentifier>{188b425b-910a-496c-8c54-ef49e550d345}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ContinentTypes">
+    <Filter Include="Source Files\Continent Types">
       <UniqueIdentifier>{24e1595a-7a95-47ff-9777-cb2c5b5dbf8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ContinentTypes">
+    <Filter Include="Header Files\Territories Types">
+      <UniqueIdentifier>{1ba7235f-29b0-47ef-8ae5-cec57c0bb390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Continent Types">
       <UniqueIdentifier>{0da28a22-5c6d-45d3-818f-5973402ccb43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Territories Types">
+      <UniqueIdentifier>{188b425b-910a-496c-8c54-ef49e550d345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Island Types">
+      <UniqueIdentifier>{ca6ed071-6b43-4ede-8874-6d1dc5a6e04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Island Types">
+      <UniqueIdentifier>{f0ff4ba7-d8ec-461f-a918-7d4fef5e28e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,22 +76,37 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Plain.cpp">
-      <Filter>Source Files\ContinentTypes</Filter>
+      <Filter>Source Files\Continent Types</Filter>
     </ClCompile>
     <ClCompile Include="Continent.cpp">
-      <Filter>Source Files\TerritoriesTypes</Filter>
+      <Filter>Source Files\Territories Types</Filter>
     </ClCompile>
     <ClCompile Include="InitTerritory.cpp">
-      <Filter>Source Files\TerritoriesTypes</Filter>
+      <Filter>Source Files\Territories Types</Filter>
     </ClCompile>
     <ClCompile Include="Island.cpp">
-      <Filter>Source Files\TerritoriesTypes</Filter>
+      <Filter>Source Files\Territories Types</Filter>
     </ClCompile>
     <ClCompile Include="Mountain.cpp">
-      <Filter>Source Files\ContinentTypes</Filter>
+      <Filter>Source Files\Continent Types</Filter>
     </ClCompile>
     <ClCompile Include="Fortress.cpp">
-      <Filter>Source Files\ContinentTypes</Filter>
+      <Filter>Source Files\Continent Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine.cpp">
+      <Filter>Source Files\Continent Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Dune.cpp">
+      <Filter>Source Files\Continent Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Castle.cpp">
+      <Filter>Source Files\Continent Types</Filter>
+    </ClCompile>
+    <ClCompile Include="PiratesRefugee.cpp">
+      <Filter>Source Files\Island Types</Filter>
+    </ClCompile>
+    <ClCompile Include="FishingSite.cpp">
+      <Filter>Source Files\Island Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,22 +141,37 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Plain.h">
-      <Filter>Header Files\ContinentTypes</Filter>
+      <Filter>Header Files\Continent Types</Filter>
     </ClInclude>
     <ClInclude Include="Mountain.h">
-      <Filter>Header Files\ContinentTypes</Filter>
+      <Filter>Header Files\Continent Types</Filter>
     </ClInclude>
     <ClInclude Include="InitTerritory.h">
-      <Filter>Header Files\TerritoriesTypes</Filter>
+      <Filter>Header Files\Territories Types</Filter>
     </ClInclude>
     <ClInclude Include="Island.h">
-      <Filter>Header Files\TerritoriesTypes</Filter>
+      <Filter>Header Files\Territories Types</Filter>
     </ClInclude>
     <ClInclude Include="Continent.h">
-      <Filter>Header Files\TerritoriesTypes</Filter>
+      <Filter>Header Files\Territories Types</Filter>
     </ClInclude>
     <ClInclude Include="Fortress.h">
-      <Filter>Header Files\ContinentTypes</Filter>
+      <Filter>Header Files\Continent Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine.h">
+      <Filter>Header Files\Continent Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Dune.h">
+      <Filter>Header Files\Continent Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>Header Files\Continent Types</Filter>
+    </ClInclude>
+    <ClInclude Include="PiratesRefugee.h">
+      <Filter>Header Files\Island Types</Filter>
+    </ClInclude>
+    <ClInclude Include="FishingSite.h">
+      <Filter>Header Files\Island Types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

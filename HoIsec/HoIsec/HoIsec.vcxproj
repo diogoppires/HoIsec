@@ -20,16 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Army.cpp" />
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Continent.cpp" />
+    <ClCompile Include="Dune.cpp" />
     <ClCompile Include="Empire.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FishingSite.cpp" />
     <ClCompile Include="Fortress.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="InitTerritory.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Mountain.cpp" />
+    <ClCompile Include="PiratesRefugee.cpp" />
     <ClCompile Include="Plain.cpp" />
     <ClCompile Include="SafeBox.cpp" />
     <ClCompile Include="Storage.cpp" />
@@ -38,16 +43,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h" />
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="Dune.h" />
     <ClInclude Include="Empire.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FishingSite.h" />
     <ClInclude Include="Fortress.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="InitTerritory.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Island.h" />
+    <ClInclude Include="Mine.h" />
     <ClInclude Include="Mountain.h" />
+    <ClInclude Include="PiratesRefugee.h" />
     <ClInclude Include="Plain.h" />
     <ClInclude Include="SafeBox.h" />
     <ClInclude Include="Storage.h" />

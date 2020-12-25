@@ -20,6 +20,8 @@ protected:
 public:
 	Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints, int counter);
 
+	Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints);
+
 	~Territory();
 
 	std::string toString();

@@ -10,6 +10,17 @@ Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int 
 	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
 }
 
+Territory::Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints)
+{
+	this->name = initName;
+	this->resistance = initResistance;
+	this->prodCreation = initProdCreation;
+	this->goldCreation = initGoldCreation;
+	this->winPoints = initWinPoints;
+	this->conquered = false;
+	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+}
+
 Territory::~Territory() {
 	std::cout << "[TERRITORY] Destruindo... " << name << std::endl;
 }
