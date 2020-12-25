@@ -3,12 +3,11 @@
 
 World::World()
 {
-	addTerritories(TerritoryTypes::TERRITORY, 1);
+	//addTerritories(TerritoryTypes::TERRITORY, 1);
 	std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
 World::~World() {
-
 	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
 	for (Territory* t : territories)
 	{
@@ -71,7 +70,8 @@ std::vector<Territory*> World::getTerritories() const {
 
 void World::addTerritories(TerritoryTypes type, int num) {
 	for (int i = 0; i < num; i++) {
-		territories.push_back(new Territory(type, DEFAULT_RESISTANCE, DEFAULT_PRODCREATION, DEFAULT_GOLDCREATION, DEFAULT_WINPOINTS));
+		//Make a Factory of objects
+		//territories.push_back(new Territory(type, DEFAULT_RESISTANCE, DEFAULT_PRODCREATION, DEFAULT_GOLDCREATION, DEFAULT_WINPOINTS));
 	}
 }
 void World::clearTerritories() {

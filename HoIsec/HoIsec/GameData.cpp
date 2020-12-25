@@ -18,7 +18,7 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 	num = std::stoi(aux, nullptr, 0);
 }
 
-GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIALTERRITORY_NAME)), converter() {
+GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
 	year = 1;
 	turn = 1;
 	phase = Phases::NONE;

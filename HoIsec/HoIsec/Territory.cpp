@@ -1,13 +1,22 @@
 #include "Territory.h"
 
-int Territory::count = 0;
-
-Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints):converter(){
-	name = buildName(type, ++count);
+Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints, int counter):converter(){
+	name = buildName(type, counter);
 	this->resistance = resistance;
 	this->prodCreation = prodCreation;
 	this->goldCreation = goldCreation;
 	this->winPoints = winPoints;
+	this->conquered = false;
+	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+}
+
+Territory::Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints)
+{
+	this->name = initName;
+	this->resistance = initResistance;
+	this->prodCreation = initProdCreation;
+	this->goldCreation = initGoldCreation;
+	this->winPoints = initWinPoints;
 	this->conquered = false;
 	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
 }
@@ -21,7 +30,7 @@ std::string Territory::toString() {
 
 	oss << "TIPO = 'Territorio'\n\tNome: " << name << "\n\tResistencia: " << resistance <<
 		"\n\tQuantidade de produtos gerados por turno: " << prodCreation << "\n\tQuantidade de ouro gerado por turno: " <<
-		goldCreation << "\n\tPontos de vitoria: " << winPoints << std::endl;
+		goldCreation << "\n\tPontos de vitoria: " << std::endl;
 	return oss.str();
 }
 
@@ -75,7 +84,6 @@ void Territory::changeNotConquered()
 {
 	conquered = false;
 }
-
 
 std::string Territory::buildName(TerritoryTypes type,int value) {
 	std::ostringstream oss;
