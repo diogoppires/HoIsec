@@ -10,6 +10,8 @@ class World
 {
 private:
 	std::vector<Territory*> territories;
+
+	void TerritoryFactory(TerritoryTypes type);
 public:
 	World();
 	World(const World& copy) = delete;

@@ -1,9 +1,32 @@
 #include "World.h"
+#include "InitTerritory.h"
+#include "Castle.h"
+#include "Dune.h"
+#include "Fortress.h"
+#include "Mine.h"
+#include "Mountain.h"
+#include "Plain.h"
+#include "FishingSite.h"
+#include "PiratesRefugee.h"
 
+void World::TerritoryFactory(TerritoryTypes type)
+{
+	switch (type) {
+	case TerritoryTypes::INITIAL:		territories.push_back(new InitTerritory);	break;
+	case TerritoryTypes::PLAIN:			territories.push_back(new Plain);			break;
+	case TerritoryTypes::DUNE:			territories.push_back(new Dune);			break;
+	case TerritoryTypes::CASTLE:		territories.push_back(new Castle);			break;
+	case TerritoryTypes::FORTRESS:		territories.push_back(new Fortress);		break;
+	case TerritoryTypes::MOUNTAIN:		territories.push_back(new Mountain);		break;
+	case TerritoryTypes::MINE:			territories.push_back(new Mine);			break;
+	case TerritoryTypes::FISHINGSITE:	territories.push_back(new FishingSite);		break;	
+	case TerritoryTypes::PIRATEREFUGE:	territories.push_back(new PiratesRefugee);	break;
+	}
+}
 
 World::World()
 {
-	//addTerritories(TerritoryTypes::TERRITORY, 1);
+	addTerritories(TerritoryTypes::INITIAL, 1);
 	std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
@@ -70,8 +93,7 @@ std::vector<Territory*> World::getTerritories() const {
 
 void World::addTerritories(TerritoryTypes type, int num) {
 	for (int i = 0; i < num; i++) {
-		//Make a Factory of objects
-		//territories.push_back(new Territory(type, DEFAULT_RESISTANCE, DEFAULT_PRODCREATION, DEFAULT_GOLDCREATION, DEFAULT_WINPOINTS));
+		TerritoryFactory(type);
 	}
 }
 void World::clearTerritories() {
