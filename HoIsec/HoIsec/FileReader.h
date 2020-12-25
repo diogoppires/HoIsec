@@ -19,10 +19,8 @@ private:
 	bool verifyArgs(std::string territory, std::string quant);
 
 public:
-	//Constructor
 	FileReader(std::string fileName);
 	std::vector<std::string> readFile();
-	//Destructor
 	~FileReader();
 };
 

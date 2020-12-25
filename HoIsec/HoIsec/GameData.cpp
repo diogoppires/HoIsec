@@ -18,6 +18,18 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 	num = std::stoi(aux, nullptr, 0);
 }
 
+void GameData::advancePhase()
+{
+	switch (phase)
+	{
+		case Phases::NONE:			phase = Phases::CONQUER;	break;
+		case Phases::CONQUER:		phase = Phases::COLLECTION; break;
+		case Phases::COLLECTION:	phase = Phases::SHOP;		break;
+		case Phases::SHOP:			phase = Phases::EVENTS;		break;
+		case Phases::EVENTS:		phase = Phases::CONQUER;	break;
+	}
+}
+
 GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
 	year = 1;
 	turn = 1;
@@ -60,6 +72,15 @@ bool GameData::loadTerritories(std::string fileName) {
 	return true;
 }
 
+bool GameData::initializeGame()
+{
+	if (world.getTerritoriesSize() > 1) {
+		advancePhase();
+		return true;
+	}
+	return false;
+}
+
 std::string GameData::listTerritoriesConquered() {
 
 	return world.toStringConquerd();
@@ -79,21 +100,35 @@ int GameData::conquerTerritories(std::string name) {
 
 	if (chosenTerr != nullptr) {
 
+		//Needs to evaluate if the choosen territory is an Island or a Continent, and
+		//if the user had choosen Island, verify if the he already have 5 territories and the technology 'Teleguided Missiles'
+
 		if (chosenTerr->isConquered()) {
 			return -1; //-1 if the territory was already conquered.
 		}
 		generateLuckyFactor();
-		return empire.attack(chosenTerr,getLuckyFactor()); // 0 if the battle was lost/ 1 if the battle was won.
+		int attackResult = empire.attack(chosenTerr,getLuckyFactor()); // 0 if the battle was lost/ 1 if the battle was won.
+		advancePhase();
+		return attackResult;
 	}
 	return -2; //-2 if the territory doens't exist
+}
+
+void GameData::stayPassive()
+{
+	advancePhase();
+	empire.updateEmpire();
+}
+
+void GameData::advance()
+{
+	advancePhase();
 }
 
 Empire& GameData::getEmpire()
 {
 	return empire;
 }
-
-
 
 int GameData::getYear() const { 
 	return year; 
@@ -109,9 +144,6 @@ void GameData::setTurn(int turn) {
 }
 Phases GameData::getPhase() const {
 	return phase;
-}
-void GameData::setPhase(Phases phase) {
-	this->phase = phase;
 }
 
 int GameData::getLuckyFactor() const {

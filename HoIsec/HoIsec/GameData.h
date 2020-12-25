@@ -21,16 +21,21 @@ class GameData
 	
 	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
+	void advancePhase();
 public:
 	GameData();
 	~GameData();
 	bool verifyTerritory(std::string name); // conquista
 	bool createTerritories(std::string type, int quant); // cria
 	bool loadTerritories(std::string fileName); // carrega
+	bool initializeGame();	//inicia
 	std::string listTerritoriesConquered(); //lista conquered territories 
 	std::string listTerritoriesNotConquered(); //lista not conquered territories 
 	std::string listTerritories(std::string territory);  //lista (with specific territory)
 	int conquerTerritories(std::string name); // conquista
+	void stayPassive(); //passa
+	void advance();	//avanca
+
 
 	Empire& getEmpire();
 
@@ -39,7 +44,6 @@ public:
 	int getTurn() const;
 	void setTurn(int turn);
 	Phases getPhase() const;
-	void setPhase(Phases phase);
 	int getLuckyFactor() const;
 	void generateLuckyFactor();
 };

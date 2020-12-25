@@ -22,6 +22,7 @@ private:
 	int score;
 	int prodCreation;
 	int goldCreation;
+
 public:
 	//Constructor
 	Empire(Territory* initial);

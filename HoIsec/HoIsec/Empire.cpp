@@ -81,6 +81,8 @@ void Empire::updateEmpire()
 	score = auxScore;
 	prodCreation = auxProd;
 	goldCreation = auxGold;
+	receiveProds(prodCreation);
+	receiveGold(goldCreation);
 }
 
 bool Empire::receiveGold(int quant)
@@ -113,6 +115,7 @@ bool Empire::attack(Territory* territory,int luckyFactor)
 		return true;
 	}
 	army.subMiliForce(MILIFORCE_LOST);
+	updateEmpire();
 	return false;
 }
 

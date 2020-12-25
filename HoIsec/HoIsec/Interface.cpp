@@ -17,8 +17,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
 	conquerMenu.push_back(" ~~> conquista<nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
-	conquerMenu.push_back(" ~~> lista <nome>\n");
-	conquerMenu.push_back(" ~~> avanca\n\n");
+	conquerMenu.push_back(" ~~> lista <nome>\n\n");
 	conquerMenu.push_back(" ~~> grava <nome>\n");
 	conquerMenu.push_back(" ~~> ativa <nome>\n");
 	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
@@ -31,7 +30,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 {
 	exchangeMenu.push_back("\n - Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
-	exchangeMenu.push_back(" ~~> maisour\n"); 
+	exchangeMenu.push_back(" ~~> maisouro\n"); 
 	exchangeMenu.push_back(" ~~> maisprod\n");
 	exchangeMenu.push_back(" ~~> lista <nome>\n");
 	exchangeMenu.push_back(" ~~> avanca\n\n");
@@ -104,6 +103,17 @@ void Interface::opCreate(std::string fullmsg,int quant)
 		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
 	}
 }
+void Interface::opGameInit()
+{
+	system("cls");
+	if (gD->initializeGame()) {
+		std::cout << "[HoIsec] Estamos a preparar o seu jogo...\n";
+	}
+	else {
+		std::cout << "[HoIsec] Ocorreu um erro a inicializar o jogo! Verifique se adicionou algum territorio.\n";
+	}
+
+}
 void Interface::opConquer(std::string fullmsg)
 {
 	system("cls");
@@ -118,10 +128,14 @@ void Interface::opConquer(std::string fullmsg)
 				break;
 	}
 }
-void Interface::opPass(std::string fullmsg)
+void Interface::opPass()
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	gD->stayPassive();
+}
+void Interface::opAdvance()
+{
+	gD->advance();
 }
 void Interface::opMoreGold(std::string fullmsg)
 {
@@ -187,6 +201,12 @@ void Interface::opForceEvent(std::string fullmsg)
 	std::cout << "NOT IMPLEMENTED YET\n";
 }
 
+void Interface::opEvent()
+{
+
+}
+
+
 //Methods to make the code looks smoother
 std::string Interface::readString(const std::string msg)
 {
@@ -235,11 +255,19 @@ void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 	if (cmd == "carrega" && words.size() == 1) {
 		opLoad(words[0]);
 	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
 	else if (cmd == "cria" && words.size() == 2) {
 		opCreate(words[0], std::stoi(words[1]));
 	}
 	else if (cmd == "iniciar" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opGameInit();
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -265,7 +293,7 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		opConquer(words[0]);
 	}
 	else if (cmd == "passa" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opPass();
 	}
 	else if (cmd == "lista") {
 		if (words.empty()) {
@@ -274,9 +302,6 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		else if (words.size() == 1) {
 			opList(words[0]);
 		}
-	}
-	else if (cmd == "avanca" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
 	}
 	else if (cmd == "grava" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -325,7 +350,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		}
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opAdvance();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -374,7 +399,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		}
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opAdvance();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -406,12 +431,16 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 	}
 }
 
+void Interface::eventScreen()
+{
+
+}
+
 
 
 Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
-	//DEBUGGING
 	std::cout << "[INTERFACE] Construindo..." << std::endl;
 }
 void Interface::run()
@@ -430,10 +459,11 @@ void Interface::run()
 		getWords(words, cmd, fullstr);
 		
 		switch (gD->getPhase()) {
-			case Phases::NONE:			initMenu(cmd, words);			break;
-			case Phases::CONQUER:		conquerMenu(cmd, words);		break;
-			case Phases::COLLECTION:	exchangeMenu(cmd, words);		break;
-			case Phases::SHOP:			shopMenu(cmd, words);			break;
+			case Phases::NONE:			initMenu(cmd, words);		break;
+			case Phases::CONQUER:		conquerMenu(cmd, words);	break;
+			case Phases::COLLECTION:	exchangeMenu(cmd, words);	break;
+			case Phases::SHOP:			shopMenu(cmd, words);		break;
+			case:Phases::EVENTS:		eventScreen();				break;
 		}
 	} while (cmd != "sair");
 }
