@@ -80,11 +80,11 @@ enum class TerritoryTypes {
 };
 
 enum class Phases {
+	NONE,
 	CONQUER,
 	COLLECTION,
 	SHOP,
-	EVENTS,
-	NONE
+	EVENTS
 };
 
 class Utils {

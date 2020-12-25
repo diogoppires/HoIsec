@@ -41,6 +41,11 @@ private:
 
 	std::string readString(const std::string msg);
 	std::string choose(const std::vector<std::string> menu);
+	void pickMenu(std::vector<std::string>& menu);
+	void initMenu(std::string cmd, std::vector<std::string> words);
+	void conquerMenu(std::string cmd, std::vector<std::string> words);
+	void exchangeMenu(std::string cmd, std::vector<std::string> words);
+	void shopMenu(std::string cmd, std::vector<std::string> words);
 public:
 	//Constructor
 	Interface(GameData* gD);

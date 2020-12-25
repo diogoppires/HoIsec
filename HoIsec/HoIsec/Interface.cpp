@@ -5,7 +5,8 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
 	initMenu.push_back("\n\n-- Menu Principal --\n\n");
 	initMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
-	initMenu.push_back(" ~~> cria <tipo> <n>\n\n");
+	initMenu.push_back(" ~~> cria <tipo> <n>\n");
+	initMenu.push_back(" ~~> iniciar\n\n");
 	initMenu.push_back(" ~~> ativa <nome>\n");
 	initMenu.push_back(" ~~> apaga <nome>\n\n");
 	initMenu.push_back(" ~~> ajuda\n");
@@ -219,6 +220,193 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	return opt;
 }
 
+void Interface::pickMenu(std::vector<std::string>& menu)
+{
+	switch (gD->getPhase()) {
+		case Phases::NONE:			fillInitMenu(menu);		break;
+		case Phases::CONQUER:		fillConquerMenu(menu);	break;
+		case Phases::COLLECTION:	fillExchangeMenu(menu);	break;
+		case Phases::SHOP:			fillShopMenu(menu);		break;
+	}
+}
+
+void Interface::initMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "carrega" && words.size() == 1) {
+		opLoad(words[0]);
+	}
+	else if (cmd == "cria" && words.size() == 2) {
+		opCreate(words[0], std::stoi(words[1]));
+	}
+	else if (cmd == "iniciar" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "conquista" && words.size() == 1) {
+		opConquer(words[0]);
+	}
+	else if (cmd == "passa" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "maisouro" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "maisprod" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "maismilitar" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "adquire" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+
 
 Interface::Interface(GameData* gD)
 {	
@@ -230,79 +418,24 @@ void Interface::run()
 {
 	std::vector<std::string> menu;
 	std::vector<std::string> words;
-	fillFirstMenu(menu);
 	std::string fullstr;
 	std::string cmd;
 	do {
 		words.clear();
+		menu.clear();
+		pickMenu(menu);
 
 		//Need to be informed by GameData in order to show the correct menu.
 		fullstr = choose(menu);
 		getWords(words, cmd, fullstr);
-
-		if (cmd == "carrega" && words.size() == 1) {
-			opLoad(words[0]);
+		
+		switch (gD->getPhase()) {
+			case Phases::NONE:			initMenu(cmd, words);			break;
+			case Phases::CONQUER:		conquerMenu(cmd, words);		break;
+			case Phases::COLLECTION:	exchangeMenu(cmd, words);		break;
+			case Phases::SHOP:			shopMenu(cmd, words);			break;
 		}
-		else if (cmd == "cria" && words.size() == 2) {
-			opCreate(words[0], std::stoi(words[1]));
-		}
-		else if (cmd == "conquista" && words.size() == 1) {
-			opConquer(words[0]);
-		}
-		else if (cmd == "passa" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maisouro" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maisprod" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maismilitar" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "adquire" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "lista") {
-			if (words.empty()) {
-				opList();
-			}
-			else if(words.size() == 1){
-				opList(words[0]);
-			}
-		}
-		else if (cmd == "avanca" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "grava" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "ativa" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "apaga" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "toma" && words.size() == 2) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "modifica" && words.size() == 2) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "fevento" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "sair") {
-			std::cout << "[HoIsec] O jogo vai terminar...\n";
-		}
-		else {
-			system("cls");
-			std::cout << "[HoIsec] Comando desconhecido...\n";
-		}
-
 	} while (cmd != "sair");
-
 }
 Interface::~Interface()
 {	
