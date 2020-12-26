@@ -32,24 +32,32 @@ public:
 	int getGoldCreation() const;
 	int getProds() const;
 	int getProdsCreation() const;
+		
 	int getScore() const;
 	int getMiliForce() const;
 	int getMaxMiliForce() const;
 	int getMaxStorage() const;
 	int getMaxSafeBox() const;
+	int getEmpireSize() const;
 
 	int haveStockExchange() const;
 	int haveCentralBank() const;
 
 	void updateEmpire();
 
+	bool increaseArmy(int quant);
 	bool receiveGold(int quant);
 	bool receiveProds(int quant);
+	bool decreaseArmy(int quant);
 	bool spendGold(int quant);
 	bool spendProds(int quant);
+	
 
 	bool attack(Territory* territory,int luckyFactor);
+	void deleteLastTerritory();
 
+	Territory* getLastConquer();
+	
 	//toString
 	std::string toString() const;
 	//Destructor

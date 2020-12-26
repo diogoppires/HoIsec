@@ -65,6 +65,21 @@
 #define MAX_SAFEBOX 3
 #define MAX_SAFEBOX_WITH_CENTRALBANK 5
 
+//EVENTS INFORMATION
+#define ABANDONED_PRODUCT "Produto abandonado!\n Um produto abandonado foi encontrado e fornece ao armazem do seu império uma unidade de produtos. Caso já tenha sido atingido o valor máximo permitido, este recurso sera desperdicado!"
+#define ABANDONED_GOLD "Ouro abandonado!\n Foi encontrado ouro abandonado e decidiu guarda-lo no seu cofre. Caso já tenha sido atingido o valor máximo permitido, este recurso sera desperdicado!"
+#define INVASION_FAILED "Invasao! Um imperio concorrente tentou conquistar um territorio do seu imperio mas os seus soldados estavam atentos e impediram esta invasao. A invasao foi FALHADA."
+#define INVASION_SUCCESS "Invasao! Um imperio concorrente conseguiu conquistar um territorio do seu imperio! Territorio perdido: "
+#define DIPLOMATIC_ALLIANCE "Juntos somos mais fortes! Foi assinada uma aliança com um império e em consequência disto a sua força militar aumenta uma unidade. Caso já tenha sido atingido o valor máximo permitido, a sua forca militar nao sera incrementada!"
+#define NO_EVENT "zZzZzZzZzZz... Nao ocorreu nada! Podem dormir todos descansados (por enquanto...)."
+
+//EVENTS DATA
+#define ABANDONED_PRODUCT_QTY 1
+#define ABANDONED_GOLD_QTY 1
+#define INVASION_STRENGTH_FIRST_YEAR 2
+#define INVASION_STRENGTH_SECOND_YEAR 3
+#define DIPLOMATIC_ALLIANCE_QTY 1
+
 enum class TerritoryTypes {
 	TERRITORY,
 	INITIAL,

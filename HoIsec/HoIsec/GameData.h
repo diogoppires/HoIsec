@@ -4,6 +4,7 @@
 #include "World.h"
 #include "Empire.h"
 #include "FileReader.h"
+#include "Event.h"
 #include "data.h"
 #include <iostream>
 #include <sstream>
@@ -12,6 +13,8 @@
 class GameData
 {
 	Utils converter;
+	std::vector<Event*> events;
+
 	World world;
 	Empire empire;
 	int year;

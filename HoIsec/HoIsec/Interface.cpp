@@ -463,7 +463,7 @@ void Interface::run()
 			case Phases::CONQUER:		conquerMenu(cmd, words);	break;
 			case Phases::COLLECTION:	exchangeMenu(cmd, words);	break;
 			case Phases::SHOP:			shopMenu(cmd, words);		break;
-			case:Phases::EVENTS:		eventScreen();				break;
+			case Phases::EVENTS:		eventScreen();				break;
 		}
 	} while (cmd != "sair");
 }

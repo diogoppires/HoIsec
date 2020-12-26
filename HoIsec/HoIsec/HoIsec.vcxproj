@@ -19,17 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbandonedResource.cpp" />
     <ClCompile Include="Army.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Continent.cpp" />
+    <ClCompile Include="DiplomaticAlliance.cpp" />
     <ClCompile Include="Dune.cpp" />
     <ClCompile Include="Empire.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="FishingSite.cpp" />
     <ClCompile Include="Fortress.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="InitTerritory.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Invasion.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mine.cpp" />
@@ -42,18 +46,22 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbandonedResource.h" />
     <ClInclude Include="Army.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="DiplomaticAlliance.h" />
     <ClInclude Include="Dune.h" />
     <ClInclude Include="Empire.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="FishingSite.h" />
     <ClInclude Include="Fortress.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="InitTerritory.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Invasion.h" />
     <ClInclude Include="Island.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="Mountain.h" />

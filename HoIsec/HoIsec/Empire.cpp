@@ -60,6 +60,11 @@ int Empire::getMaxSafeBox() const
 	return safe.getMaxSafeBox();
 }
 
+int Empire::getEmpireSize() const
+{
+	return (int)empire.size();
+}
+
 int Empire::haveStockExchange() const
 {
 	return stockExchange;
@@ -85,6 +90,11 @@ void Empire::updateEmpire()
 	receiveGold(goldCreation);
 }
 
+bool Empire::increaseArmy(int quant)
+{
+	return army.addMiliForce(quant);
+}
+
 bool Empire::receiveGold(int quant)
 {
 	return safe.addGold(quant);
@@ -93,6 +103,11 @@ bool Empire::receiveGold(int quant)
 bool Empire::receiveProds(int quant)
 {
 	return storage.addProducts(quant);
+}
+
+bool Empire::decreaseArmy(int quant)
+{
+	return army.subMiliForce(quant);
 }
 
 bool Empire::spendGold(int quant)
@@ -117,6 +132,16 @@ bool Empire::attack(Territory* territory,int luckyFactor)
 	army.subMiliForce(MILIFORCE_LOST);
 	updateEmpire();
 	return false;
+}
+
+void Empire::deleteLastTerritory()
+{
+	empire.pop_back();
+}
+
+Territory* Empire::getLastConquer()
+{
+	return empire.back();
 }
 
 std::string Empire::toString() const
