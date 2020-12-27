@@ -11,13 +11,12 @@ protected:
 	int price;
 public:
 	Technology(int price);
-	virtual void applyTech() const = 0;
+	virtual void applyTech() = 0;
 	void setActiveTrue();
 	void setActiveFalse();
 	bool getActive() const;
 	int getPrice() const;
-	void setPrice(int price);
-	~Technology();
+	virtual ~Technology();
 
 };
 #endif // !TECHNOLOGY_H

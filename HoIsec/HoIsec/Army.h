@@ -9,10 +9,6 @@ class Army
 {
 private:
 	int miliForce;
-	bool miliDrone;
-	bool missiles;
-	bool territoryDef;
-
 	int maxMiliForce;
 
 public:
@@ -21,16 +17,8 @@ public:
 	bool addMiliForce(int value);
 	bool subMiliForce(int value);
 	int getMiliForce() const;
-	void setMiliDroneTrue();
-	void setMiliDroneFalse();
-	bool getMiliDrone() const;
-	void setMisilesTrue();
-	void setMissilesFalse();
-	bool getMissiles() const;
-	void setTerritoryDefTrue();
-	void setTerritoryDefFalse();
-	bool getTerritoryDef() const;
 	int getMaxMiliForce() const;
+	void setMaxMiliForce(int max);
 };
 
 #endif // !ARMY_H

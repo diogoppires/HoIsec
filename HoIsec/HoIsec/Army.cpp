@@ -3,8 +3,8 @@
 
 Army::Army(int miliForce)
 {
+	this->maxMiliForce = MAX_MILIFORCE;
 	this->miliForce = miliForce;
-	setMiliDroneFalse();
 	std::cout << "[ARMY] Contruindo..." << std::endl;
 }
 
@@ -30,37 +30,12 @@ bool Army::subMiliForce(int value) {
 int Army::getMiliForce() const {
 	return miliForce;
 }
-void Army::setMiliDroneTrue() {
-	miliDrone = true;
-	maxMiliForce = MAX_MILIFORCE_WITH_DRONE;
-}
-void Army::setMiliDroneFalse() {
-	miliDrone = false;
-	maxMiliForce = MAX_MILIFORCE;
-}
-bool Army::getMiliDrone() const {
-	return miliDrone;
-}
-void Army::setMisilesTrue() {
-	missiles = true;
-}
-void Army::setMissilesFalse() {
-	missiles = false;
-}
-bool Army::getMissiles() const {
-	return missiles;
-}
-void Army::setTerritoryDefTrue() {
-	territoryDef = true;
-}
-void Army::setTerritoryDefFalse() {
-	territoryDef = false;
-}
-bool Army::getTerritoryDef() const {
-	return territoryDef;
-}
 
 int Army::getMaxMiliForce() const
 {
 	return maxMiliForce;
+}
+
+void Army::setMaxMiliForce(int max) {
+	this->maxMiliForce = max;
 }

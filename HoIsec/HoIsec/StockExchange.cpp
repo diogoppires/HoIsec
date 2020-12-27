@@ -7,6 +7,6 @@ StockExchange::StockExchange() : Technology(PRICE_TECH_STOCKEXCHANGE) {
 StockExchange::~StockExchange() {
 	std::cout << "[StockExchange] Destruindo...\n";
 }
-void StockExchange::applyTech() const {
+void StockExchange::applyTech(){
 	setActiveTrue();
 }

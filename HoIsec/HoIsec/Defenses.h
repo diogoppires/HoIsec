@@ -8,7 +8,9 @@
 class Defenses : public Technology
 {
 public:
-	void applyTech(Empire empire) const;
+	Defenses();
+	void applyTech() override;
+	virtual ~Defenses() override;
 };
 
 #endif // !DEFENSES_H

@@ -4,11 +4,18 @@
 #include <iostream>
 #include "Empire.h"
 #include "Technology.h"
+#include "Storage.h"
+#include "SafeBox.h"
 
-class CentralBank:public Technology
+class CentralBank: public Technology
 {
+private:
+	Storage* empireStorage;
+	SafeBox* empireSafeBox;
 public:
-	void applyTech(Empire empire) const;
+	CentralBank(Storage* empireStorage, SafeBox* empireSafeBox);
+	void applyTech();
+	virtual ~CentralBank() override;
 };
 #endif // !CENTRALBANK_H
 

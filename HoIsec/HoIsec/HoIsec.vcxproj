@@ -20,27 +20,42 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Army.cpp" />
+    <ClCompile Include="CentralBank.cpp" />
+    <ClCompile Include="Defenses.cpp" />
+    <ClCompile Include="Drone.cpp" />
     <ClCompile Include="Empire.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="SafeBox.cpp" />
+    <ClCompile Include="StockExchange.cpp" />
     <ClCompile Include="Storage.cpp" />
+    <ClCompile Include="Technology.cpp" />
     <ClCompile Include="Territory.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h" />
+    <ClInclude Include="CentralBank.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="Defenses.h" />
+    <ClInclude Include="Drone.h" />
     <ClInclude Include="Empire.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="SafeBox.h" />
+    <ClInclude Include="StockExchange.h" />
     <ClInclude Include="Storage.h" />
+    <ClInclude Include="Technology.h" />
     <ClInclude Include="Territory.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

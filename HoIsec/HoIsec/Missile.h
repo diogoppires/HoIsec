@@ -8,7 +8,9 @@
 class Missile : public Technology
 {
 public:
-	void applyTech(Empire empire) const;
+	Missile();
+	void applyTech() override;
+	virtual ~Missile() override;
 };
 
 #endif // !MISSILE_H

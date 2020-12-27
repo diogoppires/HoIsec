@@ -9,8 +9,8 @@ class StockExchange: public Technology
 {
 public:
 	StockExchange();
-	void applyTech() const;
-	~StockExchange();
+	void applyTech() override;
+	virtual ~StockExchange() override;
 };
 #endif // !STOCKEXCHANGE_H
 
