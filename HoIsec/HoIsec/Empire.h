@@ -7,6 +7,11 @@
 #include "SafeBox.h"
 #include "Army.h"
 #include "Territory.h"
+#include "StockExchange.h"
+#include "CentralBank.h"
+#include "Missile.h"
+#include "Drone.h"
+#include "Defenses.h"
 
 class Empire
 {
@@ -16,8 +21,8 @@ private:
 	SafeBox safe;
 	Army army;
 	Utils utils;
-	bool stockExchange;
-	bool centralBank;
+	StockExchange stockExchange;
+	CentralBank centralBank;
 	
 	int score;
 	int prodCreation;

@@ -1,12 +1,9 @@
 #include "Empire.h"
 
-Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
+Empire::Empire(Territory* initial) : storage(), safe(), utils(), stockExchange(), centralBank(), army(utils.generateArmy())
 {
 	initial->changeConquered();
 	empire.push_back(initial);
-	stockExchange = false;
-	centralBank = false;
-
 	score = 0;
 	prodCreation = 0;
 	goldCreation = 0;

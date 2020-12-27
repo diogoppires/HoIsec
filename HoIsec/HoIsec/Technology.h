@@ -5,15 +5,19 @@
 
 class Empire;
 
-class Technology
-{
+class Technology{
 protected:
 	bool active;
+	int price;
 public:
-	virtual void applyTech(Empire empire) const = 0;
+	Technology(int price);
+	virtual void applyTech() const = 0;
 	void setActiveTrue();
 	void setActiveFalse();
 	bool getActive() const;
+	int getPrice() const;
+	void setPrice(int price);
+	~Technology();
 
 };
 #endif // !TECHNOLOGY_H

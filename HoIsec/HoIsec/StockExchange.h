@@ -8,7 +8,9 @@
 class StockExchange: public Technology
 {
 public:
-	void applyTech(Empire empire) const;
+	StockExchange();
+	void applyTech() const;
+	~StockExchange();
 };
 #endif // !STOCKEXCHANGE_H
 
