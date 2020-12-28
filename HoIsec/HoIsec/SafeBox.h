@@ -11,7 +11,6 @@ class SafeBox
 private:
 	int gold;
 	int maxGold;
-	bool centralBank;
 public:
 	//Constructor
 	SafeBox();
@@ -20,11 +19,11 @@ public:
 	int getSafeBox() const;
 	int getMaxSafeBox() const;
 
-	void setCentralBankTrue();
-	void setCentralBankFalse();
-
+	//Setter
 	bool addGold(int quant);
 	bool subGold(int quant);
+
+	void setMaxGold(int max);
 
 	//toString
 	std::string toString() const;

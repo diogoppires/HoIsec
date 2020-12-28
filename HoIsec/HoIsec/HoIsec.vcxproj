@@ -25,6 +25,9 @@
     <ClCompile Include="Continent.cpp" />
     <ClCompile Include="DiplomaticAlliance.cpp" />
     <ClCompile Include="Dune.cpp" />
+    <ClCompile Include="CentralBank.cpp" />
+    <ClCompile Include="Defenses.cpp" />
+    <ClCompile Include="Drone.cpp" />
     <ClCompile Include="Empire.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="FileReader.cpp" />
@@ -36,23 +39,29 @@
     <ClCompile Include="Invasion.cpp" />
     <ClCompile Include="Island.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Mountain.cpp" />
     <ClCompile Include="PiratesRefugee.cpp" />
     <ClCompile Include="Plain.cpp" />
     <ClCompile Include="SafeBox.cpp" />
+    <ClCompile Include="StockExchange.cpp" />
     <ClCompile Include="Storage.cpp" />
+    <ClCompile Include="Technology.cpp" />
     <ClCompile Include="Territory.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbandonedResource.h" />
     <ClInclude Include="Army.h" />
+    <ClInclude Include="CentralBank.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="DiplomaticAlliance.h" />
     <ClInclude Include="Dune.h" />
+    <ClInclude Include="Defenses.h" />
+    <ClInclude Include="Drone.h" />
     <ClInclude Include="Empire.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FileReader.h" />
@@ -67,10 +76,16 @@
     <ClInclude Include="Mountain.h" />
     <ClInclude Include="PiratesRefugee.h" />
     <ClInclude Include="Plain.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="SafeBox.h" />
+    <ClInclude Include="StockExchange.h" />
     <ClInclude Include="Storage.h" />
+    <ClInclude Include="Technology.h" />
     <ClInclude Include="Territory.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

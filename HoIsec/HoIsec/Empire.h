@@ -7,6 +7,11 @@
 #include "SafeBox.h"
 #include "Army.h"
 #include "Territory.h"
+#include "StockExchange.h"
+#include "CentralBank.h"
+#include "Missile.h"
+#include "Drone.h"
+#include "Defenses.h"
 
 class Empire
 {
@@ -16,8 +21,20 @@ private:
 	SafeBox safe;
 	Army army;
 	Utils utils;
-	bool stockExchange;
-	bool centralBank;
+
+	/*
+		StockExchange stockExchange;
+		CentralBank centralBank;
+		Drone drone;
+		Defenses defenses;
+		Missile missiles;
+	*/
+
+	Technology* stockExchange;
+	Technology* centralBank;
+	Technology* drone;
+	Technology* defenses;
+	Technology* missiles;
 	
 	int score;
 	int prodCreation;
@@ -40,8 +57,13 @@ public:
 	int getMaxSafeBox() const;
 	int getEmpireSize() const;
 
-	int haveStockExchange() const;
-	int haveCentralBank() const;
+
+	//Checkers of Techs
+	bool haveStockExchange() const;
+	bool haveCentralBank() const;
+	bool haveDrone() const;
+	bool haveDefenses() const;
+	bool haveMissiles() const;
 
 	void updateEmpire();
 

@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{1af740dc-eee1-4087-b1c6-9ec2d78ba862}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Technologies">
+      <UniqueIdentifier>{64d2799f-2673-40a2-aab7-c75907aaaaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technologies">
+      <UniqueIdentifier>{8b54990e-a51c-4f16-a8d6-33e33077a495}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Continent Types">
       <UniqueIdentifier>{24e1595a-7a95-47ff-9777-cb2c5b5dbf8b}</UniqueIdentifier>
     </Filter>
@@ -126,6 +132,24 @@
     <ClCompile Include="DiplomaticAlliance.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
+    <ClCompile Include="CentralBank.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Defenses.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="StockExchange.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Technology.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h">
@@ -157,6 +181,24 @@
     </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CentralBank.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Defenses.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="StockExchange.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Technology.h">
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="Plain.h">
       <Filter>Header Files\Continent Types</Filter>
@@ -203,5 +245,8 @@
     <ClInclude Include="DiplomaticAlliance.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
 </Project>
