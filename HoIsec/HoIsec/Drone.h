@@ -7,8 +7,11 @@
 
 class Drone : public Technology
 {
+	Army* army;
 public:
-	void applyTech(Empire empire) const;
+	Drone(Army* army);
+	void applyTech() override;
+	virtual ~Drone() override;
 };
 
 #endif // !DRONE_H

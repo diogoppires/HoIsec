@@ -11,7 +11,6 @@ class Storage
 private:
 	int products;
 	int maxProducts;
-	bool centralbank;
 public:
 	//Constructor
 	Storage();
@@ -23,8 +22,8 @@ public:
 	bool addProducts(int quant);
 	bool subProducts(int quant);
 
-	void setCentralBankTrue();
-	void setCentralBankFalse();
+	//Setter
+	void setMaxProducts(int max);
 
 	//toString
 	std::string toString() const;

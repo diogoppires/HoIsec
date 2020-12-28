@@ -1,7 +1,13 @@
 #include "Empire.h"
 
-Empire::Empire(Territory* initial) : storage(), safe(), utils(), stockExchange(), centralBank(), army(utils.generateArmy())
+Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
 {
+	stockExchange = new StockExchange();
+	centralBank = new CentralBank(&storage, &safe);
+	defenses = new Defenses();
+	missiles = new Missile();
+	drone = new Drone(&army);
+
 	initial->changeConquered();
 	empire.push_back(initial);
 	score = 0;
@@ -11,6 +17,8 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), stockExchange()
 
 	std::cout << "[EMPIRE] Construindo... " << std::endl;
 }
+
+//getter
 
 int Empire::getGold() const
 {
@@ -57,15 +65,36 @@ int Empire::getMaxSafeBox() const
 	return safe.getMaxSafeBox();
 }
 
-int Empire::haveStockExchange() const
+
+//Checkers of Techs
+
+bool Empire::haveStockExchange() const
 {
-	return stockExchange;
+	return stockExchange->getActive();
 }
 
-int Empire::haveCentralBank() const
+bool Empire::haveCentralBank() const
 {
-	return centralBank;
+	return centralBank->getActive();
 }
+
+bool Empire::haveDrone() const 
+{
+	return drone->getActive();
+}
+
+bool Empire::haveMissiles() const
+{
+	return missiles->getActive();
+}
+
+bool Empire::haveDefenses() const
+{
+	return defenses->getActive();
+}
+
+
+
 
 void Empire::updateEmpire()
 {
@@ -128,25 +157,21 @@ std::string Empire::toString() const
 	}
 	oss << storage.toString();
 	oss << safe.toString();
-	//Army.string
-	oss << "Have a Stock Exchange?";
-	if (stockExchange) {
-		oss << " Yes" << std::endl;
-	}
-	else {
-		oss << " No" << std::endl;
-	}
-	oss << "Have a Central Bank?";
-	if (centralBank) {
-		oss << " Yes" << std::endl;
-	}
-	else {
-		oss << " No" << std::endl;
-	}
+	//oss << army.toString() --miss
+	oss << "Tem uma bolsa de valores?\t" << (haveStockExchange()) ? "Sim\n" : "Nao\n";
+	oss << "Tem um banco central?\t" << (haveCentralBank()) ? "Sim\n" : "Nao\n";
+	oss << "Tem defesas territoriais?\t" << (haveDefenses()) ? "Sim\n" : "Nao\n";
+	oss << "Tem misseis teleguiados?\t" << (haveMissiles()) ? "Sim\n" : "Nao\n";
+	oss << "Tem drones militares?\t" << (haveDrone()) ? "Sim\n" : "Nao\n";
 	return oss.str();
 }
 
 Empire::~Empire()
 {
+	delete stockExchange;
+	delete centralBank;
+	delete drone;
+	delete missiles;
+	delete defenses;
 	std::cout << "[EMPIRE] Destruindo... " << std::endl;
 }

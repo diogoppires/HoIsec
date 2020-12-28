@@ -2,7 +2,7 @@
 
 Storage::Storage()
 {
-	setCentralBankFalse();
+	maxProducts = MAX_STORAGE;
 	products = 0;
 	std::cout << "[STORAGE] Construindo...\n";
 }
@@ -37,16 +37,9 @@ bool Storage::subProducts(int quant)
 	return true;
 }
 
-void Storage::setCentralBankTrue()
+void Storage::setMaxProducts(int max)
 {
-	centralbank = true;
-	maxProducts = MAX_STORAGE_WITH_CENTRALBANK;
-}
-
-void Storage::setCentralBankFalse()
-{
-	centralbank = false;
-	maxProducts = MAX_STORAGE;
+	this->maxProducts = max;
 }
 
 std::string Storage::toString() const

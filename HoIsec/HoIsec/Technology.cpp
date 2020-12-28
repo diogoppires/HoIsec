@@ -3,10 +3,10 @@
 Technology::Technology(int price) {
 	setActiveFalse();
 	this->price = price;
-	std::cout << "[TECHNOLOGY] Construindo...\n";
+	std::cout << "[TECHNOLOGY] Construindo...\n"; //DEBUG
 }
 Technology::~Technology() {
-	std::cout << "[TECHNOLOGY] Destruindo...\n";
+	std::cout << "[TECHNOLOGY] Destruindo...\n"; //DEBUG
 }
 void Technology::setActiveTrue() {
 	this->active = true;

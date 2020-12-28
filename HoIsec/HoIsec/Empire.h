@@ -21,8 +21,20 @@ private:
 	SafeBox safe;
 	Army army;
 	Utils utils;
-	StockExchange stockExchange;
-	CentralBank centralBank;
+
+	/*
+		StockExchange stockExchange;
+		CentralBank centralBank;
+		Drone drone;
+		Defenses defenses;
+		Missile missiles;
+	*/
+
+	Technology* stockExchange;
+	Technology* centralBank;
+	Technology* drone;
+	Technology* defenses;
+	Technology* missiles;
 	
 	int score;
 	int prodCreation;
@@ -42,8 +54,13 @@ public:
 	int getMaxStorage() const;
 	int getMaxSafeBox() const;
 
-	int haveStockExchange() const;
-	int haveCentralBank() const;
+
+	//Checkers of Techs
+	bool haveStockExchange() const;
+	bool haveCentralBank() const;
+	bool haveDrone() const;
+	bool haveDefenses() const;
+	bool haveMissiles() const;
 
 	void updateEmpire();
 

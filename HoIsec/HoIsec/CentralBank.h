@@ -14,7 +14,7 @@ private:
 	SafeBox* empireSafeBox;
 public:
 	CentralBank(Storage* empireStorage, SafeBox* empireSafeBox);
-	void applyTech();
+	void applyTech() override;
 	virtual ~CentralBank() override;
 };
 #endif // !CENTRALBANK_H

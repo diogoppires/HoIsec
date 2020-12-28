@@ -2,7 +2,7 @@
 
 SafeBox::SafeBox()
 {
-	setCentralBankFalse();
+	maxGold = MAX_SAFEBOX;
 	gold = 0;
 	std::cout << "[SAFEBOX] Construindo..." << std::endl;
 }
@@ -15,18 +15,6 @@ int SafeBox::getSafeBox() const
 int SafeBox::getMaxSafeBox() const
 {
 	return maxGold;
-}
-
-void SafeBox::setCentralBankTrue()
-{
-	centralBank = true;
-	maxGold = MAX_SAFEBOX_WITH_CENTRALBANK;
-}
-
-void SafeBox::setCentralBankFalse()
-{
-	centralBank = false;
-	maxGold = MAX_SAFEBOX;
 }
 
 bool SafeBox::addGold(int quant)
@@ -50,6 +38,10 @@ bool SafeBox::subGold(int quant)
 	return true;
 }
 
+void SafeBox::setMaxGold(int max) 
+{
+	this->maxGold = max;
+}
 std::string SafeBox::toString() const
 {
 	std::ostringstream oss;
