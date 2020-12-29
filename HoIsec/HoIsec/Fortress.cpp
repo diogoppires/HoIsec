@@ -5,7 +5,18 @@ Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, 
 {
 	std::cout << "[FORTALEZA] Construindo... " << Territory::getName() << std::endl;
 }
+TerritoryTypes Fortress::getTerritoryType()
+{
+	return TerritoryTypes::FORTRESS;
+}
 
+std::string Fortress::toString()
+{
+	std::ostringstream oss;
+
+	oss << "TIPO = 'Fortaleza'" << Continent::toString();
+	return oss.str();
+}
 Fortress::~Fortress()
 {
 	std::cout << "[FORTALEZA] Destruindo... " << Territory::getName() << std::endl;

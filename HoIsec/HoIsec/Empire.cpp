@@ -70,8 +70,6 @@ int Empire::getEmpireSize() const
 	return (int)empire.size();
 }
 
-int Empire::haveStockExchange() const
-
 //Checkers of Techs
 
 bool Empire::haveStockExchange() const

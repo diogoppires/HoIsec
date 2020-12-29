@@ -5,9 +5,17 @@ Island::Island(TerritoryTypes type, int resistance, int prodCreation, int goldCr
 	std::cout << "[ILHA] Construindo... " << Territory::getName() << std::endl;
 }
 
-std::string Island::getTerritoryType() const
+std::string Island::getTerritoryCategory() const
 {
 	return ISLAND;
+}
+
+std::string Island::toString()
+{
+	std::ostringstream oss;
+
+	oss << "\tCATEGORIA = '" << getTerritoryCategory() << "'\n" << Territory::toString();
+	return oss.str();
 }
 
 Island::~Island()

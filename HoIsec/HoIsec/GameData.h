@@ -28,13 +28,15 @@ class GameData
 public:
 	GameData();
 	~GameData();
-	bool verifyTerritory(std::string name); // conquista
-	bool createTerritories(std::string type, int quant); // cria
-	bool loadTerritories(std::string fileName); // carrega
-	bool initializeGame();	//inicia
-	std::string listTerritoriesConquered(); //lista conquered territories 
-	std::string listTerritoriesNotConquered(); //lista not conquered territories 
-	std::string listTerritories(std::string territory);  //lista (with specific territory)
+	bool verifyTerritory(std::string name); // 'conquista'
+	bool createTerritories(std::string type, int quant); // 'cria'
+	bool loadTerritories(std::string fileName); // 'carrega'
+	bool initializeGame();	// 'inicia'
+	// Lista
+	std::string listTerritoriesConquered(); // 'lista' conquered territories 
+	std::string listTerritoriesNotConquered(); // 'lista' not conquered territories 
+	std::string listTerritories(std::string territory);  // 'lista' (with specific territory)
+	
 	int conquerTerritories(std::string name); // conquista
 	void stayPassive(); //passa
 	void advance();	//avanca

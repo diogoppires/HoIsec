@@ -8,7 +8,7 @@
 //DEFAULT NAME
 #define INITIAL_TERRITORY_NAME "TerritorioInicial"
 
-//TERRITORIES TYPES
+//TERRITORIES CATEGORY
 #define CONTINENT "continente"
 #define ISLAND "island"
 #define INIT_TERRITORY "territorio_inicial"

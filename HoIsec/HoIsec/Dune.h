@@ -9,6 +9,8 @@ private:
 	static int counter;
 public:
 	Dune();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Dune();
 };
 #endif // !DUNE_H

@@ -8,7 +8,8 @@ class Continent :
 {
 public:
 	Continent(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter);
-	std::string getTerritoryType() const override;
+	std::string getTerritoryCategory() const;
+	virtual std::string toString() override;
 	~Continent();
 };
 #endif // !CONTINENT_H

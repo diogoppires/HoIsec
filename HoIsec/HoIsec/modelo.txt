@@ -1,0 +1,8 @@
+cria duna 2
+cria pescaria 1
+cria planicie 2
+cria castelo 1
+cria fortaleza 1
+cria montanha 1
+cria mina 1
+cria refugio_pirata 1

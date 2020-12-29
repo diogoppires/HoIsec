@@ -52,7 +52,7 @@ std::string World::toStringConquerd() {
 	for (Territory* t : territories)
 	{
 		if(t->isConquered())
-			oss << t->toString();
+			oss << t->toString() << std::endl;
 	}
 	return oss.str();
 }
@@ -62,7 +62,7 @@ std::string World::toStringNotConquerd() {
 	for (Territory* t : territories)
 	{
 		if (!t->isConquered())
-			oss << t->toString();
+			oss << t->toString() << std::endl;
 	}
 	return oss.str();
 }

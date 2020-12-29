@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	FishingSite();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~FishingSite();
 };
 #endif // !FISHINGSITE_H

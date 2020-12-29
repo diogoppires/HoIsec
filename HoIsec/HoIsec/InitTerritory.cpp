@@ -5,9 +5,17 @@ InitTerritory::InitTerritory() : Territory(INITIAL_TERRITORY_NAME, INITIAL_RESIS
 	std::cout << "[TERRITORIO INICIAL] Construindo... " << Territory::getName() << std::endl;
 }
 
-std::string InitTerritory::getTerritoryType() const
+TerritoryTypes InitTerritory::getTerritoryType()
 {
-	return INIT_TERRITORY;
+	return TerritoryTypes::INITIAL;
+}
+
+std::string InitTerritory::toString() 
+{
+	std::ostringstream oss;
+
+	oss << "TIPO = '" << "Territorio Inicial" << "'\n" << Territory::toString();
+	return oss.str();
 }
 
 InitTerritory::~InitTerritory()

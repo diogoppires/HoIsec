@@ -6,9 +6,17 @@ Continent::Continent(TerritoryTypes type, int resistance, int prodCreation, int 
 	std::cout << "[CONTINENTE] Construindo... " << Territory::getName() << std::endl;
 }
 
-std::string Continent::getTerritoryType() const
+std::string Continent::getTerritoryCategory() const
 {
 	return CONTINENT;
+}
+
+std::string Continent::toString()
+{
+	std::ostringstream oss;
+
+	oss << "\tCATEGORIA = '" << getTerritoryCategory() << "'\n" << Territory::toString();
+	return oss.str();
 }
 
 Continent::~Continent()

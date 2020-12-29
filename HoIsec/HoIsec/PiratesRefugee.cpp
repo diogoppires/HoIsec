@@ -6,6 +6,19 @@ PiratesRefugee::PiratesRefugee() : Island(TerritoryTypes::PIRATEREFUGE, PIRATE_R
 	std::cout << "[REFUGIO DE PIRATAS] Construindo... " << Territory::getName() << std::endl;
 }
 
+TerritoryTypes PiratesRefugee::getTerritoryType()
+{
+	return TerritoryTypes::PIRATEREFUGE;
+}
+
+std::string PiratesRefugee::toString()
+{
+	std::ostringstream oss;
+
+	oss << "TIPO = 'Refugio de Piratas'" << Island::toString();
+	return oss.str();
+}
+
 PiratesRefugee::~PiratesRefugee()
 {
 	std::cout << "[REFUGIO DE PIRATAS] Destruindo... " << Territory::getName() << std::endl;
