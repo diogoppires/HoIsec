@@ -24,8 +24,10 @@ private:
 	//Commands
 	void opLoad(std::string fullmsg);
 	void opCreate(std::string fullmsg,int quant);
+	void opGameInit();
 	void opConquer(std::string fullmsg);
-	void opPass(std::string fullmsg);
+	void opPass();
+	void opAdvance();
 	void opMoreGold(std::string fullmsg);
 	void opMoreProducts(std::string fullmsg);
 	void opMoreMilitary(std::string fullmsg);
@@ -35,12 +37,19 @@ private:
 	void opSave(std::string fullmsg);
 	void opRecover(std::string fullmsg);
 	void opDelete(std::string fullmsg);
-	void opTake(std::string fullmsg);
+	void opTake(std::string type, std::string name);
 	void opModify(std::string fullmsg);
 	void opForceEvent(std::string fullmsg);
+	void opEvent();
 
 	std::string readString(const std::string msg);
 	std::string choose(const std::vector<std::string> menu);
+	void pickMenu(std::vector<std::string>& menu);
+	void initMenu(std::string cmd, std::vector<std::string> words);
+	void conquerMenu(std::string cmd, std::vector<std::string> words);
+	void exchangeMenu(std::string cmd, std::vector<std::string> words);
+	void shopMenu(std::string cmd, std::vector<std::string> words);
+	void eventScreen();
 public:
 	//Constructor
 	Interface(GameData* gD);

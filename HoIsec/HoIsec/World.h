@@ -10,6 +10,8 @@ class World
 {
 private:
 	std::vector<Territory*> territories;
+
+	void TerritoryFactory(TerritoryTypes type);
 public:
 	World();
 	World(const World& copy) = delete;
@@ -21,6 +23,7 @@ public:
 	Territory* getSpecificTerritory(std::string name) const;
 	std::vector<Territory*> getTerritories() const;
 	void addTerritories(TerritoryTypes type, int num);
+	int getTerritoriesSize();
 	void clearTerritories();
 	void operator=(const World& copy) = delete;
 };

@@ -6,6 +6,19 @@ Castle::Castle() : Continent(TerritoryTypes::CASTLE, CASTLE_RESISTANCE, CASTLE_I
 	std::cout << "[CASTELO] Construindo... " << Territory::getName() << std::endl;
 }
 
+TerritoryTypes Castle::getTerritoryType()
+{
+	return TerritoryTypes::CASTLE;
+}
+
+std::string Castle::toString()
+{
+	std::ostringstream oss;
+
+	oss << "TIPO = 'Castelo'" << Continent::toString();
+	return oss.str();
+}
+
 Castle::~Castle()
 {
 	std::cout << "[CASTELO] Destruindo... " << Territory::getName() << std::endl;

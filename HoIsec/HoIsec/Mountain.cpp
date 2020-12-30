@@ -5,7 +5,18 @@ Mountain::Mountain() : Continent(TerritoryTypes::MOUNTAIN, MOUNTAIN_RESISTANCE, 
 {
 	std::cout << "[MONTANHA] Construindo... " << Territory::getName() << std::endl;
 }
+TerritoryTypes Mountain::getTerritoryType()
+{
+	return TerritoryTypes::MOUNTAIN;
+}
 
+std::string Mountain::toString()
+{
+	std::ostringstream oss;
+
+	oss << "TIPO = 'Montanha'" << Continent::toString();
+	return oss.str();
+}
 Mountain::~Mountain()
 {
 	std::cout << "[MONTANHA] Destruindo... " << Territory::getName() << std::endl;

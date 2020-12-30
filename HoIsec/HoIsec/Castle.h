@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	Castle();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Castle();
 };
 #endif // !MOUNTAIN_H

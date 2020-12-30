@@ -2,11 +2,14 @@
 
 Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
 {
+	stockExchange = new StockExchange();
+	centralBank = new CentralBank(&storage, &safe);
+	defenses = new Defenses();
+	missiles = new Missile();
+	drone = new Drone(&army);
+
 	initial->changeConquered();
 	empire.push_back(initial);
-	stockExchange = false;
-	centralBank = false;
-
 	score = 0;
 	prodCreation = 0;
 	goldCreation = 0;
@@ -14,6 +17,8 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.gene
 
 	std::cout << "[EMPIRE] Construindo... " << std::endl;
 }
+
+//getter
 
 int Empire::getGold() const
 {
@@ -60,14 +65,61 @@ int Empire::getMaxSafeBox() const
 	return safe.getMaxSafeBox();
 }
 
-int Empire::haveStockExchange() const
+int Empire::getEmpireSize() const
 {
-	return stockExchange;
+	return (int)empire.size();
 }
 
-int Empire::haveCentralBank() const
+void Empire::activeStockExchange()
 {
-	return centralBank;
+	stockExchange->applyTech();
+}
+
+void Empire::activeCentralBank()
+{
+	centralBank->applyTech();
+}
+
+void Empire::activeDrone()
+{
+	drone->applyTech();
+}
+
+void Empire::activeDefenses()
+{
+	defenses->applyTech();
+}
+
+void Empire::activeMissiles()
+{
+	missiles->applyTech();
+}
+
+//Checkers of Techs
+
+bool Empire::haveStockExchange() const
+{
+	return stockExchange->getActive();
+}
+
+bool Empire::haveCentralBank() const
+{
+	return centralBank->getActive();
+}
+
+bool Empire::haveDrone() const 
+{
+	return drone->getActive();
+}
+
+bool Empire::haveMissiles() const
+{
+	return missiles->getActive();
+}
+
+bool Empire::haveDefenses() const
+{
+	return defenses->getActive();
 }
 
 void Empire::updateEmpire()
@@ -81,6 +133,13 @@ void Empire::updateEmpire()
 	score = auxScore;
 	prodCreation = auxProd;
 	goldCreation = auxGold;
+	receiveProds(prodCreation);
+	receiveGold(goldCreation);
+}
+
+bool Empire::increaseArmy(int quant)
+{
+	return army.addMiliForce(quant);
 }
 
 bool Empire::receiveGold(int quant)
@@ -93,6 +152,11 @@ bool Empire::receiveProds(int quant)
 	return storage.addProducts(quant);
 }
 
+bool Empire::decreaseArmy(int quant)
+{
+	return army.subMiliForce(quant);
+}
+
 bool Empire::spendGold(int quant)
 {
 	return safe.subGold(quant);
@@ -101,6 +165,25 @@ bool Empire::spendGold(int quant)
 bool Empire::spendProds(int quant)
 {
 	return storage.subProducts(quant);
+}
+
+bool Empire::addTerritory(Territory* territory)
+{
+	if (!checkHaveTerritory(territory)) {
+		empire.push_back(territory);
+		territory->changeConquered();
+		updateEmpire();
+		return true;
+	}
+	return false;
+}
+
+bool Empire::checkHaveTerritory(Territory* territory)
+{
+	for (Territory* t : empire) {
+		if (t == territory) return true;
+	}
+	return false;
 }
 
 bool Empire::attack(Territory* territory,int luckyFactor)
@@ -113,7 +196,18 @@ bool Empire::attack(Territory* territory,int luckyFactor)
 		return true;
 	}
 	army.subMiliForce(MILIFORCE_LOST);
+	updateEmpire();
 	return false;
+}
+
+void Empire::deleteLastTerritory()
+{
+	empire.pop_back();
+}
+
+Territory* Empire::getLastConquer()
+{
+	return empire.back();
 }
 
 std::string Empire::toString() const
@@ -131,25 +225,21 @@ std::string Empire::toString() const
 	}
 	oss << storage.toString();
 	oss << safe.toString();
-	//Army.string
-	oss << "Have a Stock Exchange?";
-	if (stockExchange) {
-		oss << " Yes" << std::endl;
-	}
-	else {
-		oss << " No" << std::endl;
-	}
-	oss << "Have a Central Bank?";
-	if (centralBank) {
-		oss << " Yes" << std::endl;
-	}
-	else {
-		oss << " No" << std::endl;
-	}
+	//oss << army.toString() --miss
+	oss << "Tem uma bolsa de valores?\t" << (haveStockExchange()) ? "Sim\n" : "Nao\n";
+	oss << "Tem um banco central?\t" << (haveCentralBank()) ? "Sim\n" : "Nao\n";
+	oss << "Tem defesas territoriais?\t" << (haveDefenses()) ? "Sim\n" : "Nao\n";
+	oss << "Tem misseis teleguiados?\t" << (haveMissiles()) ? "Sim\n" : "Nao\n";
+	oss << "Tem drones militares?\t" << (haveDrone()) ? "Sim\n" : "Nao\n";
 	return oss.str();
 }
 
 Empire::~Empire()
 {
+	delete stockExchange;
+	delete centralBank;
+	delete drone;
+	delete missiles;
+	delete defenses;
 	std::cout << "[EMPIRE] Destruindo... " << std::endl;
 }

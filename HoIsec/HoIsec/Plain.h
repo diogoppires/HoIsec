@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	Plain();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Plain();
 };
 #endif // !PLAIN_H

@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	Mine();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Mine();
 };
 #endif // !MINE_H

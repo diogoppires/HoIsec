@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	PiratesRefugee();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~PiratesRefugee();
 };
 #endif // !PIRATESREFUGEE_H

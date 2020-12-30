@@ -24,7 +24,7 @@ public:
 
 	~Territory();
 
-	std::string toString();
+	virtual std::string toString();
 
 	std::string getName() const;
 
@@ -52,7 +52,9 @@ public:
 
 	std::string buildName(TerritoryTypes type,int value);
 
-	virtual std::string getTerritoryType() const = 0;
+	virtual TerritoryTypes getTerritoryType() = 0;
+
+	bool operator==(const Territory& object) const;
 };
 
 

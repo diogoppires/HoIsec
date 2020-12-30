@@ -17,7 +17,7 @@ bool FileReader::verifyData(const std::string& data)
 	std::istringstream iss(data);
 	
 	iss >> command >> auxType >> auxNumber;
-	if (command == "cria" && verifyArgs(auxType,auxNumber)) {
+	if (command == "cria" && verifyArgs(auxType, auxNumber)) {
 
 		//std::cout << "[FileReader]: Valido!" << std::endl;
 		return true;

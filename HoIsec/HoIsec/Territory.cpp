@@ -28,9 +28,13 @@ Territory::~Territory() {
 std::string Territory::toString() {
 	std::ostringstream oss;
 
-	oss << "TIPO = 'Territorio'\n\tNome: " << name << "\n\tResistencia: " << resistance <<
-		"\n\tQuantidade de produtos gerados por turno: " << prodCreation << "\n\tQuantidade de ouro gerado por turno: " <<
-		goldCreation << "\n\tPontos de vitoria: " << std::endl;
+	oss << 
+		"\tNome: " << name << 
+		"\n\tResistencia: " << resistance <<
+		"\n\tQuantidade de produtos gerados por turno: " << prodCreation <<
+		"\n\tQuantidade de ouro gerado por turno: " << goldCreation << 
+		"\n\tPontos de vitoria: " << winPoints << std::endl;
+
 	return oss.str();
 }
 
@@ -90,4 +94,10 @@ std::string Territory::buildName(TerritoryTypes type,int value) {
 
 	oss << converter.TerritoryTypesToString(type) << value;
 	return oss.str();
+}
+
+bool Territory::operator==(const Territory& object) const
+{
+	if (this->name == object.name) return true;
+	return false;
 }

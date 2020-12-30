@@ -10,7 +10,8 @@ private:
 
 public:
     InitTerritory();
-    std::string getTerritoryType() const override;
+    TerritoryTypes getTerritoryType() override;
+    std::string toString() override;
     ~InitTerritory();
 };
 

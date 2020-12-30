@@ -10,6 +10,8 @@ private:
 	static int counter;
 public:
 	Fortress();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Fortress();
 };
 #endif // !FORTRESS_H

@@ -8,7 +8,8 @@ class Island :
 {
 public:
 	Island(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter);
-	std::string getTerritoryType() const override;
+	std::string getTerritoryCategory() const;
+	std::string toString() override;
 	~Island();
 };
 

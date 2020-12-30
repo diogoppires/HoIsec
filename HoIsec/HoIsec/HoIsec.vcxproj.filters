@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{1af740dc-eee1-4087-b1c6-9ec2d78ba862}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Technologies">
+      <UniqueIdentifier>{64d2799f-2673-40a2-aab7-c75907aaaaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technologies">
+      <UniqueIdentifier>{8b54990e-a51c-4f16-a8d6-33e33077a495}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Continent Types">
       <UniqueIdentifier>{24e1595a-7a95-47ff-9777-cb2c5b5dbf8b}</UniqueIdentifier>
     </Filter>
@@ -42,6 +48,12 @@
     </Filter>
     <Filter Include="Header Files\Island Types">
       <UniqueIdentifier>{f0ff4ba7-d8ec-461f-a918-7d4fef5e28e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{d967435a-9217-4a36-8908-c5d6a79cf8b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{dcf42834-c3b3-4f1a-9c61-6dd1a27e49f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +120,36 @@
     <ClCompile Include="FishingSite.cpp">
       <Filter>Source Files\Island Types</Filter>
     </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="AbandonedResource.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Invasion.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="DiplomaticAlliance.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="CentralBank.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Defenses.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="StockExchange.cpp">
+      <Filter>Source Files\Technologies</Filter>
+    </ClCompile>
+    <ClCompile Include="Technology.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h">
@@ -139,6 +181,24 @@
     </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CentralBank.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Defenses.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="StockExchange.h">
+      <Filter>Header Files\Technologies</Filter>
+    </ClInclude>
+    <ClInclude Include="Technology.h">
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="Plain.h">
       <Filter>Header Files\Continent Types</Filter>
@@ -173,5 +233,20 @@
     <ClInclude Include="FishingSite.h">
       <Filter>Header Files\Island Types</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AbandonedResource.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Invasion.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="DiplomaticAlliance.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
 </Project>

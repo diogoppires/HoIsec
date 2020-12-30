@@ -9,6 +9,8 @@ private:
 	static int counter;
 public:
 	Mountain();
+	TerritoryTypes getTerritoryType() override;
+	std::string toString() override;
 	~Mountain();
 };
 #endif // !MOUNTAIN_H

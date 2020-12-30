@@ -5,3 +5,7 @@ territorio 5
 territorio territorio
   
 territorio 5
+
+cria duna 2
+cria pescaria 1
+cria planicie 2

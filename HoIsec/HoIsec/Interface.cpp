@@ -5,7 +5,8 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
 	initMenu.push_back("\n\n-- Menu Principal --\n\n");
 	initMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
-	initMenu.push_back(" ~~> cria <tipo> <n>\n\n");
+	initMenu.push_back(" ~~> cria <tipo> <n>\n");
+	initMenu.push_back(" ~~> iniciar\n\n");
 	initMenu.push_back(" ~~> ativa <nome>\n");
 	initMenu.push_back(" ~~> apaga <nome>\n\n");
 	initMenu.push_back(" ~~> ajuda\n");
@@ -16,8 +17,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
 	conquerMenu.push_back(" ~~> conquista<nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
-	conquerMenu.push_back(" ~~> lista <nome>\n");
-	conquerMenu.push_back(" ~~> avanca\n\n");
+	conquerMenu.push_back(" ~~> lista <nome>\n\n");
 	conquerMenu.push_back(" ~~> grava <nome>\n");
 	conquerMenu.push_back(" ~~> ativa <nome>\n");
 	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
@@ -30,7 +30,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 {
 	exchangeMenu.push_back("\n - Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
-	exchangeMenu.push_back(" ~~> maisour\n"); 
+	exchangeMenu.push_back(" ~~> maisouro\n"); 
 	exchangeMenu.push_back(" ~~> maisprod\n");
 	exchangeMenu.push_back(" ~~> lista <nome>\n");
 	exchangeMenu.push_back(" ~~> avanca\n\n");
@@ -103,24 +103,49 @@ void Interface::opCreate(std::string fullmsg,int quant)
 		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
 	}
 }
+void Interface::opGameInit()
+{
+	system("cls");
+	if (gD->initializeGame()) {
+		std::cout << "[HoIsec] Estamos a preparar o seu jogo...\n";
+	}
+	else {
+		std::cout << "[HoIsec] Ocorreu um erro a inicializar o jogo! Verifique se adicionou algum territorio.\n";
+	}
+
+}
 void Interface::opConquer(std::string fullmsg)
 {
 	system("cls");
 	switch (gD->conquerTerritories(fullmsg)) {
-		case -2: std::cout << "[HoIsec] Nome de territorio invalido...\n";
-				break;
-		case -1: std::cout << "[HoIsec] O " << fullmsg << " ja pertence ao teu imperio!\n";
-				break;
-		case 0: std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
-				break;
-		case 1: std::cout << "[HoIsec] A batalha foi vencida! Agora o " << fullmsg << "\nfaz parte do seu imperio!\n";
-				break;
+	case -4:
+		std::cout << "[HoIsec] E preciso a tecnologia 'Misseis Teleguiados' para atacar uma ilha.\n";
+		break;
+	case -3:
+		std::cout << "[HoIsec] E preciso mais que 5 territorios no imperio para atacar uma ilha.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nome de territorio invalido...\n";
+		break;
+	case -1: 
+		std::cout << "[HoIsec] O " << fullmsg << " ja pertence ao teu imperio!\n";
+		break;
+	case 0: 
+		std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
+		break;
+	case 1:
+		std::cout << "[HoIsec] A batalha foi vencida! Agora o " << fullmsg << "\nfaz parte do seu imperio!\n";
+		break;
 	}
 }
-void Interface::opPass(std::string fullmsg)
+void Interface::opPass()
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	gD->stayPassive();
+}
+void Interface::opAdvance()
+{
+	gD->advance();
 }
 void Interface::opMoreGold(std::string fullmsg)
 {
@@ -140,7 +165,25 @@ void Interface::opMoreMilitary(std::string fullmsg)
 void Interface::opObtainTech(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	
+	switch (gD->buyTechnology(fullmsg))
+	{
+	case 1:
+		std::cout << "[HoIsec] Tecnologia '" << fullmsg << "' adquirida com sucesso.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Ouro insuficente.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] Ja adicionaste uma tecnologia ao teu Imperio neste turno.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' ja esta disponivel no Imperio.\n";
+		break;
+	case -3:
+		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' nao esta disponivel para aquisição.\n";
+		break;
+	}
 }
 void Interface::opList()
 {
@@ -170,10 +213,34 @@ void Interface::opDelete(std::string fullmsg)
 	system("cls");
 	std::cout << "NOT IMPLEMENTED YET\n";
 }
-void Interface::opTake(std::string fullmsg)
+
+void Interface::opTake(std::string type, std::string name)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->takeObject(type,name))
+	{
+	case 2: 
+		std::cout << "A tecnologia '" << name << "' foi adicionada ao imperio.\n";
+		break;
+	case -2:
+		std::cout << "A tecnologia '" << name << "' ja existe no imperio\n";
+		break;
+	case -4:
+		std::cout << "A tecnologia com o nome '" << name << "' nao existe.\n";
+		break;
+	case 1:
+		std::cout << "O territorio '" << name << "' agora pertence ao imperio.\n";
+		break;
+	case -1:
+		std::cout << "O territorio '" << name << "' ja pertence ao imperio.\n";
+		break;
+	case -3:
+		std::cout << "Não existe nenhum territorio com o nome '" << name << "'.\n";
+		break;
+	case 0:
+		std::cout << "O tipo '"<< type << "' nao foi reconhecido.\n";
+		break;
+	}
 }
 void Interface::opModify(std::string fullmsg)
 {
@@ -185,6 +252,12 @@ void Interface::opForceEvent(std::string fullmsg)
 	system("cls");
 	std::cout << "NOT IMPLEMENTED YET\n";
 }
+
+void Interface::opEvent()
+{
+
+}
+
 
 //Methods to make the code looks smoother
 std::string Interface::readString(const std::string msg)
@@ -219,90 +292,232 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	return opt;
 }
 
+void Interface::pickMenu(std::vector<std::string>& menu)
+{
+	switch (gD->getPhase()) {
+		case Phases::NONE:			fillInitMenu(menu);		break;
+		case Phases::CONQUER:		fillConquerMenu(menu);	break;
+		case Phases::COLLECTION:	fillExchangeMenu(menu);	break;
+		case Phases::SHOP:			fillShopMenu(menu);		break;
+	}
+}
+
+void Interface::initMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "carrega" && words.size() == 1) {
+		opLoad(words[0]);
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "cria" && words.size() == 2) {
+		opCreate(words[0], std::stoi(words[1]));
+	}
+	else if (cmd == "iniciar" && words.size() == 0) {
+		opGameInit();
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "conquista" && words.size() == 1) {
+		opConquer(words[0]);
+	}
+	else if (cmd == "passa" && words.size() == 0) {
+		opPass();
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		opTake(words[0], words[1]);
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "maisouro" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "maisprod" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		opAdvance();
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		opTake(words[0], words[1]);
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
+{
+	if (cmd == "maismilitar" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "adquire" && words.size() == 1) {
+		opObtainTech(words[0]);
+	}
+	else if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		opAdvance();
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		opTake(words[0], words[1]);
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+}
+
+void Interface::eventScreen()
+{
+
+}
+
+
 
 Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
-	//DEBUGGING
 	std::cout << "[INTERFACE] Construindo..." << std::endl;
 }
 void Interface::run()
 {
 	std::vector<std::string> menu;
 	std::vector<std::string> words;
-	fillFirstMenu(menu);
 	std::string fullstr;
 	std::string cmd;
 	do {
 		words.clear();
+		menu.clear();
+		pickMenu(menu);
 
 		//Need to be informed by GameData in order to show the correct menu.
 		fullstr = choose(menu);
 		getWords(words, cmd, fullstr);
-
-		if (cmd == "carrega" && words.size() == 1) {
-			opLoad(words[0]);
+		
+		switch (gD->getPhase()) {
+			case Phases::NONE:			initMenu(cmd, words);		break;
+			case Phases::CONQUER:		conquerMenu(cmd, words);	break;
+			case Phases::COLLECTION:	exchangeMenu(cmd, words);	break;
+			case Phases::SHOP:			shopMenu(cmd, words);		break;
+			case Phases::EVENTS:		eventScreen();				break;
 		}
-		else if (cmd == "cria" && words.size() == 2) {
-			opCreate(words[0], std::stoi(words[1]));
-		}
-		else if (cmd == "conquista" && words.size() == 1) {
-			opConquer(words[0]);
-		}
-		else if (cmd == "passa" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maisouro" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maisprod" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "maismilitar" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "adquire" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "lista") {
-			if (words.empty()) {
-				opList();
-			}
-			else if(words.size() == 1){
-				opList(words[0]);
-			}
-		}
-		else if (cmd == "avanca" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "grava" && words.size() == 0) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "ativa" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "apaga" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "toma" && words.size() == 2) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "modifica" && words.size() == 2) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "fevento" && words.size() == 1) {
-			std::cout << "NOT IMPLEMENTED YET\n";
-		}
-		else if (cmd == "sair") {
-			std::cout << "[HoIsec] O jogo vai terminar...\n";
-		}
-		else {
-			system("cls");
-			std::cout << "[HoIsec] Comando desconhecido...\n";
-		}
-
 	} while (cmd != "sair");
-
 }
 Interface::~Interface()
 {	
