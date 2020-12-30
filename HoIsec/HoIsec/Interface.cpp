@@ -24,7 +24,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
 	conquerMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
 	conquerMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	conquerMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	conquerMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
 	conquerMenu.push_back(" ~~> ajuda\n");
 	conquerMenu.push_back(" ~~> sair\n");
 }
@@ -40,7 +40,7 @@ void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 	exchangeMenu.push_back(" ~~> apaga <name>\n\n");
 	exchangeMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
 	exchangeMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	exchangeMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	exchangeMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
 	exchangeMenu.push_back(" ~~> ajuda\n");
 	exchangeMenu.push_back(" ~~> sair\n");
 }
@@ -56,7 +56,7 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back(" ~~> apaga <nome>\n\n");
 	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
 	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	shopMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	shopMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
 	shopMenu.push_back(" ~~> ajuda\n");
 	shopMenu.push_back(" ~~> sair\n");
 }
@@ -73,7 +73,7 @@ void Interface::fillEventMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back(" ~~> apaga <nome>\n\n");
 	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
 	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	shopMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	shopMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
 	shopMenu.push_back(" ~~> ajuda\n");
 	shopMenu.push_back(" ~~> sair\n");
 }
@@ -302,14 +302,13 @@ void Interface::opModify(std::string type,std::string value)
 void Interface::opForceEvent(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	if (!gD->forceEvent(fullmsg)) {
+		std::cout << "[HoIsec] O nome inserido e invalido. Introduza um nome valido.\n";
+	}
+	else {
+		std::cout << "[HoIsec] Evento forcado - " << gD->getEventMsg() << std::endl;
+	}
 }
-
-void Interface::opEvent()
-{
-
-}
-
 
 //Methods to make the code looks smoother
 std::string Interface::readString(const std::string msg)
@@ -321,16 +320,18 @@ std::string Interface::readString(const std::string msg)
 }
 std::string Interface::choose(const std::vector<std::string> menu)
 {
-	std::cout << "\n------------------------------------------------------\n";
-	std::cout << "[ ANO: " << gD->getYear() << " || TURNO: " << gD->getTurn() << " ]";
-	std::cout << "\n------------------------------------------------------\n";
-	std::cout << "\t\t\tIMPERIO";
-	std::cout << "\n PONTUACAO: " << gD->getEmpire().getScore();
-	std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
-	std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
-	std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
-	std::cout << "\n\t\t\t\tULTIMO EVENTO: " << gD->getEventId();
-	std::cout << "\n------------------------------------------------------\n";
+	if (gD->getPhase() != Phases::NONE) {
+		std::cout << "\n------------------------------------------------------\n";
+		std::cout << "[ ANO: " << gD->getYear() << " || TURNO: " << gD->getTurn() << " ]";
+		std::cout << "\n------------------------------------------------------\n";
+		std::cout << "\t\t\tIMPERIO";
+		std::cout << "\n PONTUACAO: " << gD->getEmpire().getScore();
+		std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
+		std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
+		std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
+		std::cout << "\n\t\t\t\tULTIMO EVENTO: " << gD->getEventId();
+		std::cout << "\n------------------------------------------------------\n";
+	}
 
 	for (unsigned int i = 0; i < menu.size(); i++) {
 		std::cout << menu[i];
@@ -425,7 +426,7 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -474,7 +475,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -524,7 +525,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -564,10 +565,10 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -576,7 +577,6 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
 	}
 }
-
 
 
 Interface::Interface(GameData* gD)

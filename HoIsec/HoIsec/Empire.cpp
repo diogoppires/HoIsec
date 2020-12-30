@@ -213,6 +213,8 @@ bool Empire::attack(Territory* territory,int luckyFactor)
 
 void Empire::deleteLastTerritory()
 {
+	std::vector<Territory*>::iterator it = empire.end() - 1;
+	(*it)->changeNotConquered();
 	empire.pop_back();
 }
 

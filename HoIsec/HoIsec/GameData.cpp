@@ -257,6 +257,34 @@ int GameData::modifyData(std::string type, std::string number)
 	return 0;
 }
 
+bool GameData::forceEvent(std::string nameEvent)
+{
+	std::transform(nameEvent.begin(), nameEvent.end(), nameEvent.begin(), ::tolower);
+	if (nameEvent == FEVENT_RESOURCE) {
+		eventMsg = events.at(0)->applyEvent();
+		eventId = events.at(0)->toString();
+		return true;
+	}
+	else if (nameEvent == FEVENT_ALLIANCE) {
+		eventMsg = events.at(1)->applyEvent();
+		eventId = events.at(1)->toString();
+		return true;
+	}
+	else if (nameEvent == FEVENT_INVASION) {
+		eventMsg = events.at(2)->applyEvent();
+		eventId = events.at(2)->toString();
+		return true;
+	}
+	else if (nameEvent == FEVENT_NONE) {
+		eventMsg = events.at(3)->applyEvent();
+		eventId = events.at(3)->toString();
+		return false;
+	}
+	else {
+		return 0;
+	}
+}
+
 
 bool GameData::activeTech(Techs type)
 {
@@ -358,6 +386,11 @@ std::string GameData::getEventMsg()
 std::string GameData::getEventId()
 {
 	return eventId;
+}
+
+void GameData::gameLost()
+{
+	this->phase = Phases::NONE;
 }
 
 //Getter

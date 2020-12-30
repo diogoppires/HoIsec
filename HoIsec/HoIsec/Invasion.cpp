@@ -34,8 +34,9 @@ std::string Invasion::applyEvent() const
 			return oss.str();
 		}
 		else {
-			//Perdeu o jogo... Falar sobre isto.
-			return "TBD";
+			gD->gameLost();
+			oss << INVASION_SUCCESS << territoryAttacked->getName() << "\nO jogo foi perdido!";
+			return oss.str();
 		}
 	}
 }

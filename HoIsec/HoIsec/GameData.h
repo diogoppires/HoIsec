@@ -57,11 +57,14 @@ public:
 	int buyTechnology(std::string type); // 'adquire'
 	int takeObject(std::string type, std::string name); // 'toma'
 	int modifyData(std::string type, std::string number); // 'modifica'
+	bool forceEvent(std::string nameEvent);
 
 	//Events
 	void drawEvent();
 	std::string getEventMsg();
 	std::string getEventId();
+
+	void gameLost();
 
 	//Getter
 	Empire& getEmpire();
