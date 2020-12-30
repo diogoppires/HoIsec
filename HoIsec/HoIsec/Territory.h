@@ -53,6 +53,8 @@ public:
 	std::string buildName(TerritoryTypes type,int value);
 
 	virtual TerritoryTypes getTerritoryType() = 0;
+
+	bool operator==(const Territory& object) const;
 };
 
 

@@ -70,6 +70,31 @@ int Empire::getEmpireSize() const
 	return (int)empire.size();
 }
 
+void Empire::activeStockExchange()
+{
+	stockExchange->applyTech();
+}
+
+void Empire::activeCentralBank()
+{
+	centralBank->applyTech();
+}
+
+void Empire::activeDrone()
+{
+	drone->applyTech();
+}
+
+void Empire::activeDefenses()
+{
+	defenses->applyTech();
+}
+
+void Empire::activeMissiles()
+{
+	missiles->applyTech();
+}
+
 //Checkers of Techs
 
 bool Empire::haveStockExchange() const
@@ -96,9 +121,6 @@ bool Empire::haveDefenses() const
 {
 	return defenses->getActive();
 }
-
-
-
 
 void Empire::updateEmpire()
 {
@@ -143,6 +165,25 @@ bool Empire::spendGold(int quant)
 bool Empire::spendProds(int quant)
 {
 	return storage.subProducts(quant);
+}
+
+bool Empire::addTerritory(Territory* territory)
+{
+	if (!checkHaveTerritory(territory)) {
+		empire.push_back(territory);
+		territory->changeConquered();
+		updateEmpire();
+		return true;
+	}
+	return false;
+}
+
+bool Empire::checkHaveTerritory(Territory* territory)
+{
+	for (Territory* t : empire) {
+		if (t == territory) return true;
+	}
+	return false;
 }
 
 bool Empire::attack(Territory* territory,int luckyFactor)

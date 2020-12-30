@@ -95,3 +95,9 @@ std::string Territory::buildName(TerritoryTypes type,int value) {
 	oss << converter.TerritoryTypesToString(type) << value;
 	return oss.str();
 }
+
+bool Territory::operator==(const Territory& object) const
+{
+	if (this->name == object.name) return true;
+	return false;
+}

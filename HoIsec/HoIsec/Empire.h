@@ -22,14 +22,6 @@ private:
 	Army army;
 	Utils utils;
 
-	/*
-		StockExchange stockExchange;
-		CentralBank centralBank;
-		Drone drone;
-		Defenses defenses;
-		Missile missiles;
-	*/
-
 	Technology* stockExchange;
 	Technology* centralBank;
 	Technology* drone;
@@ -40,6 +32,7 @@ private:
 	int prodCreation;
 	int goldCreation;
 
+	bool checkHaveTerritory(Territory* territory);
 public:
 	//Constructor
 	Empire(Territory* initial);
@@ -57,6 +50,11 @@ public:
 	int getMaxSafeBox() const;
 	int getEmpireSize() const;
 
+	void activeStockExchange();
+	void activeCentralBank();
+	void activeDrone();
+	void activeDefenses();
+	void activeMissiles();
 
 	//Checkers of Techs
 	bool haveStockExchange() const;
@@ -74,6 +72,7 @@ public:
 	bool spendGold(int quant);
 	bool spendProds(int quant);
 	
+	bool addTerritory(Territory* territory);
 
 	bool attack(Territory* territory,int luckyFactor);
 	void deleteLastTerritory();

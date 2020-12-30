@@ -5,6 +5,10 @@
 #include <cstdlib>
 #include <time.h>
 
+//DEBUG COMMANDS
+#define TAKE_TYPE_TERRITORY "terr"
+#define TAKE_TYPE_TECH "tec"
+
 //DEFAULT NAME
 #define INITIAL_TERRITORY_NAME "TerritorioInicial"
 
@@ -109,6 +113,15 @@ enum class Phases {
 	EVENTS
 };
 
+enum class Techs {
+	DRONE,
+	MISSILES,
+	DEFENSES,
+	CENTRALBANK,
+	STOCKEXCHANGE,
+	NONE
+};
+
 class Utils {
 public:
 	TerritoryTypes StringToTerritoryTypes(const std::string type) {
@@ -164,6 +177,25 @@ public:
 		}
 	}
 
+	Techs StringToTechs(std::string type) {
+		if (type == "drone") {
+			return Techs::DRONE;
+		}
+		else if (type == "defesas") {
+			return Techs::DEFENSES;
+		}
+		else if (type == "misseis") {
+			return Techs::MISSILES;
+		}
+		else if (type == "banco") {
+			return Techs::CENTRALBANK;
+		}
+		else if (type == "bolsa") {
+			return Techs::STOCKEXCHANGE;
+		}
+		else
+			return Techs::NONE;
+	}
 	int generateArmy() {
 		srand((unsigned)time(0));
 		return (rand() % 3) + 1;

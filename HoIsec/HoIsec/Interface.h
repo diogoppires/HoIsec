@@ -37,7 +37,7 @@ private:
 	void opSave(std::string fullmsg);
 	void opRecover(std::string fullmsg);
 	void opDelete(std::string fullmsg);
-	void opTake(std::string fullmsg);
+	void opTake(std::string type, std::string name);
 	void opModify(std::string fullmsg);
 	void opForceEvent(std::string fullmsg);
 	void opEvent();

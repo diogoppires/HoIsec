@@ -118,14 +118,24 @@ void Interface::opConquer(std::string fullmsg)
 {
 	system("cls");
 	switch (gD->conquerTerritories(fullmsg)) {
-		case -2: std::cout << "[HoIsec] Nome de territorio invalido...\n";
-				break;
-		case -1: std::cout << "[HoIsec] O " << fullmsg << " ja pertence ao teu imperio!\n";
-				break;
-		case 0: std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
-				break;
-		case 1: std::cout << "[HoIsec] A batalha foi vencida! Agora o " << fullmsg << "\nfaz parte do seu imperio!\n";
-				break;
+	case -4:
+		std::cout << "[HoIsec] E preciso a tecnologia 'Misseis Teleguiados' para atacar uma ilha.\n";
+		break;
+	case -3:
+		std::cout << "[HoIsec] E preciso mais que 5 territorios no imperio para atacar uma ilha.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nome de territorio invalido...\n";
+		break;
+	case -1: 
+		std::cout << "[HoIsec] O " << fullmsg << " ja pertence ao teu imperio!\n";
+		break;
+	case 0: 
+		std::cout << "[HoIsec] A batalha foi perdida! Perdeu forca militar.\n";
+		break;
+	case 1:
+		std::cout << "[HoIsec] A batalha foi vencida! Agora o " << fullmsg << "\nfaz parte do seu imperio!\n";
+		break;
 	}
 }
 void Interface::opPass()
@@ -155,7 +165,25 @@ void Interface::opMoreMilitary(std::string fullmsg)
 void Interface::opObtainTech(std::string fullmsg)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	
+	switch (gD->buyTechnology(fullmsg))
+	{
+	case 1:
+		std::cout << "[HoIsec] Tecnologia '" << fullmsg << "' adquirida com sucesso.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Ouro insuficente.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] Ja adicionaste uma tecnologia ao teu Imperio neste turno.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' ja esta disponivel no Imperio.\n";
+		break;
+	case -3:
+		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' nao esta disponivel para aquisição.\n";
+		break;
+	}
 }
 void Interface::opList()
 {
@@ -185,10 +213,34 @@ void Interface::opDelete(std::string fullmsg)
 	system("cls");
 	std::cout << "NOT IMPLEMENTED YET\n";
 }
-void Interface::opTake(std::string fullmsg)
+
+void Interface::opTake(std::string type, std::string name)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->takeObject(type,name))
+	{
+	case 2: 
+		std::cout << "A tecnologia '" << name << "' foi adicionada ao imperio.\n";
+		break;
+	case -2:
+		std::cout << "A tecnologia '" << name << "' ja existe no imperio\n";
+		break;
+	case -4:
+		std::cout << "A tecnologia com o nome '" << name << "' nao existe.\n";
+		break;
+	case 1:
+		std::cout << "O territorio '" << name << "' agora pertence ao imperio.\n";
+		break;
+	case -1:
+		std::cout << "O territorio '" << name << "' ja pertence ao imperio.\n";
+		break;
+	case -3:
+		std::cout << "Não existe nenhum territorio com o nome '" << name << "'.\n";
+		break;
+	case 0:
+		std::cout << "O tipo '"<< type << "' nao foi reconhecido.\n";
+		break;
+	}
 }
 void Interface::opModify(std::string fullmsg)
 {
@@ -313,7 +365,7 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		std::cout << "NOT IMPLEMENTED YET\n";
 	}
 	else if (cmd == "toma" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -362,7 +414,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		std::cout << "NOT IMPLEMENTED YET\n";
 	}
 	else if (cmd == "toma" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -388,7 +440,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		std::cout << "NOT IMPLEMENTED YET\n";
 	}
 	else if (cmd == "adquire" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opObtainTech(words[0]);
 	}
 	else if (cmd == "lista") {
 		if (words.empty()) {
@@ -411,7 +463,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		std::cout << "NOT IMPLEMENTED YET\n";
 	}
 	else if (cmd == "toma" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
 		std::cout << "NOT IMPLEMENTED YET\n";
