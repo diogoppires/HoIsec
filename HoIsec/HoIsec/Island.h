@@ -10,7 +10,7 @@ public:
 	Island(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter);
 	std::string getTerritoryCategory() const;
 	std::string toString() override;
-	~Island();
+	virtual ~Island() override;
 };
 
 #endif // !ISLAND_H

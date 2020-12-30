@@ -13,6 +13,11 @@ std::string DiplomaticAlliance::applyEvent() const
     return DIPLOMATIC_ALLIANCE;
 }
 
+std::string DiplomaticAlliance::toString() const
+{
+    return EVENT_DIPLOMATIC_ALLIANCE;
+}
+
 DiplomaticAlliance::~DiplomaticAlliance()
 {
     std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Destruindo...\n";

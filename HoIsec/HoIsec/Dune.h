@@ -11,7 +11,7 @@ public:
 	Dune();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Dune();
+	virtual ~Dune() override;
 };
 #endif // !DUNE_H
 

@@ -12,7 +12,7 @@ public:
 	FishingSite();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~FishingSite();
+	virtual ~FishingSite() override;
 };
 #endif // !FISHINGSITE_H
 

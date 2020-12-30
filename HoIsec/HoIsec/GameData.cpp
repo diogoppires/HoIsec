@@ -1,4 +1,8 @@
 #include "GameData.h"
+#include "AbandonedResource.h"
+#include "DiplomaticAlliance.h"
+#include "Invasion.h"
+#include "NoEvent.h"
 
 bool GameData::isTerritory(const std::string type)
 {
@@ -30,17 +34,35 @@ void GameData::advancePhase()
 	}
 }
 
+void GameData::addEvents()
+{
+	AbandonedResource* ar = new AbandonedResource(this);
+	DiplomaticAlliance* da = new DiplomaticAlliance(this);
+	Invasion* inv = new Invasion(this);
+	NoEvent* none = new NoEvent(this);
+	events.push_back(ar);
+	events.push_back(da);
+	events.push_back(inv);
+	events.push_back(none);
+}
+
 GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
 	year = 1;
 	turn = 1;
 	phase = Phases::NONE;
 	canBuyTech = true;
 	luckyFactor = 0;
+	eventMsg = EVENT_NONE;
+	eventId = EVENT_NONE;
+	addEvents();
 	std::cout << "[GAMEDATA] Construindo...\n";
 }
 
 GameData::~GameData() {
 	std::cout << "[GAMEDATA] Destruindo...\n";
+	for (Event* ev : events) {
+		delete ev;
+	}
 }
 
 bool GameData::verifyTerritory(std::string name) {
@@ -248,8 +270,6 @@ int GameData::receveCost(Techs type)
 	return 0;
 }
 
-
-
 void GameData::stayPassive()
 {
 	advancePhase();
@@ -261,7 +281,22 @@ void GameData::advance()
 	advancePhase();
 }
 
+void GameData::drawEvent() {
+	int eventOpt = converter.generateNumber(N_EVENTS);
+	Event* choosenEv = events.at(eventOpt);
+	eventMsg = choosenEv->applyEvent();
+	eventId = choosenEv->toString();
+}
 
+std::string GameData::getEventMsg()
+{
+	return eventMsg;
+}
+
+std::string GameData::getEventId()
+{
+	return eventId;
+}
 
 //Getter
 Empire& GameData::getEmpire()

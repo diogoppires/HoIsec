@@ -26,6 +26,8 @@ private:
 	int luckyFactor;
 
 	bool canBuyTech;
+	std::string eventMsg;
+	std::string eventId;
 
 	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
@@ -34,7 +36,7 @@ private:
 	bool activeTech(Techs type);
 	int receveCost(Techs type);
 
-
+	void addEvents();
 public:
 	GameData();
 	~GameData();
@@ -52,6 +54,11 @@ public:
 	void advance();	// 'avanca'
 	int buyTechnology(std::string type); // 'adquire'
 	int takeObject(std::string type, std::string name); // 'toma'
+
+	//Events
+	void drawEvent();
+	std::string getEventMsg();
+	std::string getEventId();
 
 	//Getter
 	Empire& getEmpire();

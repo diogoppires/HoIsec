@@ -1,5 +1,6 @@
 #include "Interface.h"
 
+
 //Menus
 void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 {
@@ -48,6 +49,23 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back("\n - Comandos do Jogo - 3a Fase | Loja HoIsec\n\n");
 	shopMenu.push_back(" ~~> maismilitar\n");
 	shopMenu.push_back(" ~~> adquire <tipo>\n");
+	shopMenu.push_back(" ~~> lista <nome>\n");
+	shopMenu.push_back(" ~~> avanca\n\n");
+	shopMenu.push_back(" ~~> grava <nome>\n");
+	shopMenu.push_back(" ~~> ativa <nome>\n");
+	shopMenu.push_back(" ~~> apaga <nome>\n\n");
+	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
+	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	shopMenu.push_back(" ~~> [DEBUG]fevent <nome-evento>\n\n");
+	shopMenu.push_back(" ~~> ajuda\n");
+	shopMenu.push_back(" ~~> sair\n");
+}
+void Interface::fillEventMenu(std::vector<std::string>& shopMenu)
+{
+	std::ostringstream oss;
+	oss << "\n EVENTO: " << gD->getEventMsg() << "\n\n";
+	shopMenu.push_back(oss.str());
+	shopMenu.push_back("\n - Comandos do Jogo - 4a Fase | Eventos\n\n");
 	shopMenu.push_back(" ~~> lista <nome>\n");
 	shopMenu.push_back(" ~~> avanca\n\n");
 	shopMenu.push_back(" ~~> grava <nome>\n");
@@ -277,6 +295,7 @@ std::string Interface::choose(const std::vector<std::string> menu)
 	std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
 	std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
 	std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
+	std::cout << "\n\t\t\t\tULTIMO EVENTO: " << gD->getEventId();
 	std::cout << "\n------------------------------------------------------\n";
 
 	for (unsigned int i = 0; i < menu.size(); i++) {
@@ -299,6 +318,7 @@ void Interface::pickMenu(std::vector<std::string>& menu)
 		case Phases::CONQUER:		fillConquerMenu(menu);	break;
 		case Phases::COLLECTION:	fillExchangeMenu(menu);	break;
 		case Phases::SHOP:			fillShopMenu(menu);		break;
+		case Phases::EVENTS:		fillEventMenu(menu);	break;
 	}
 }
 
@@ -452,6 +472,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
 		opAdvance();
+		gD->drawEvent();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -483,9 +504,43 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 	}
 }
 
-void Interface::eventScreen()
+void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 {
-
+	if (cmd == "lista") {
+		if (words.empty()) {
+			opList();
+		}
+		else if (words.size() == 1) {
+			opList(words[0]);
+		}
+	}
+	else if (cmd == "avanca" && words.size() == 0) {
+		opAdvance();
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ativa" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "apaga" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "toma" && words.size() == 2) {
+		opTake(words[0], words[1]);
+	}
+	else if (cmd == "modifica" && words.size() == 2) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "fevento" && words.size() == 1) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "ajuda" && words.size() == 0) {
+		std::cout << "NOT IMPLEMENTED YET\n";
+	}
+	else if (cmd == "sair") {
+		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
 }
 
 
@@ -515,7 +570,7 @@ void Interface::run()
 			case Phases::CONQUER:		conquerMenu(cmd, words);	break;
 			case Phases::COLLECTION:	exchangeMenu(cmd, words);	break;
 			case Phases::SHOP:			shopMenu(cmd, words);		break;
-			case Phases::EVENTS:		eventScreen();				break;
+			case Phases::EVENTS:		eventMenu(cmd, words);		break;
 		}
 	} while (cmd != "sair");
 }

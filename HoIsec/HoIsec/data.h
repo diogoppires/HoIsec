@@ -76,12 +76,14 @@
 #define MAX_SAFEBOX 3
 #define MAX_SAFEBOX_WITH_CENTRALBANK 5
 
+
+
 //EVENTS INFORMATION
-#define ABANDONED_PRODUCT "Produto abandonado!\n Um produto abandonado foi encontrado e fornece ao armazem do seu império uma unidade de produtos. Caso já tenha sido atingido o valor máximo permitido, este recurso sera desperdicado!"
-#define ABANDONED_GOLD "Ouro abandonado!\n Foi encontrado ouro abandonado e decidiu guarda-lo no seu cofre. Caso já tenha sido atingido o valor máximo permitido, este recurso sera desperdicado!"
+#define ABANDONED_PRODUCT "Produto abandonado!\n Um produto abandonado foi encontrado e fornece ao armazem do seu imperio uma unidade de produtos. Caso ja tenha sido atingido o valor maximo permitido, este recurso sera desperdicado!"
+#define ABANDONED_GOLD "Ouro abandonado!\n Foi encontrado ouro abandonado e decidiu guarda-lo no seu cofre. Caso ja tenha sido atingido o valor maximo permitido, este recurso sera desperdicado!"
 #define INVASION_FAILED "Invasao! Um imperio concorrente tentou conquistar um territorio do seu imperio mas os seus soldados estavam atentos e impediram esta invasao. A invasao foi FALHADA."
 #define INVASION_SUCCESS "Invasao! Um imperio concorrente conseguiu conquistar um territorio do seu imperio! Territorio perdido: "
-#define DIPLOMATIC_ALLIANCE "Juntos somos mais fortes! Foi assinada uma aliança com um império e em consequência disto a sua força militar aumenta uma unidade. Caso já tenha sido atingido o valor máximo permitido, a sua forca militar nao sera incrementada!"
+#define DIPLOMATIC_ALLIANCE "Juntos somos mais fortes! Foi assinada uma alianca com um imperio e em consequencia disto a sua forca militar aumenta uma unidade. Caso já tenha sido atingido o valor maximo permitido, a sua forca militar nao sera incrementada!"
 #define NO_EVENT "zZzZzZzZzZz... Nao ocorreu nada! Podem dormir todos descansados (por enquanto...)."
 
 //EVENTS DATA
@@ -91,6 +93,15 @@
 #define INVASION_STRENGTH_SECOND_YEAR 3
 #define DIPLOMATIC_ALLIANCE_QTY 1
 
+//NUMBER OF EVENTS
+#define N_EVENTS 4
+
+//TO STRING EVENTS
+#define EVENT_NONE "NONE"
+#define EVENT_ABANDONED_RESOURCE "RECURSO ABANDONADO"
+#define EVENT_DIPLOMATIC_ALLIANCE "ALIANCA DIPLOMATICA"
+#define EVENT_INVASION "INVASAO"
+#define EVENT_NO "SEM EVENTOS"
 enum class TerritoryTypes {
 	TERRITORY,
 	INITIAL,
@@ -204,6 +215,11 @@ public:
 	int generateLuckFactor() {
 		srand((unsigned)time(0));
 		return (rand() % 6) + 1;
+	}
+
+	int generateNumber(int max) {
+		srand((unsigned)time(0));
+		return (rand() % max);
 	}
 };
 

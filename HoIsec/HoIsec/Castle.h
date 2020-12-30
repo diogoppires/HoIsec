@@ -12,7 +12,7 @@ public:
 	Castle();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Castle();
+	virtual ~Castle() override;
 };
 #endif // !MOUNTAIN_H
 

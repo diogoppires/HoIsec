@@ -10,7 +10,7 @@ public:
 	Continent(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter);
 	std::string getTerritoryCategory() const;
 	virtual std::string toString() override;
-	~Continent();
+	virtual ~Continent() override;
 };
 #endif // !CONTINENT_H
 

@@ -1,17 +1,16 @@
 #pragma once
-#ifndef INVASION_H
-#define INVASION_H
+#ifndef NOEVENT_H
+#define NOEVENT_H
 #include "Event.h"
 
-class Invasion :
+class NoEvent :
     public Event
 {
 private:
 public:
-    Invasion(GameData* gD);
+    NoEvent(GameData* gD);
     std::string applyEvent() const override;
     std::string toString() const override;
-    virtual ~Invasion() override;
+    virtual ~NoEvent() override;
 };
-
-#endif // !INVASION_H
+#endif // !NOEVENT_H

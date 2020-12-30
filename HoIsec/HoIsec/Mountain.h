@@ -11,6 +11,6 @@ public:
 	Mountain();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Mountain();
+	virtual ~Mountain() override;
 };
 #endif // !MOUNTAIN_H

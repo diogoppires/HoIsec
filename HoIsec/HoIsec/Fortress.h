@@ -12,6 +12,6 @@ public:
 	Fortress();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Fortress();
+	virtual ~Fortress() override;
 };
 #endif // !FORTRESS_H

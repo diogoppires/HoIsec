@@ -12,7 +12,7 @@ public:
 	Plain();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Plain();
+	virtual ~Plain() override;
 };
 #endif // !PLAIN_H
 
