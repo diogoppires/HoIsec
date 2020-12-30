@@ -57,6 +57,9 @@ public:
 	int buyTechnology(std::string type); // 'adquire'
 	int takeObject(std::string type, std::string name); // 'toma'
 	int modifyData(std::string type, std::string number); // 'modifica'
+	int moreGold(); // 'maisouro'
+	int moreProd(); // 'maisprod'
+	int moreMilitary(); // 'maismilitar'
 
 	//Events
 	void drawEvent();

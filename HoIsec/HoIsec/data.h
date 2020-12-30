@@ -5,6 +5,12 @@
 #include <cstdlib>
 #include <time.h>
 
+//MORE PROD/GOLD
+#define COST_CHANGE 2
+
+//MORE MILITAR FORCE
+#define COST_ADD_MILITAR 1
+
 //DEBUG COMMANDS
 #define TAKE_TYPE_TERRITORY "terr"
 #define TAKE_TYPE_TECH "tec"
@@ -23,7 +29,6 @@
 #define INITIAL_WINPOINTS 0
 #define CONTINENT_WINPOINTS 1
 #define ISLAND_WINPOINTS 2
-
 
 //RESISTANCE
 #define INITIAL_RESISTANCE 9

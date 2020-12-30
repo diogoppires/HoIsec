@@ -29,9 +29,9 @@ private:
 	void opConquer(std::string fullmsg);
 	void opPass();
 	void opAdvance();
-	void opMoreGold(std::string fullmsg);
-	void opMoreProducts(std::string fullmsg);
-	void opMoreMilitary(std::string fullmsg);
+	void opMoreGold();
+	void opMoreProducts();
+	void opMoreMilitary();
 	void opObtainTech(std::string fullmsg);
 	void opList(std::string fullmsg);
 	void opList();

@@ -86,7 +86,6 @@ void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
 	firstMenu.push_back(" ~~> sair\n\n");
 }
 
-
 //This method will break a string up in order to save his arguments into a vector
 //for a later usage.
 void Interface::getWords(std::vector<std::string>& words, std::string& cmd, std::string msg)
@@ -170,20 +169,50 @@ void Interface::opAdvance()
 {
 	gD->advance();
 }
-void Interface::opMoreGold(std::string fullmsg)
+void Interface::opMoreGold()
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->moreGold()) {
+	case 1:
+		std::cout << "[HoIsec] Foi adicionada uma unidade de ouro por duas de prdutos.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Quantidade de produtos insuficiente, nada foi feito.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] Nao e possivel adicionar mais ouro, nada foi feito.\n";
+		break;
+	}
 }
-void Interface::opMoreProducts(std::string fullmsg)
+void Interface::opMoreProducts()
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->moreProd()) {
+	case 1:
+		std::cout << "[HoIsec] Foi adicionada uma unidade de produtos por duas de ouro.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Quantidade de ouro insuficiente, nada foi feito.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] Nao e possivel adicionar mais produtos, nada foi feito.\n";
+		break;
+	}
 }
-void Interface::opMoreMilitary(std::string fullmsg)
+void Interface::opMoreMilitary()
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->moreMilitary()) {
+	case 1:
+		std::cout << "[HoIsec] Foi adicionado um ponto de forca militar.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Quantidade de ouro ou produtos insuficiente, nada foi feito.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] A forca militar ja esta no maximo, nada foi feito.\n";
+		break;
+	}
 }
 void Interface::opObtainTech(std::string fullmsg)
 {
@@ -442,10 +471,10 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 {
 	if (cmd == "maisouro" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opMoreGold();
 	}
 	else if (cmd == "maisprod" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opMoreProducts();
 	}
 	else if (cmd == "lista") {
 		if (words.empty()) {
@@ -491,7 +520,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 {
 	if (cmd == "maismilitar" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opMoreMilitary();
 	}
 	else if (cmd == "adquire" && words.size() == 1) {
 		opObtainTech(words[0]);
