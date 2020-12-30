@@ -20,6 +20,11 @@ std::string AbandonedResource::applyEvent() const
 	}
 }
 
+std::string AbandonedResource::toString() const
+{
+	return EVENT_ABANDONED_RESOURCE;
+}
+
 AbandonedResource::~AbandonedResource()
 {
 	std::cout << "[EVENTO - RECURSO ABANDONADO] Destruindo...\n";

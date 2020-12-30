@@ -12,7 +12,7 @@ public:
     InitTerritory();
     TerritoryTypes getTerritoryType() override;
     std::string toString() override;
-    ~InitTerritory();
+    virtual ~InitTerritory() override;
 };
 
 #endif // !INITTERRITORY_H

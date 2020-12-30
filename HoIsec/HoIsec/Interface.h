@@ -18,6 +18,7 @@ private:
 	void fillConquerMenu(std::vector<std::string>& conquerMenu);
 	void fillExchangeMenu(std::vector<std::string>& exchangeMenu);
 	void fillShopMenu(std::vector<std::string>& shopMenu);
+	void fillEventMenu(std::vector<std::string>& shopMenu);
 	void fillFirstMenu(std::vector<std::string>& firstMenu);
 	void getWords(std::vector<std::string>& words, std::string& cmd, std::string msg);
 
@@ -49,7 +50,7 @@ private:
 	void conquerMenu(std::string cmd, std::vector<std::string> words);
 	void exchangeMenu(std::string cmd, std::vector<std::string> words);
 	void shopMenu(std::string cmd, std::vector<std::string> words);
-	void eventScreen();
+	void eventMenu(std::string cmd, std::vector<std::string> words);
 public:
 	//Constructor
 	Interface(GameData* gD);

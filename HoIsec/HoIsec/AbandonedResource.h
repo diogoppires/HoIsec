@@ -10,9 +10,9 @@ private:
 public:
     AbandonedResource(GameData* gD);
     std::string applyEvent() const override;
-    ~AbandonedResource();
+    std::string toString() const override;
+    virtual ~AbandonedResource() override;
 };
-
 #endif // !ABANDONEDRESOURCE_H
 
 

@@ -12,7 +12,8 @@ public:
 	Event(GameData* gD);
 	GameData* getGameData() const;
 	virtual std::string applyEvent() const = 0;
-	~Event();
+	virtual std::string toString() const = 0;
+	virtual ~Event();
 };
 
 #endif // !EVENT_H

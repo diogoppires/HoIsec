@@ -12,7 +12,7 @@ public:
 	PiratesRefugee();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~PiratesRefugee();
+	virtual ~PiratesRefugee() override;
 };
 #endif // !PIRATESREFUGEE_H
 

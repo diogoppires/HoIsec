@@ -10,7 +10,8 @@ private:
 public:
     DiplomaticAlliance(GameData* gD);
     std::string applyEvent() const override;
-    ~DiplomaticAlliance();
+    std::string toString() const override;
+    virtual ~DiplomaticAlliance() override;
 };
 
 #endif // !DIPLOMATICALLIANCE_H

@@ -150,6 +150,9 @@
     <ClCompile Include="Technology.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="NoEvent.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Army.h">
@@ -243,6 +246,9 @@
       <Filter>Header Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="DiplomaticAlliance.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="NoEvent.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>

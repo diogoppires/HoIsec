@@ -22,7 +22,7 @@ public:
 
 	Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints);
 
-	~Territory();
+	virtual ~Territory();
 
 	virtual std::string toString();
 

@@ -42,6 +42,7 @@
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Mountain.cpp" />
+    <ClCompile Include="NoEvent.cpp" />
     <ClCompile Include="PiratesRefugee.cpp" />
     <ClCompile Include="Plain.cpp" />
     <ClCompile Include="SafeBox.cpp" />
@@ -74,6 +75,7 @@
     <ClInclude Include="Island.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="Mountain.h" />
+    <ClInclude Include="NoEvent.h" />
     <ClInclude Include="PiratesRefugee.h" />
     <ClInclude Include="Plain.h" />
     <ClInclude Include="Missile.h" />

@@ -12,7 +12,7 @@ public:
 	Mine();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	~Mine();
+	virtual ~Mine() override;
 };
 #endif // !MINE_H
 
