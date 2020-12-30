@@ -167,6 +167,17 @@ bool Empire::spendProds(int quant)
 	return storage.subProducts(quant);
 }
 
+int Empire::setProds(int quant)
+{
+	return storage.setProducts(quant);
+}
+
+int Empire::setGold(int quant)
+{
+	return safe.setGold(quant);
+}
+
+
 bool Empire::addTerritory(Territory* territory)
 {
 	if (!checkHaveTerritory(territory)) {

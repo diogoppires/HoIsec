@@ -24,6 +24,7 @@ public:
 	bool subGold(int quant);
 
 	void setMaxGold(int max);
+	int setGold(int value);
 
 	//toString
 	std::string toString() const;

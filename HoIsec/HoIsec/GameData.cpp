@@ -46,13 +46,24 @@ GameData::~GameData() {
 bool GameData::verifyTerritory(std::string name) {
 	return false;
 }
-
-bool GameData::createTerritories(std::string type, int quant){
+/**
+* return:
+*	( 1) -> if the territory has been added
+*	( 0) -> if the value is invalid
+*	(-1) -> if the type is invalid
+*/
+int GameData::createTerritories(std::string type, std::string value){
+	int quant;
 	if (!isTerritory(type)) {
-		return false;
+		return -1;
 	}
-	world.addTerritories(converter.StringToTerritoryTypes(type), quant);
-	return true;
+
+	if (verifyInteger(value)) {
+		quant = std::stoi(value);
+		world.addTerritories(converter.StringToTerritoryTypes(type), quant);
+		return 1;
+	}
+	return 0;
 }
 
 //Receive from a file territories types and the number of times the user wants to create a territory.
@@ -173,16 +184,57 @@ int GameData::takeObject(std::string type, std::string name)
 		}
 		return -3;
 	}
-	else if (type == TAKE_TYPE_TECH) {
+	if (type == TAKE_TYPE_TECH) {
 		Techs tec = converter.StringToTechs(name);
 		if (tec != Techs::NONE) {
 			return activeTech(tec) ? 2 : -2;
 		}
 		return -4;
 	}
-	else
-		return 0;
+	
+	return 0;
 }
+/**
+* This method is for conquer the Territory with name = 'name'.
+* return:
+*	( 2) -> if the value of gold was set with success
+*	( 1) -> if the value of products was set with success
+*	( 0) -> if the type is invalid
+*	(-1) -> if the value of products was set but the value was higher than max possible
+*	(-2) -> if the value of gold was set but the value was higher than max possible
+*	(-3) -> if the number of products/gold to set isn´t a number
+*	(-4) -> if the number of products/gold to set is a negative number
+*	
+*/
+int GameData::modifyData(std::string type, std::string number)
+{
+	int value;
+
+	if (!verifyInteger(number))
+		return -3;
+	value = std::stoi(number);
+	if (value < 0) {
+		return -4;
+	}
+
+	if (type == MODIFY_TYPE_PRODUCTS) {
+		switch (empire.setProds(value))
+		{
+		case 1: return 1;
+		case 2: return -1;
+		}
+	}
+	if (type == MODIFY_TYPE_GOLD) {
+		switch (empire.setGold(value))
+		{
+		case 1: return 2;
+		case 2: return -2;
+		}
+	}
+
+	return 0;
+}
+
 
 bool GameData::activeTech(Techs type)
 {
@@ -246,6 +298,14 @@ int GameData::receveCost(Techs type)
 		return price;
 	}
 	return 0;
+}
+
+bool GameData::verifyInteger(std::string value)
+{
+	for (int i = 0; i < value.length(); i++)
+		if (isdigit(value[i]) == false)
+			return false;
+	return true;
 }
 
 

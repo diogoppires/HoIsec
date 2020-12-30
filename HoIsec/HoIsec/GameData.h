@@ -34,12 +34,13 @@ private:
 	bool activeTech(Techs type);
 	int receveCost(Techs type);
 
+	bool verifyInteger(std::string value);
 
 public:
 	GameData();
 	~GameData();
 	bool verifyTerritory(std::string name); // 'conquista'
-	bool createTerritories(std::string type, int quant); // 'cria'
+	int createTerritories(std::string type, std::string value); // 'cria'
 	bool loadTerritories(std::string fileName); // 'carrega'
 	bool initializeGame();	// 'inicia'
 	// Lista
@@ -52,6 +53,7 @@ public:
 	void advance();	// 'avanca'
 	int buyTechnology(std::string type); // 'adquire'
 	int takeObject(std::string type, std::string name); // 'toma'
+	int modifyData(std::string type, std::string number); // 'modifica'
 
 	//Getter
 	Empire& getEmpire();

@@ -71,6 +71,8 @@ public:
 	bool decreaseArmy(int quant);
 	bool spendGold(int quant);
 	bool spendProds(int quant);
+	int setProds(int quant);
+	int setGold(int quant);
 	
 	bool addTerritory(Territory* territory);
 

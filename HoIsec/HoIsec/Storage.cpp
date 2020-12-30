@@ -37,9 +37,22 @@ bool Storage::subProducts(int quant)
 	return true;
 }
 
+
 void Storage::setMaxProducts(int max)
 {
 	this->maxProducts = max;
+}
+
+int Storage::setProducts(int value)
+{
+	if (value <= 0) return 0;
+	if (value > maxProducts){
+		products = maxProducts;
+		return 2;
+	}
+	else
+		products = value;
+	return 1;
 }
 
 std::string Storage::toString() const
