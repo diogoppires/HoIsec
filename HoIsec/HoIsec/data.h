@@ -8,6 +8,8 @@
 //DEBUG COMMANDS
 #define TAKE_TYPE_TERRITORY "terr"
 #define TAKE_TYPE_TECH "tec"
+#define MODIFY_TYPE_PRODUCTS "prod"
+#define MODIFY_TYPE_GOLD "ouro"
 
 //DEFAULT NAME
 #define INITIAL_TERRITORY_NAME "TerritorioInicial"

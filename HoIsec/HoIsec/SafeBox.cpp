@@ -42,6 +42,17 @@ void SafeBox::setMaxGold(int max)
 {
 	this->maxGold = max;
 }
+int SafeBox::setGold(int value)
+{
+	if (value <= 0) return 0;
+	if (value > maxGold) {
+		gold = maxGold;
+		return 2;
+	}
+	else
+		gold = value;
+	return 1;
+}
 std::string SafeBox::toString() const
 {
 	std::ostringstream oss;

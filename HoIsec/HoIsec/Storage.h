@@ -24,6 +24,7 @@ public:
 
 	//Setter
 	void setMaxProducts(int max);
+	int setProducts(int value);
 
 	//toString
 	std::string toString() const;

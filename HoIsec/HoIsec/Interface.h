@@ -24,7 +24,7 @@ private:
 
 	//Commands
 	void opLoad(std::string fullmsg);
-	void opCreate(std::string fullmsg,int quant);
+	void opCreate(std::string fullmsg,std::string value);
 	void opGameInit();
 	void opConquer(std::string fullmsg);
 	void opPass();
@@ -39,7 +39,7 @@ private:
 	void opRecover(std::string fullmsg);
 	void opDelete(std::string fullmsg);
 	void opTake(std::string type, std::string name);
-	void opModify(std::string fullmsg);
+	void opModify(std::string type, std::string value);
 	void opForceEvent(std::string fullmsg);
 	void opEvent();
 

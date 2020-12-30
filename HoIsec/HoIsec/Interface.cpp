@@ -111,14 +111,19 @@ void Interface::opLoad(std::string fullmsg)
 		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
 	}
 }
-void Interface::opCreate(std::string fullmsg,int quant)
+void Interface::opCreate(std::string fullmsg, std::string value)
 {
 	system("cls");	
-	if (gD->createTerritories(fullmsg,quant)) {
-		std::cout << "[HoIsec] Territorios adicionados com sucesso...\n";
-	}
-	else {
-		std::cout << "[HoIsec] Erro ao carregar os territorios...\n";
+	switch(gD->createTerritories(fullmsg,value)) {
+	case 1:
+		std::cout << "[HoIsec] Territorios adicionados com sucesso.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Valor para a quantidade de territorios invalido.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] O territorio especificado e invalido.\n";
+		break;
 	}
 }
 void Interface::opGameInit()
@@ -238,32 +243,61 @@ void Interface::opTake(std::string type, std::string name)
 	switch (gD->takeObject(type,name))
 	{
 	case 2: 
-		std::cout << "A tecnologia '" << name << "' foi adicionada ao imperio.\n";
+		std::cout << "[HoIsec] A tecnologia '" << name << "' foi adicionada ao imperio.\n";
 		break;
 	case -2:
-		std::cout << "A tecnologia '" << name << "' ja existe no imperio\n";
+		std::cout << "[HoIsec] A tecnologia '" << name << "' ja existe no imperio\n";
 		break;
 	case -4:
-		std::cout << "A tecnologia com o nome '" << name << "' nao existe.\n";
+		std::cout << "[HoIsec] A tecnologia com o nome '" << name << "' nao existe.\n";
 		break;
 	case 1:
-		std::cout << "O territorio '" << name << "' agora pertence ao imperio.\n";
+		std::cout << "[HoIsec] O territorio '" << name << "' agora pertence ao imperio.\n";
 		break;
 	case -1:
-		std::cout << "O territorio '" << name << "' ja pertence ao imperio.\n";
+		std::cout << "[HoIsec] O territorio '" << name << "' ja pertence ao imperio.\n";
 		break;
 	case -3:
-		std::cout << "Não existe nenhum territorio com o nome '" << name << "'.\n";
+		std::cout << "[HoIsec] Não existe nenhum territorio com o nome '" << name << "'.\n";
 		break;
 	case 0:
-		std::cout << "O tipo '"<< type << "' nao foi reconhecido.\n";
+		std::cout << "[HoIsec] O tipo '"<< type << "' nao foi reconhecido.\n";
 		break;
 	}
 }
-void Interface::opModify(std::string fullmsg)
+void Interface::opModify(std::string type,std::string value)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	switch (gD->modifyData(type,value))
+	{
+	case 2:
+		std::cout << "[HoIsec] A quantidade de ouro foi defiinida com o valor " <<
+			value << ",\n\t com sucesso.\n";
+		break;
+	case 1:
+		std::cout << "[HoIsec] A quantidade de produtos foi defiinida com o valor " <<
+			value << ",\n\t com sucesso.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] O tipo '" << type << "' e invalido.\n";
+		break;
+	case -1:
+		std::cout << "[HoIsec] O valor de produtos requirido, "<< value <<", esta acima\n" <<
+			"\t do maximo permitido. A quantidade de produtos\n" <<
+			"\t foi fixada no maximo permitido.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] O valor de ouro requirido, " << value << ", esta acima do\n" <<
+			"\t maximo permitido. A quantidade de ouro\n" <<
+			"\t foi fixada no maximo permitido.\n";
+		break;
+	case -3:
+		std::cout << "[HoIsec] O 2o argumento do comando tem que ser um numero positivo\n";
+		break;
+	case -4:
+		std::cout << "[HoIsec] O 2o argumento deve ser um valor positivo.\n";
+		break;
+	}
 }
 void Interface::opForceEvent(std::string fullmsg)
 {
@@ -336,7 +370,7 @@ void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 		}
 	}
 	else if (cmd == "cria" && words.size() == 2) {
-		opCreate(words[0], std::stoi(words[1]));
+		opCreate(words[0], words[1]);
 	}
 	else if (cmd == "iniciar" && words.size() == 0) {
 		opGameInit();
@@ -388,7 +422,7 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -437,7 +471,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
@@ -487,7 +521,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		opTake(words[0], words[1]);
 	}
 	else if (cmd == "modifica" && words.size() == 2) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opModify(words[0], words[1]);
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
 		std::cout << "NOT IMPLEMENTED YET\n";
