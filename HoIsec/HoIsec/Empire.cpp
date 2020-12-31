@@ -40,9 +40,33 @@ int Empire::getProdsCreation() const
 	return prodCreation;
 }
 
-int Empire::getScore() const
+int Empire::getTerritoryScore() const
 {
 	return score;
+}
+
+int Empire::getTechScore() const
+{
+	int techScore = 0;
+	if (stockExchange->getActive()) {
+		techScore += TECH_POINTS;
+	}
+	if (centralBank->getActive()) {
+		techScore += TECH_POINTS;
+	}
+	if (drone->getActive()) {
+		techScore += TECH_POINTS;
+	}
+	if (defenses->getActive()) {
+		techScore += TECH_POINTS;
+	}
+	if (missiles->getActive()) {
+		techScore += TECH_POINTS;
+	}
+	if (techScore == ALL_TECH) {
+		techScore += EXTRA_SCIENTIFIC_BONUS;
+	}
+	return techScore;
 }
 
 int Empire::getMiliForce() const
@@ -133,8 +157,6 @@ void Empire::updateEmpire()
 	score = auxScore;
 	prodCreation = auxProd;
 	goldCreation = auxGold;
-	receiveProds(prodCreation);
-	receiveGold(goldCreation);
 }
 
 bool Empire::increaseArmy(int quant)
@@ -216,6 +238,11 @@ void Empire::deleteLastTerritory()
 	std::vector<Territory*>::iterator it = empire.end() - 1;
 	(*it)->changeNotConquered();
 	empire.pop_back();
+}
+
+void Empire::resetEmpire()
+{
+	empire.clear();
 }
 
 Territory* Empire::getLastConquer()

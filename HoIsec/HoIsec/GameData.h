@@ -28,6 +28,7 @@ private:
 	bool canBuyTech;
 	std::string eventMsg;
 	std::string eventId;
+	std::string gameOverMsg;
 
 	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
@@ -39,6 +40,8 @@ private:
 	void addEvents();
 	bool verifyInteger(std::string value);
 
+	void setInitialValues();
+	void setFinalMsg();
 public:
 	GameData();
 	~GameData();
@@ -68,6 +71,11 @@ public:
 	std::string getEventId();
 
 	void gameLost();
+	void setGameOverMsg(std::string msg);
+	std::string getGameOverMsg();
+
+	//All points
+	int allPoints();
 
 	//Getter
 	Empire& getEmpire();

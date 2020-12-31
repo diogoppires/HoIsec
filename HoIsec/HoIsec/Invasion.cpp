@@ -30,6 +30,7 @@ std::string Invasion::applyEvent() const
 		std::ostringstream oss;
 		if (gD->getEmpire().getEmpireSize() > 1) {
 			gD->getEmpire().deleteLastTerritory();
+			gD->getEmpire().updateEmpire();
 			oss << INVASION_SUCCESS << territoryAttacked->getName();
 			return oss.str();
 		}

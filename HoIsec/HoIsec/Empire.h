@@ -43,7 +43,8 @@ public:
 	int getProds() const;
 	int getProdsCreation() const;
 		
-	int getScore() const;
+	int getTerritoryScore() const;
+	int getTechScore() const;
 	int getMiliForce() const;
 	int getMaxMiliForce() const;
 	int getMaxStorage() const;
@@ -78,6 +79,7 @@ public:
 
 	bool attack(Territory* territory,int luckyFactor);
 	void deleteLastTerritory();
+	void resetEmpire();
 
 	Territory* getLastConquer();
 	

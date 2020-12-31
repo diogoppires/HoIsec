@@ -100,6 +100,3 @@ int World::getTerritoriesSize()
 {
 	return (int)territories.size();	//This is safe to cast because there won't be more than MAX_INT territories.
 }
-void World::clearTerritories() {
-	territories.clear();
-}
