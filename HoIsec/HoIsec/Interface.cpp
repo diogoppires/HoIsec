@@ -1,4 +1,5 @@
 #include "Interface.h"
+#include <limits>
 
 
 //Menus
@@ -60,22 +61,22 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back(" ~~> ajuda\n");
 	shopMenu.push_back(" ~~> sair\n");
 }
-void Interface::fillEventMenu(std::vector<std::string>& shopMenu)
+void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 {
 	std::ostringstream oss;
 	oss << "\n EVENTO: " << gD->getEventMsg() << "\n\n";
-	shopMenu.push_back(oss.str());
-	shopMenu.push_back("\n - Comandos do Jogo - 4a Fase | Eventos\n\n");
-	shopMenu.push_back(" ~~> lista <nome>\n");
-	shopMenu.push_back(" ~~> avanca\n\n");
-	shopMenu.push_back(" ~~> grava <nome>\n");
-	shopMenu.push_back(" ~~> ativa <nome>\n");
-	shopMenu.push_back(" ~~> apaga <nome>\n\n");
-	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
-	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	shopMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
-	shopMenu.push_back(" ~~> ajuda\n");
-	shopMenu.push_back(" ~~> sair\n");
+	eventMenu.push_back(oss.str());
+	eventMenu.push_back("\n - Comandos do Jogo - 4a Fase | Eventos\n\n");
+	eventMenu.push_back(" ~~> lista <nome>\n");
+	eventMenu.push_back(" ~~> avanca\n\n");
+	eventMenu.push_back(" ~~> grava <nome>\n");
+	eventMenu.push_back(" ~~> ativa <nome>\n");
+	eventMenu.push_back(" ~~> apaga <nome>\n\n");
+	eventMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
+	eventMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
+	eventMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
+	eventMenu.push_back(" ~~> ajuda\n");
+	eventMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
 	firstMenu.push_back("\n - Comandos do Jogo -\n\n");
@@ -349,12 +350,12 @@ std::string Interface::readString(const std::string msg)
 }
 std::string Interface::choose(const std::vector<std::string> menu)
 {
-	if (gD->getPhase() != Phases::NONE) {
+	if (gD->getPhase() != Phases::NONE && gD->getPhase() != Phases::GAMEOVER) {
 		std::cout << "\n------------------------------------------------------\n";
 		std::cout << "[ ANO: " << gD->getYear() << " || TURNO: " << gD->getTurn() << " ]";
 		std::cout << "\n------------------------------------------------------\n";
 		std::cout << "\t\t\tIMPERIO";
-		std::cout << "\n PONTUACAO: " << gD->getEmpire().getScore();
+		std::cout << "\n PONTUACAO: " << gD->allPoints();
 		std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
 		std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
 		std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
@@ -607,6 +608,14 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 	}
 }
 
+void Interface::gameOver()
+{
+	std::cout << gD->getGameOverMsg() << std::endl;
+	std::cout << "\nPressione algum botao para voltar ao menu principal.\n";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	gD->advance();
+}
+
 
 Interface::Interface(GameData* gD)
 {	
@@ -625,8 +634,10 @@ void Interface::run()
 		pickMenu(menu);
 
 		//Need to be informed by GameData in order to show the correct menu.
-		fullstr = choose(menu);
-		getWords(words, cmd, fullstr);
+		if (gD->getPhase() != Phases::GAMEOVER) {
+			fullstr = choose(menu);
+			getWords(words, cmd, fullstr);
+		}
 		
 		switch (gD->getPhase()) {
 			case Phases::NONE:			initMenu(cmd, words);		break;
@@ -634,6 +645,7 @@ void Interface::run()
 			case Phases::COLLECTION:	exchangeMenu(cmd, words);	break;
 			case Phases::SHOP:			shopMenu(cmd, words);		break;
 			case Phases::EVENTS:		eventMenu(cmd, words);		break;
+			case Phases::GAMEOVER:		gameOver();					break;
 		}
 	} while (cmd != "sair");
 }

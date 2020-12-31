@@ -41,7 +41,6 @@ private:
 	void opTake(std::string type, std::string name);
 	void opModify(std::string type, std::string value);
 	void opForceEvent(std::string fullmsg);
-	void opEvent();
 
 	std::string readString(const std::string msg);
 	std::string choose(const std::vector<std::string> menu);
@@ -51,6 +50,7 @@ private:
 	void exchangeMenu(std::string cmd, std::vector<std::string> words);
 	void shopMenu(std::string cmd, std::vector<std::string> words);
 	void eventMenu(std::string cmd, std::vector<std::string> words);
+	void gameOver();
 public:
 	//Constructor
 	Interface(GameData* gD);

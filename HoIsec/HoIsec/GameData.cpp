@@ -22,15 +22,61 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 	num = std::stoi(aux, nullptr, 0);
 }
 
+void GameData::setInitialValues()
+{
+	year = 1;
+	turn = 1;
+	empire.setGold(0);
+	empire.setProds(0);
+	empire.resetEmpire();
+	world.clearTerritories();
+	canBuyTech = true;
+	luckyFactor = 0;
+	eventMsg = EVENT_NONE;
+	eventId = EVENT_NONE;
+}
+
+void GameData::setFinalMsg()
+{
+	std::ostringstream oss;
+	oss << "Pontos de territorios: " << empire.getTerritoryScore();
+	if (empire.getTerritoryScore() == world.getTerritoriesSize() + empire.getEmpireSize()) {
+		oss << " (POSSUI bonus Imperador Supremo)" << std::endl;
+	}
+	else {
+		oss << " (NAO POSSUI bonus Imperador Supremo)" << std::endl;
+	}
+	oss << "Pontos de tecnologias: " << empire.getTechScore();
+	if (empire.getTechScore() == ALL_TECH + EXTRA_SCIENTIFIC_BONUS) {
+		oss << " (POSSUI bonus cientifico)" << std::endl;
+	}
+	else {
+		oss << " (NAO POSSUI bonus cientifico)" << std::endl;
+	}
+	oss << "TOTAL: " << allPoints();
+	gameOverMsg = oss.str();
+}
+
 void GameData::advancePhase()
 {
 	switch (phase)
 	{
-		case Phases::NONE:			phase = Phases::CONQUER;	break;
-		case Phases::CONQUER:		phase = Phases::COLLECTION; break;
-		case Phases::COLLECTION:	phase = Phases::SHOP;		break;
-		case Phases::SHOP:			phase = Phases::EVENTS;		break;
-		case Phases::EVENTS:		phase = Phases::CONQUER;	break;
+		case Phases::NONE:			phase = Phases::CONQUER;			break;
+		case Phases::CONQUER:		empire.receiveProds(empire.getProdsCreation());
+									empire.receiveGold(empire.getGoldCreation());
+									phase = Phases::COLLECTION;			break;
+		case Phases::COLLECTION:	phase = Phases::SHOP;				break;
+		case Phases::SHOP:			phase = Phases::EVENTS;				break;
+		case Phases::EVENTS:		phase = Phases::CONQUER; turn++;	break;
+		case Phases::GAMEOVER:		phase = Phases::NONE;				break;
+	}
+	if (turn == LIMIT_TURN && year < LIMIT_YEAR) {
+		year++;
+	}
+	else if (turn == LIMIT_TURN && year == LIMIT_YEAR) {
+		setFinalMsg();
+		setInitialValues();
+		phase = Phases::GAMEOVER;
 	}
 }
 
@@ -47,8 +93,8 @@ void GameData::addEvents()
 }
 
 GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
-	year = 1;
-	turn = 1;
+	year = 2;
+	turn = 6;
 	phase = Phases::NONE;
 	canBuyTech = true;
 	luckyFactor = 0;
@@ -413,6 +459,18 @@ bool GameData::verifyInteger(std::string value)
 	return true;
 }
 
+
+
+int GameData::allPoints()
+{
+	int all = getEmpire().getTerritoryScore();
+	all += getEmpire().getTechScore();
+	if (world.getTerritoriesSize() == empire.getEmpireSize()) {
+		all += EXTRA_SUPREME_EMPEROR;
+	}
+	return all;
+}
+
 void GameData::stayPassive()
 {
 	advancePhase();
@@ -443,7 +501,18 @@ std::string GameData::getEventId()
 
 void GameData::gameLost()
 {
-	this->phase = Phases::NONE;
+	setInitialValues();
+	this->phase = Phases::GAMEOVER;
+}
+
+void GameData::setGameOverMsg(std::string msg)
+{
+	gameOverMsg = msg;
+}
+
+std::string GameData::getGameOverMsg()
+{
+	return gameOverMsg;
 }
 
 //Getter

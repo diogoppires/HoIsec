@@ -31,7 +31,7 @@
 #define ISLAND_WINPOINTS 2
 
 //RESISTANCE
-#define INITIAL_RESISTANCE 9
+#define INITIAL_RESISTANCE 2
 #define PLAIN_RESISTANCE 5
 #define MOUNTAIN_RESISTANCE 6
 #define FORTRESS_RESISTANCE 8
@@ -116,6 +116,16 @@
 #define FEVENT_ALLIANCE "alianca"
 #define FEVENT_NONE "nada"
 
+//TURN DETAILS
+#define LIMIT_TURN 7
+#define LIMIT_YEAR 2
+
+//GAME POINTS
+#define TECH_POINTS 1
+#define ALL_TECH 5
+#define EXTRA_SCIENTIFIC_BONUS 1
+#define EXTRA_SUPREME_EMPEROR 3
+
 enum class TerritoryTypes {
 	TERRITORY,
 	INITIAL,
@@ -135,7 +145,8 @@ enum class Phases {
 	CONQUER,
 	COLLECTION,
 	SHOP,
-	EVENTS
+	EVENTS,
+	GAMEOVER
 };
 
 enum class Techs {
