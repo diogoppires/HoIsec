@@ -19,13 +19,16 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
 	conquerMenu.push_back(" ~~> conquista<nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
+	conquerMenu.push_back(" ~~> avanca\n\n");
 	conquerMenu.push_back(" ~~> lista <nome>\n\n");
 	conquerMenu.push_back(" ~~> grava <nome>\n");
 	conquerMenu.push_back(" ~~> ativa <nome>\n");
 	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
-	conquerMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
-	conquerMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	conquerMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
+	conquerMenu.push_back(" [DEBUG]\n");
+	conquerMenu.push_back(" ~~> toma <qual> <nome>\n");
+	conquerMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
+	conquerMenu.push_back(" ~~> fevento <nome-evento>\n");
+	conquerMenu.push_back(" ---------\n\n");
 	conquerMenu.push_back(" ~~> ajuda\n");
 	conquerMenu.push_back(" ~~> sair\n");
 }
@@ -39,9 +42,11 @@ void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 	exchangeMenu.push_back(" ~~> grava <name>\n");
 	exchangeMenu.push_back(" ~~> ativa <name>\n");
 	exchangeMenu.push_back(" ~~> apaga <name>\n\n");
-	exchangeMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
-	exchangeMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	exchangeMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
+	exchangeMenu.push_back(" [DEBUG]\n");
+	exchangeMenu.push_back(" ~~> toma <qual> <nome>\n");
+	exchangeMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
+	exchangeMenu.push_back(" ~~> fevento <nome-evento>\n");
+	exchangeMenu.push_back(" ---------\n\n");
 	exchangeMenu.push_back(" ~~> ajuda\n");
 	exchangeMenu.push_back(" ~~> sair\n");
 }
@@ -55,9 +60,11 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back(" ~~> grava <nome>\n");
 	shopMenu.push_back(" ~~> ativa <nome>\n");
 	shopMenu.push_back(" ~~> apaga <nome>\n\n");
-	shopMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
-	shopMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	shopMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
+	shopMenu.push_back(" [DEBUG]\n");
+	shopMenu.push_back(" ~~> toma <qual> <nome>\n");
+	shopMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
+	shopMenu.push_back(" ~~> fevento <nome-evento>\n");
+	shopMenu.push_back(" ---------\n\n");
 	shopMenu.push_back(" ~~> ajuda\n");
 	shopMenu.push_back(" ~~> sair\n");
 }
@@ -72,9 +79,11 @@ void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 	eventMenu.push_back(" ~~> grava <nome>\n");
 	eventMenu.push_back(" ~~> ativa <nome>\n");
 	eventMenu.push_back(" ~~> apaga <nome>\n\n");
-	eventMenu.push_back(" ~~> [DEBUG]toma <qual> <nome>\n");
-	eventMenu.push_back(" ~~> [DEBUG]modifica <ouro|prod> <N>\n");
-	eventMenu.push_back(" ~~> [DEBUG]fevento <nome-evento>\n\n");
+	eventMenu.push_back(" [DEBUG]\n");
+	eventMenu.push_back(" ~~> toma <qual> <nome>\n");
+	eventMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
+	eventMenu.push_back(" ~~> fevento <nome-evento>\n");
+	eventMenu.push_back(" ---------\n\n");
 	eventMenu.push_back(" ~~> ajuda\n");
 	eventMenu.push_back(" ~~> sair\n");
 }
@@ -141,6 +150,9 @@ void Interface::opConquer(std::string fullmsg)
 {
 	system("cls");
 	switch (gD->conquerTerritories(fullmsg)) {
+	case -5:
+		std::cout << "[HoIsec] Ja foi feito um ataque neste turno.\n";
+		break;
 	case -4:
 		std::cout << "[HoIsec] E preciso a tecnologia 'Misseis Teleguiados' para atacar uma ilha.\n";
 		break;
@@ -234,7 +246,7 @@ void Interface::opObtainTech(std::string fullmsg)
 		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' ja esta disponivel no Imperio.\n";
 		break;
 	case -3:
-		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' nao esta disponivel para aquisição.\n";
+		std::cout << "[HoIsec] A tecnologia '" << fullmsg << "' nao esta disponivel para aquisiï¿½ï¿½o.\n";
 		break;
 	}
 }
@@ -288,7 +300,7 @@ void Interface::opTake(std::string type, std::string name)
 		std::cout << "[HoIsec] O territorio '" << name << "' ja pertence ao imperio.\n";
 		break;
 	case -3:
-		std::cout << "[HoIsec] Não existe nenhum territorio com o nome '" << name << "'.\n";
+		std::cout << "[HoIsec] Nï¿½o existe nenhum territorio com o nome '" << name << "'.\n";
 		break;
 	case 0:
 		std::cout << "[HoIsec] O tipo '"<< type << "' nao foi reconhecido.\n";
@@ -432,7 +444,9 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 	else if (cmd == "passa" && words.size() == 0) {
 		opPass();
 	}
-	else if (cmd == "lista") {
+	else if (cmd == "avanca" && words.size() == 0) {
+		opAdvance();
+	}else if (cmd == "lista") {
 		if (words.empty()) {
 			opList();
 		}
