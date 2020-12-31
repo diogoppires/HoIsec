@@ -32,6 +32,11 @@ void GameData::advancePhase()
 		case Phases::SHOP:			phase = Phases::EVENTS;		break;
 		case Phases::EVENTS:		phase = Phases::CONQUER;	break;
 	}
+
+	if (phase == Phases::CONQUER) {
+		canAttack = true;
+		canBuyTech = true;
+	}
 }
 
 void GameData::addEvents()
@@ -51,6 +56,7 @@ GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRIT
 	turn = 1;
 	phase = Phases::NONE;
 	canBuyTech = true;
+	canAttack = true;
 	luckyFactor = 0;
 	eventMsg = EVENT_NONE;
 	eventId = EVENT_NONE;
@@ -135,28 +141,31 @@ std::string GameData::listTerritories(std::string name) {
 *	(-2) -> if the territory doens't exist
 *	(-3) -> if the empire have less than 5 territories.
 *	(-4) -> if haven�t the tech 'missiles' active.
+*	(-5) -> if the canAttack is false.
 */
 int GameData::conquerTerritories(std::string name) {
 	Territory* chosenTerr = world.getSpecificTerritory(name);
+	if (canAttack) {
+		if (chosenTerr != nullptr) {
 
-	if (chosenTerr != nullptr) {
+			if (dynamic_cast<Island*>(chosenTerr)) {
+				if (empire.getEmpireSize() < 5)
+					return -3;
+				if (!empire.haveMissiles())
+					return -4;
+			}
 
-		if (dynamic_cast<Island*>(chosenTerr)) {
-			if (empire.getEmpireSize() < 5)
-				return -3;
-			if (!empire.haveMissiles())
-				return -4; 
+			if (chosenTerr->isConquered()) {
+				return -1;
+			}
+			generateLuckyFactor();
+			int attackResult = empire.attack(chosenTerr, getLuckyFactor());
+			canAttack = false;
+			return attackResult; // 0 / 1 .
 		}
-
-		if (chosenTerr->isConquered()) {
-			return -1; 
-		}
-		generateLuckyFactor();
-		int attackResult = empire.attack(chosenTerr,getLuckyFactor()); 
-		advancePhase();
-		return attackResult; // 0 / 1 .
+		return -2;
 	}
-	return -2; 
+	return -5;
 }
 /**
 * This method active the tech passed at 'type' 
@@ -415,8 +424,8 @@ bool GameData::verifyInteger(std::string value)
 
 void GameData::stayPassive()
 {
-	advancePhase();
 	empire.updateEmpire();
+	canAttack = false;
 }
 
 void GameData::advance()

@@ -26,6 +26,8 @@ private:
 	int luckyFactor;
 
 	bool canBuyTech;
+	bool canAttack;
+
 	std::string eventMsg;
 	std::string eventId;
 
