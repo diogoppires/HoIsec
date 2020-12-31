@@ -256,6 +256,61 @@ int GameData::modifyData(std::string type, std::string number)
 
 	return 0;
 }
+/**
+* return:
+*	( 1) -> if the change occurred with success
+*	( 0) -> if the qunatity of products is insufficient
+*	(-1) -> if the quantity of gold is already equal to max
+*/
+int GameData::moreGold()
+{
+	if (empire.getProds() >= COST_CHANGE) {
+		if (empire.getGold() < empire.getMaxSafeBox()) {
+			empire.receiveGold(1);
+			empire.spendProds(COST_CHANGE);
+			return 1;
+		}
+		return -1;
+	}
+	return 0;
+}
+/**
+* return:
+*	( 1) -> if the change occurred with success
+*	( 0) -> if the qunatity of gold is insufficient
+*	(-1) -> if the quantity of products is already equal to max
+*/
+int GameData::moreProd()
+{
+	if (empire.getGold() >= COST_CHANGE) {
+		if (empire.getProds() < empire.getMaxStorage()) {
+			empire.receiveProds(1);
+			empire.spendGold(COST_CHANGE);
+			return 1;
+		}
+		return -1;
+	}
+	return 0;
+}
+/**
+* return:
+*	( 1) -> if the militar force was been increased with success
+*	( 0) -> if the qunatity of gold or products is insufficient
+*	(-1) -> if the militar force is already in max
+*/
+int GameData::moreMilitary()
+{
+	if (empire.getGold() >= COST_ADD_MILITAR || empire.getProds() >= COST_ADD_MILITAR) {
+		if (empire.getMiliForce() < empire.getMaxMiliForce()) {
+			empire.increaseArmy(1);
+			empire.spendGold(COST_ADD_MILITAR);
+			empire.spendProds(COST_ADD_MILITAR);
+			return 1;
+		}
+		return -1;
+	}
+	return 0;
+}
 
 bool GameData::forceEvent(std::string nameEvent)
 {
@@ -357,8 +412,6 @@ bool GameData::verifyInteger(std::string value)
 			return false;
 	return true;
 }
-
-
 
 void GameData::stayPassive()
 {
