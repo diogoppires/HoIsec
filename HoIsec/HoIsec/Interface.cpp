@@ -17,7 +17,7 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 {
 	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
-	conquerMenu.push_back(" ~~> conquista<nome>\n");
+	conquerMenu.push_back(" ~~> conquista <nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
 	conquerMenu.push_back(" ~~> avanca\n\n");
 	conquerMenu.push_back(" ~~> lista <nome>\n\n");
@@ -151,7 +151,7 @@ void Interface::opConquer(std::string fullmsg)
 	system("cls");
 	switch (gD->conquerTerritories(fullmsg)) {
 	case -5:
-		std::cout << "[HoIsec] Ja foi feito um ataque neste turno.\n";
+		std::cout << "[HoIsec] Nao pode fazer mais ataques neste turno.\n";
 		break;
 	case -4:
 		std::cout << "[HoIsec] E preciso a tecnologia 'Misseis Teleguiados' para atacar uma ilha.\n";
@@ -176,11 +176,26 @@ void Interface::opConquer(std::string fullmsg)
 void Interface::opPass()
 {
 	system("cls");
-	gD->stayPassive();
+	switch (gD->stayPassive()) {
+	case 1:
+		std::cout << "[HoIsec] Este turno decidiu nao conquistar nenhum territorio.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Ja foi tomanda uma decisao sobre conquistar, neste turno.\n";
+		break;
+	}
 }
 void Interface::opAdvance()
 {
-	gD->advance();
+	system("cls");
+	if (gD->advance() == 0) {
+		std::cout << "[HoIsec] Nao definiu o que pretende fazer nesta fase (conquistar ou passar).\n";
+	}
+	else {
+		std::cout << "[HoIsec] Proxima fase...\n";
+	}
+
+
 }
 void Interface::opMoreGold()
 {
@@ -193,9 +208,13 @@ void Interface::opMoreGold()
 		std::cout << "[HoIsec] Quantidade de produtos insuficiente, nada foi feito.\n";
 		break;
 	case -1:
-		std::cout << "[HoIsec] Nao e possivel adicionar mais ouro, nada foi feito.\n";
+		std::cout << "[HoIsec] Atingiu o máximo possivel.\n\t Nao e possivel adicionar mais ouro, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Não pode adicionar mais ouro neste turno.\n";
 		break;
 	}
+	
 }
 void Interface::opMoreProducts()
 {
@@ -208,7 +227,10 @@ void Interface::opMoreProducts()
 		std::cout << "[HoIsec] Quantidade de ouro insuficiente, nada foi feito.\n";
 		break;
 	case -1:
-		std::cout << "[HoIsec] Nao e possivel adicionar mais produtos, nada foi feito.\n";
+		std::cout << "[HoIsec] Atingiu o máximo possivel.\n\t Nao e possivel adicionar mais produtos, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nao pode adicionar mais produtos neste turno.\n";
 		break;
 	}
 }
@@ -224,6 +246,9 @@ void Interface::opMoreMilitary()
 		break;
 	case -1:
 		std::cout << "[HoIsec] A forca militar ja esta no maximo, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nao pode adquirir mais forca militar neste turno.\n";
 		break;
 	}
 }

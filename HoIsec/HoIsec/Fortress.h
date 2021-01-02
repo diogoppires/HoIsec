@@ -12,6 +12,7 @@ public:
 	Fortress();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
+	void updateResources(int year, int turn) override;
 	virtual ~Fortress() override;
 };
 #endif // !FORTRESS_H

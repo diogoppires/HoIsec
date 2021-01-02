@@ -26,6 +26,8 @@ public:
 
 	virtual std::string toString();
 
+	virtual void updateResources(int year, int turn) = 0;
+
 	std::string getName() const;
 
 	int getResistance() const;

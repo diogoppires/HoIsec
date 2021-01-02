@@ -1,7 +1,7 @@
 #include "Fortress.h"
 
 int Fortress::counter = 0;
-Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, FORTRESS_INIT_PRODS, FORTRESS_INIT_GOLD, ++counter)
+Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, FORTRESS_FIRST_PRODS, FORTRESS_FIRST_GOLD, ++counter)
 {
 	std::cout << "[FORTALEZA] Construindo... " << Territory::getName() << std::endl;
 }
@@ -16,6 +16,9 @@ std::string Fortress::toString()
 
 	oss << "TIPO = 'Fortaleza'" << Continent::toString();
 	return oss.str();
+}
+void Fortress::updateResources(int year, int turn)
+{
 }
 Fortress::~Fortress()
 {

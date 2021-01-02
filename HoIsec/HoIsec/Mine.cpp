@@ -1,7 +1,7 @@
 #include "Mine.h"
 
 int Mine::counter = 0;
-Mine::Mine() : Continent(TerritoryTypes::MINE, MINE_RESISTANCE, MINE_INIT_PRODS, MINE_INIT_GOLD, ++counter)
+Mine::Mine() : Continent(TerritoryTypes::MINE, MINE_RESISTANCE, MINE_FIRST_PRODS, MINE_FIRST_GOLD, ++counter)
 {
 	std::cout << "[MINA] Construindo... " << Territory::getName() << std::endl;
 }
@@ -16,6 +16,15 @@ std::string Mine::toString()
 
 	oss << "TIPO = 'Mina'" << Continent::toString();
 	return oss.str();
+}
+void Mine::updateResources(int year, int turn)
+{
+	if (turn > 0 && turn < 4) {
+		goldCreation = MINE_FIRST_GOLD;
+	}
+	else {
+		goldCreation = MINE_SECOND_GOLD;
+	}
 }
 Mine::~Mine()
 {

@@ -1,7 +1,7 @@
 #include "FishingSite.h"
 
 int FishingSite::counter = 0;
-FishingSite::FishingSite() : Island(TerritoryTypes::FISHINGSITE, FISHING_RESISTANCE, FISHING_INIT_PRODS, FISHING_INIT_GOLD, ++counter)
+FishingSite::FishingSite() : Island(TerritoryTypes::FISHINGSITE, FISHING_RESISTANCE, FISHING_FIRST_GOLD, FISHING_FIRST_PRODS, ++counter)
 {
 	std::cout << "[PESCARIA] Construindo... " << Territory::getName() << std::endl;
 }
@@ -17,6 +17,16 @@ std::string FishingSite::toString()
 
 	oss << "TIPO = 'Pescaria'" << Island::toString();
 	return oss.str();
+}
+
+void FishingSite::updateResources(int year, int turn)
+{
+	if (year == 1) {
+		prodCreation = FISHING_FIRST_PRODS;
+	}
+	else if (year == 2) {
+		prodCreation = FISHING_SECOND_PRODS;
+	}
 }
 
 FishingSite::~FishingSite()

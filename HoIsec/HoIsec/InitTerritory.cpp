@@ -18,6 +18,10 @@ std::string InitTerritory::toString()
 	return oss.str();
 }
 
+void InitTerritory::updateResources(int year, int turn)
+{
+}
+
 InitTerritory::~InitTerritory()
 {
 	std::cout << "[TERRITORIO INICIAL] Destruindo... " << Territory::getName() << std::endl;
