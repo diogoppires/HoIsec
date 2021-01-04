@@ -22,6 +22,9 @@ public:
 	FileReader(std::string fileName);
 	std::vector<std::string> readFile();
 	~FileReader();
+
+	FileReader(const FileReader& rec) = delete;
+	FileReader& operator=(const FileReader& rec) = delete;
 };
 
 #endif // !FILEREADER_H
