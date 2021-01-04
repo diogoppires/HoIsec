@@ -21,6 +21,10 @@ Territory* Fortress::clone() const
 {
 	return new Fortress(*this);
 }
+void Fortress::setInitValue()
+{
+	counter = 0;
+}
 void Fortress::updateResources(int year, int turn)
 {
 }

@@ -24,6 +24,11 @@ Territory* FishingSite::clone() const
 	return new FishingSite(*this);
 }
 
+void FishingSite::setInitValue()
+{
+	counter = 0;
+}
+
 void FishingSite::updateResources(int year, int turn)
 {
 	if (year == 1) {

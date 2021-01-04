@@ -14,6 +14,10 @@ public:
 	std::string getName() const;
 	GameData* getGameData();
 	~Recording();
+
+
+	Recording(const Recording& rec) = delete;
+	Recording& operator=(const Recording& rec) = delete;
 };
 #endif // !RECORDING_H
 

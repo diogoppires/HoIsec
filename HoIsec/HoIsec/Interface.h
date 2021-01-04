@@ -67,6 +67,9 @@ public:
 	void run();
 	//Destructor
 	~Interface();
+
+	Interface(const Interface& rec) = delete;
+	Interface& operator=(const Interface& rec) = delete;
 };
 
 

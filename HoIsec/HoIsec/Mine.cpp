@@ -21,6 +21,10 @@ Territory* Mine::clone() const
 {
 	return new Mine(*this);
 }
+void Mine::setInitValue()
+{
+	counter = 0;
+}
 void Mine::updateResources(int year, int turn)
 {
 	if (turn > 0 && turn < 4) {

@@ -24,6 +24,11 @@ Territory* Castle::clone() const
 	return new Castle(*this);
 }
 
+void Castle::setInitValue()
+{
+	counter = 0;
+}
+
 void Castle::updateResources(int year, int turn)
 {
 	if (turn == 1 || turn == 2) {

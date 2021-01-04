@@ -21,6 +21,10 @@ Territory* Mountain::clone() const
 {
 	return new Mountain(*this);
 }
+void Mountain::setInitValue()
+{
+	counter = 0;
+}
 void Mountain::updateResources(int year,int turn)
 {
 	if (conquered) {

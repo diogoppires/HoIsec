@@ -107,6 +107,7 @@ void World::clearTerritories()
 {
 	for (Territory* t : territories)
 	{
+		t->setInitValue();
 		delete t;
 	}
 	territories.clear();

@@ -839,7 +839,9 @@ void Interface::run()
 Interface::~Interface()
 {	
 	delete(gD);
-	//DEBUG
+	for (auto r : recordings) {
+		delete r;
+	}
 	std::cout << "[INTERFACE] Destruindo..." << std::endl;
 
 }
