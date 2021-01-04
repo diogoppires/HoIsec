@@ -22,6 +22,10 @@ Territory* Plain::clone() const
 {
 	return new Plain(*this);
 }
+void Plain::setInitValue()
+{
+	counter = 0;
+}
 void Plain::updateResources(int year, int turn)
 {
 	if (year == 1) {

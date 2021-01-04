@@ -22,6 +22,10 @@ Territory* Dune::clone() const
 {
 	return new Dune(*this);
 }
+void Dune::setInitValue()
+{
+	counter = 0;
+}
 void Dune::updateResources(int year, int turn)
 {
 }

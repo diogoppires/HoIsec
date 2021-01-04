@@ -24,6 +24,11 @@ Territory* PiratesRefugee::clone() const
 	return new PiratesRefugee(*this);
 }
 
+void PiratesRefugee::setInitValue()
+{
+	counter = 0;
+}
+
 void PiratesRefugee::updateResources(int year, int turn)
 {
 

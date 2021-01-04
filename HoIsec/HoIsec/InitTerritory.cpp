@@ -23,6 +23,11 @@ Territory* InitTerritory::clone() const
 	return new InitTerritory(*this);
 }
 
+void InitTerritory::setInitValue()
+{
+}
+
+
 void InitTerritory::updateResources(int year, int turn)
 {
 }
