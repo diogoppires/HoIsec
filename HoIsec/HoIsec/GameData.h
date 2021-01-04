@@ -15,7 +15,6 @@
 class GameData
 {
 private:
-	static int erro = 0;
 	Utils converter;
 	std::vector<Event*> events;
 
@@ -48,7 +47,7 @@ private:
 	void addEvents();
 	bool verifyInteger(std::string value);
 
-	void setInitialValues();
+	
 	void setFinalMsg();
 
 	void updateTerritories();
@@ -87,6 +86,8 @@ public:
 
 	//All points
 	int allPoints();
+
+	void setInitialValues();
 
 	//Getter
 	Empire& getEmpire();

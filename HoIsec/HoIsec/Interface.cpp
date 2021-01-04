@@ -800,7 +800,7 @@ void Interface::gameOver()
 	std::cout << gD->getGameOverMsg() << std::endl;
 	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	gD->advance();
+	gD->setInitialValues();
 }
 
 
