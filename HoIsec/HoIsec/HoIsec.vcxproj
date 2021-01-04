@@ -45,6 +45,7 @@
     <ClCompile Include="NoEvent.cpp" />
     <ClCompile Include="PiratesRefugee.cpp" />
     <ClCompile Include="Plain.cpp" />
+    <ClCompile Include="Recording.cpp" />
     <ClCompile Include="SafeBox.cpp" />
     <ClCompile Include="StockExchange.cpp" />
     <ClCompile Include="Storage.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="PiratesRefugee.h" />
     <ClInclude Include="Plain.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="Recording.h" />
     <ClInclude Include="SafeBox.h" />
     <ClInclude Include="StockExchange.h" />
     <ClInclude Include="Storage.h" />

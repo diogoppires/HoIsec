@@ -25,6 +25,11 @@ std::string AbandonedResource::toString() const
 	return EVENT_ABANDONED_RESOURCE;
 }
 
+Event* AbandonedResource::clone() const
+{
+	return new AbandonedResource(*this);
+}
+
 AbandonedResource::~AbandonedResource()
 {
 	std::cout << "[EVENTO - RECURSO ABANDONADO] Destruindo...\n";

@@ -4,6 +4,30 @@
 #include "Invasion.h"
 #include "NoEvent.h"
 
+void GameData::initialValues()
+{
+	year = 1;
+	turn = 1;
+	phase = Phases::NONE;
+	canBuyTech = false;
+	canAttack = false;
+	canAddMilitar = false;
+	canChangeResorces = false;
+	luckyFactor = 0;
+	eventMsg = EVENT_NONE;
+	eventId = EVENT_NONE;
+}
+
+void GameData::clearObjects()
+{	
+	(&world)->~World();
+	(&empire)->~Empire();
+	for (Event* ev : events) {
+		delete ev;
+	}
+	events.clear();
+}
+
 bool GameData::isTerritory(const std::string type)
 {
 	return converter.StringToTerritoryTypes(type) != TerritoryTypes::NONE;
@@ -24,16 +48,13 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 
 void GameData::setInitialValues()
 {
-	year = 1;
-	turn = 1;
-	empire.setGold(0);
-	empire.setProds(0);
-	empire.resetEmpire();
-	world.clearTerritories();
-	canBuyTech = true;
-	luckyFactor = 0;
-	eventMsg = EVENT_NONE;
-	eventId = EVENT_NONE;
+	initialValues();
+	addEvents();
+	clearObjects(); 
+	new (&world) World();
+	new (&empire) Empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME));
+	
+	
 }
 
 void GameData::setFinalMsg()
@@ -57,6 +78,13 @@ void GameData::setFinalMsg()
 	gameOverMsg = oss.str();
 }
 
+void GameData::updateTerritories()
+{
+	for (Territory* t : world.getTerritories()) {
+		t->updateResources(year,turn);
+	}
+}
+
 void GameData::advancePhase()
 {
 	switch (phase)
@@ -67,7 +95,7 @@ void GameData::advancePhase()
 									phase = Phases::COLLECTION;			break;
 		case Phases::COLLECTION:	phase = Phases::SHOP;				break;
 		case Phases::SHOP:			phase = Phases::EVENTS;				break;
-		case Phases::EVENTS:		phase = Phases::CONQUER; turn++;	break;
+		case Phases::EVENTS:		phase = Phases::CONQUER;	turn++;	break;
 		case Phases::GAMEOVER:		phase = Phases::NONE;				break;
 	}
 	if (turn == LIMIT_TURN && year < LIMIT_YEAR) {
@@ -80,10 +108,19 @@ void GameData::advancePhase()
 	}
 
 	if (phase == Phases::CONQUER) {
+		updateTerritories();
 		canAttack = true;
+	}
+	else if (phase == Phases::SHOP) {
 		canBuyTech = true;
+		canAddMilitar = true;
+	}
+	else if (phase == Phases::COLLECTION) {
+		canChangeResorces = true;
 	}
 }
+
+
 
 void GameData::addEvents()
 {
@@ -98,23 +135,36 @@ void GameData::addEvents()
 }
 
 GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
-	year = 2;
-	turn = 6;
-	phase = Phases::NONE;
-	canBuyTech = true;
-	canAttack = true;
-	luckyFactor = 0;
-	eventMsg = EVENT_NONE;
-	eventId = EVENT_NONE;
+	initialValues();
 	addEvents();
 	std::cout << "[GAMEDATA] Construindo...\n";
 }
 
-GameData::~GameData() {
-	std::cout << "[GAMEDATA] Destruindo...\n";
-	for (Event* ev : events) {
-		delete ev;
+GameData::GameData(const GameData& other) : world(other.world), empire(other.empire), converter()
+{
+	for (auto e : other.events) {
+		events.push_back(e->clone());
 	}
+
+	year = other.year;
+	turn = other.turn;
+	phase = other.phase;
+	luckyFactor = other.luckyFactor;
+	canBuyTech = other.canBuyTech;
+	canAddMilitar = other.canAddMilitar;
+	canChangeResorces = other.canChangeResorces;
+	canAttack = other.canAttack;
+	eventMsg = other.eventMsg;
+	eventId = other.eventId;
+	gameOverMsg = other.gameOverMsg;
+}
+
+GameData::~GameData() {
+	for (auto e : events) {
+		delete e;
+	}
+	std::cout << "[GAMEDATA] Destruindo...\n";
+	
 }
 
 bool GameData::verifyTerritory(std::string name) {
@@ -319,10 +369,14 @@ int GameData::modifyData(std::string type, std::string number)
 */
 int GameData::moreGold()
 {
+	if (!canChangeResorces)
+		return -2;
+
 	if (empire.getProds() >= COST_CHANGE) {
 		if (empire.getGold() < empire.getMaxSafeBox()) {
 			empire.receiveGold(1);
 			empire.spendProds(COST_CHANGE);
+			canChangeResorces = false;
 			return 1;
 		}
 		return -1;
@@ -337,10 +391,14 @@ int GameData::moreGold()
 */
 int GameData::moreProd()
 {
+	if (!canChangeResorces)
+		return -2;
+
 	if (empire.getGold() >= COST_CHANGE) {
 		if (empire.getProds() < empire.getMaxStorage()) {
 			empire.receiveProds(1);
 			empire.spendGold(COST_CHANGE);
+			canChangeResorces = false;
 			return 1;
 		}
 		return -1;
@@ -355,11 +413,15 @@ int GameData::moreProd()
 */
 int GameData::moreMilitary()
 {
+	if (!canAddMilitar)
+		return -2;
+	
 	if (empire.getGold() >= COST_ADD_MILITAR || empire.getProds() >= COST_ADD_MILITAR) {
 		if (empire.getMiliForce() < empire.getMaxMiliForce()) {
 			empire.increaseArmy(1);
 			empire.spendGold(COST_ADD_MILITAR);
 			empire.spendProds(COST_ADD_MILITAR);
+			canAddMilitar = false;
 			return 1;
 		}
 		return -1;
@@ -480,15 +542,22 @@ int GameData::allPoints()
 	return all;
 }
 
-void GameData::stayPassive()
+int GameData::stayPassive()
 {
+	if (!canAttack)
+		return 0;
 	empire.updateEmpire();
 	canAttack = false;
+	return 1;
 }
 
-void GameData::advance()
+int GameData::advance()
 {
+	if (phase == Phases::CONQUER && canAttack == true) {
+		return 0;
+	}
 	advancePhase();
+	return 1;
 }
 
 void GameData::drawEvent() {

@@ -17,6 +17,11 @@ std::string NoEvent::toString() const
 	return EVENT_NO;
 }
 
+Event* NoEvent::clone() const
+{
+	return new NoEvent(*this);
+}
+
 NoEvent::~NoEvent()
 {
 	std::cout << "[EVENTO - SEM EVENTO] Destruindo...\n";

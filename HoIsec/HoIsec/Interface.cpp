@@ -17,7 +17,7 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 {
 	conquerMenu.push_back("\n - Comandos do Jogo - 1a Fase | Conquistar ou Passar -- \n\n");
-	conquerMenu.push_back(" ~~> conquista<nome>\n");
+	conquerMenu.push_back(" ~~> conquista <nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
 	conquerMenu.push_back(" ~~> avanca\n\n");
 	conquerMenu.push_back(" ~~> lista <nome>\n\n");
@@ -37,11 +37,11 @@ void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 	exchangeMenu.push_back("\n - Comandos do Jogo - 2a Fase | Hora dos Recursos\n\n");
 	exchangeMenu.push_back(" ~~> maisouro\n"); 
 	exchangeMenu.push_back(" ~~> maisprod\n");
-	exchangeMenu.push_back(" ~~> lista <nome>\n");
 	exchangeMenu.push_back(" ~~> avanca\n\n");
-	exchangeMenu.push_back(" ~~> grava <name>\n");
-	exchangeMenu.push_back(" ~~> ativa <name>\n");
-	exchangeMenu.push_back(" ~~> apaga <name>\n\n");
+	exchangeMenu.push_back(" ~~> lista <nome>\n");
+	exchangeMenu.push_back(" ~~> grava <nome>\n");
+	exchangeMenu.push_back(" ~~> ativa <nome>\n");
+	exchangeMenu.push_back(" ~~> apaga <nome>\n\n");
 	exchangeMenu.push_back(" [DEBUG]\n");
 	exchangeMenu.push_back(" ~~> toma <qual> <nome>\n");
 	exchangeMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
@@ -87,14 +87,114 @@ void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 	eventMenu.push_back(" ~~> ajuda\n");
 	eventMenu.push_back(" ~~> sair\n");
 }
-void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
-	firstMenu.push_back("\n - Comandos do Jogo -\n\n");
-	firstMenu.push_back(" ~~> cria <tipo> <n>\n");
-	firstMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
-	firstMenu.push_back(" ~~> conquista <nome>\n");
-	firstMenu.push_back(" ~~> lista <nome>\n");
-	firstMenu.push_back(" ~~> sair\n\n");
+//void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
+//	firstMenu.push_back("\n - Comandos do Jogo -\n\n");
+//	firstMenu.push_back(" ~~> cria <tipo> <n>\n");
+//	firstMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
+//	firstMenu.push_back(" ~~> conquista <nome>\n");
+//	firstMenu.push_back(" ~~> lista <nome>\n");
+//	firstMenu.push_back(" ~~> sair\n\n");
+//}
+
+void Interface::fillInitHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back("\n --- AJUDA (INICIO) --- \n\n");
+	words.push_back(" ~~> carrega <nomeFicheiro>\n");
+	words.push_back(" \t * Cria territorios apartir de um ficheiro.\n");
+	words.push_back(" ~~> cria <tipo> <N>\n");
+	words.push_back(" \t * Cria N territorios de tipo.\n");
+	words.push_back(" ~~> iniciar \n");
+	words.push_back(" \t * Comeca o jogo.\n\n");
+	words.push_back(" ~~> ativa <nome>\n");
+	words.push_back(" \t * Ativa um momento de jogo que tenha sido guardado.\n");
+	words.push_back(" ~~> apaga <nome>\n");
+	words.push_back(" \t * Apaga um momento de jogo identificado com um nome.\n\n");
+	words.push_back(" ~~> sair \n");
+	words.push_back(" \t * Termina o jogo por completo.\n");
+	words.push_back("\n-----------------------------\n");
 }
+
+void Interface::fillConquerHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back("\n --- AJUDA (1a Fase) --- \n\n");
+	words.push_back(" ~~> conquista <nome>\n");
+	words.push_back(" \t * Fazer um ataque a uma territorio.\n");
+	words.push_back(" ~~> passa\n");
+	words.push_back(" \t * Nao efetuar qualquer ataque no turno.\n");
+	words.push_back(" ~~> avanca\n");
+	words.push_back(" \t * Avanca para a proxima fase.\n\n");
+	fillDefaultHelpMenu(words);
+}
+
+
+void Interface::fillExchangeHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back("\n --- AJUDA (2a Fase) --- \n\n");
+	words.push_back(" ~~> maisouro\n");
+	words.push_back(" \t * Troca duas unidades de produtos por uma de ouro.\n");
+	words.push_back(" ~~> maisprod\n");
+	words.push_back(" \t * Troca duas unidades de ouro por uma de produtos.\n");
+	words.push_back(" ~~> avanca\n");
+	words.push_back(" \t * Avanca para a proxima fase.\n\n");
+	fillDefaultHelpMenu(words);
+}
+
+void Interface::fillShopHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back("\n --- AJUDA (3a Fase) --- \n\n");
+	words.push_back(" ~~> maismilitar\n");
+	words.push_back(" \t * Troca uma unidade de produtos e outra de ouro por uma de forca militar.\n");
+	words.push_back(" ~~> adquire <tipo>\n");
+	words.push_back(" \t Compra uma tecnologia.\n");
+	words.push_back(" \t * Drones militares - Preco: 3 unidades de ouro (tipo: 'drone')\n");
+	words.push_back(" \t * Misseis Teleguiados - Preco: 4 unidades de ouro (tipo: 'misseis')\n");
+	words.push_back(" \t * Defesas Territoriais - Preco: 4 unidades de ouro (tipo: 'defesas')\n");
+	words.push_back(" \t * Bolsa de valores - Preco: 2 unidades de ouro (tipo: 'bolsa')\n");
+	words.push_back(" \t * Banco Central - Preco: 3 unidades de ouro (tipo: 'banco')\n\n");
+	words.push_back(" ~~> avanca\n");
+	words.push_back(" \t * Avanca para a proxima fase.\n\n");
+	fillDefaultHelpMenu(words);
+}
+
+void Interface::fillEventHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back("\n --- AJUDA (4a Fase) --- \n\n");
+	words.push_back(" ~~> avanca\n");
+	words.push_back(" \t * Avanca para a proxima fase.\n\n");
+	fillDefaultHelpMenu(words);
+}
+
+void Interface::fillDefaultHelpMenu(std::vector<std::string>& words)
+{
+	words.push_back(" ~~> lista <nome>\n");
+	words.push_back(" Nao e passado um nome de um territorio: \n");
+	words.push_back(" \t * Lista todos os territorios existentes no mundo.\n");
+	words.push_back(" \t * A informacao e apresentada dividida entre territorios conquistados e livres.\n");
+	words.push_back(" Indicando um nome de um territorio: \n");
+	words.push_back(" \t * Lista informacao sobre o territorio.\n\n");
+	words.push_back("--- [DEBUG] ---\n");
+	words.push_back("Estes comandos servem apenas para atividades de testes.\n");
+	words.push_back(" ~~> toma <qual> <nome>\n");
+	words.push_back(" \t * A tecnologio ou territorio passam a ser do imperio.\n");
+	words.push_back(" ~~> modifica <ouro|prod> <N>\n");
+	words.push_back(" \t * Define a quantidade de ouro ou produtos com N.\n");
+	words.push_back(" ~~> fevento <nome-evento>\n");
+	words.push_back(" \t * Forca a ocorrencia de um evento.\n");
+	words.push_back("---------------\n\n");
+	words.push_back("--- [DEFINICOES] ---\n");
+	words.push_back(" ~~> grava <nome>\n");
+	words.push_back(" \t * Grava o momento do jogo atual.\n");
+	words.push_back(" ~~> ativa <nome>\n");
+	words.push_back(" \t * Ativa um momento de jogo que tenha sido guardado.\n");
+	words.push_back(" ~~> apaga <nome>\n");
+	words.push_back(" \t * Apaga um momento de jogo identificado com um nome.\n\n");
+	words.push_back("-------------------\n\n");
+	words.push_back(" ~~> sair \n");
+	words.push_back(" \t * Termina o jogo por completo.\n");
+	words.push_back("\n-----------------------------\n");
+}
+
+
 
 //This method will break a string up in order to save his arguments into a vector
 //for a later usage.
@@ -151,7 +251,7 @@ void Interface::opConquer(std::string fullmsg)
 	system("cls");
 	switch (gD->conquerTerritories(fullmsg)) {
 	case -5:
-		std::cout << "[HoIsec] Ja foi feito um ataque neste turno.\n";
+		std::cout << "[HoIsec] Nao pode fazer mais ataques neste turno.\n";
 		break;
 	case -4:
 		std::cout << "[HoIsec] E preciso a tecnologia 'Misseis Teleguiados' para atacar uma ilha.\n";
@@ -176,11 +276,26 @@ void Interface::opConquer(std::string fullmsg)
 void Interface::opPass()
 {
 	system("cls");
-	gD->stayPassive();
+	switch (gD->stayPassive()) {
+	case 1:
+		std::cout << "[HoIsec] Este turno decidiu nao conquistar nenhum territorio.\n";
+		break;
+	case 0:
+		std::cout << "[HoIsec] Ja foi tomanda uma decisao sobre conquistar, neste turno.\n";
+		break;
+	}
 }
 void Interface::opAdvance()
 {
-	gD->advance();
+	system("cls");
+	if (gD->advance() == 0) {
+		std::cout << "[HoIsec] Nao definiu o que pretende fazer nesta fase (conquistar ou passar).\n";
+	}
+	else {
+		std::cout << "[HoIsec] Proxima fase...\n";
+	}
+
+
 }
 void Interface::opMoreGold()
 {
@@ -193,9 +308,13 @@ void Interface::opMoreGold()
 		std::cout << "[HoIsec] Quantidade de produtos insuficiente, nada foi feito.\n";
 		break;
 	case -1:
-		std::cout << "[HoIsec] Nao e possivel adicionar mais ouro, nada foi feito.\n";
+		std::cout << "[HoIsec] Atingiu o máximo possivel.\n\t Nao e possivel adicionar mais ouro, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Não pode adicionar mais ouro neste turno.\n";
 		break;
 	}
+	
 }
 void Interface::opMoreProducts()
 {
@@ -208,7 +327,10 @@ void Interface::opMoreProducts()
 		std::cout << "[HoIsec] Quantidade de ouro insuficiente, nada foi feito.\n";
 		break;
 	case -1:
-		std::cout << "[HoIsec] Nao e possivel adicionar mais produtos, nada foi feito.\n";
+		std::cout << "[HoIsec] Atingiu o máximo possivel.\n\t Nao e possivel adicionar mais produtos, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nao pode adicionar mais produtos neste turno.\n";
 		break;
 	}
 }
@@ -224,6 +346,9 @@ void Interface::opMoreMilitary()
 		break;
 	case -1:
 		std::cout << "[HoIsec] A forca militar ja esta no maximo, nada foi feito.\n";
+		break;
+	case -2:
+		std::cout << "[HoIsec] Nao pode adquirir mais forca militar neste turno.\n";
 		break;
 	}
 }
@@ -263,20 +388,42 @@ void Interface::opList(std::string fullmsg)
 	system("cls");
 	std::cout << gD->listTerritories(fullmsg);
 }
-void Interface::opSave(std::string fullmsg)
+void Interface::opSave(std::string name)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	for (Recording* r : recordings) {
+		if (r->getName() == name) {
+			std::cout << "[HoIsec] Ja existe uma gravacao com esse nome.\n";
+			return;
+		}
+	}
+	recordings.push_back(new Recording(name, new GameData(*gD)));
+	std::cout << "[HoIsec] Gravacao feita com sucesso.\n";
 }
-void Interface::opRecover(std::string fullmsg)
+void Interface::opRecover(std::string name)
 {
 	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	for (Recording* r : recordings) {
+		if (r->getName() == name) {
+			delete gD;
+			gD = new GameData(*(r->getGameData()));
+			std::cout << "[HoIsec] Gravacao '" << name << "' carregada com sucesso.\n";
+			return;
+		}
+	}
+	std::cout << "[HoIsec] Nao existe uma gravacao com esse nome.\n";
 }
-void Interface::opDelete(std::string fullmsg)
+void Interface::opDelete(std::string name)
 {
-	system("cls");
-	std::cout << "NOT IMPLEMENTED YET\n";
+	for (std::vector<Recording*>::iterator it = recordings.begin(); it != recordings.end(); ++it) {
+		if ((*it)->getName() == name) {
+			delete (*it);
+			recordings.erase(it);
+			std::cout << "[HoIsec] Gravacao apagada com sucesso.\n";
+			return;
+		}
+	}
+	std::cout << "[HoIsec] Nao existe uma gravacao com esse nome.\n";
 }
 
 void Interface::opTake(std::string type, std::string name)
@@ -352,6 +499,15 @@ void Interface::opForceEvent(std::string fullmsg)
 	}
 }
 
+void Interface::opHelp()
+{
+	system("cls");
+	pickHelpMenu();
+	std::cout << "\n[HoIsec] Pressione algum botao para voltar.\n";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	system("cls");
+}
+
 //Methods to make the code looks smoother
 std::string Interface::readString(const std::string msg)
 {
@@ -399,6 +555,23 @@ void Interface::pickMenu(std::vector<std::string>& menu)
 	}
 }
 
+void Interface::pickHelpMenu()
+{
+	std::vector<std::string> menu;
+
+	switch (gD->getPhase()) {
+	case Phases::NONE:			fillInitHelpMenu(menu);		break;
+	case Phases::CONQUER:		fillConquerHelpMenu(menu);	break;
+	case Phases::COLLECTION:	fillExchangeHelpMenu(menu);	break;
+	case Phases::SHOP:			fillShopHelpMenu(menu);		break;
+	case Phases::EVENTS:		fillEventHelpMenu(menu);	break;
+	}
+
+	for (unsigned int i = 0; i < menu.size(); i++) {
+		std::cout << menu[i];
+	}	
+}
+
 void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 {
 	if (cmd == "carrega" && words.size() == 1) {
@@ -419,13 +592,13 @@ void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 		opGameInit();
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opRecover(words[0]);
 	}
 	else if (cmd == "apaga" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opDelete(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opHelp();
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
@@ -455,13 +628,13 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		}
 	}
 	else if (cmd == "grava" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opSave(words[0]);
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opRecover(words[0]);
 	}
 	else if (cmd == "apaga" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opDelete(words[0]);
 	}
 	else if (cmd == "toma" && words.size() == 2) {
 		opTake(words[0], words[1]);
@@ -473,7 +646,7 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opHelp();
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
@@ -504,13 +677,13 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		opAdvance();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opSave(words[0]);
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opRecover(words[0]);
 	}
 	else if (cmd == "apaga" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opDelete(words[0]);
 	}
 	else if (cmd == "toma" && words.size() == 2) {
 		opTake(words[0], words[1]);
@@ -522,7 +695,7 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opHelp();
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
@@ -554,13 +727,13 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		gD->drawEvent();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opSave(words[0]);
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opRecover(words[0]);
 	}
 	else if (cmd == "apaga" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opDelete(words[0]);
 	}
 	else if (cmd == "toma" && words.size() == 2) {
 		opTake(words[0], words[1]);
@@ -572,7 +745,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opHelp();
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
@@ -597,13 +770,13 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 		opAdvance();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opSave(words[0]);
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opRecover(words[0]);
 	}
 	else if (cmd == "apaga" && words.size() == 1) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opDelete(words[0]);
 	}
 	else if (cmd == "toma" && words.size() == 2) {
 		opTake(words[0], words[1]);
@@ -615,7 +788,7 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 		opForceEvent(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
-		std::cout << "NOT IMPLEMENTED YET\n";
+		opHelp(); 
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
@@ -625,7 +798,7 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 void Interface::gameOver()
 {
 	std::cout << gD->getGameOverMsg() << std::endl;
-	std::cout << "\nPressione algum botao para voltar ao menu principal.\n";
+	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	gD->advance();
 }

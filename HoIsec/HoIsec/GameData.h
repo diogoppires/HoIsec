@@ -15,6 +15,7 @@
 class GameData
 {
 private:
+	static int erro = 0;
 	Utils converter;
 	std::vector<Event*> events;
 
@@ -26,11 +27,16 @@ private:
 	int luckyFactor;
 
 	bool canBuyTech;
+	bool canAddMilitar;
+	bool canChangeResorces;
 	bool canAttack;
 
 	std::string eventMsg;
 	std::string eventId;
 	std::string gameOverMsg;
+
+	void initialValues();
+	void clearObjects();
 
 	bool isTerritory(const std::string type);
 	void getTypeAndNumber(std::string& type, int& num, std::string info);
@@ -44,8 +50,11 @@ private:
 
 	void setInitialValues();
 	void setFinalMsg();
+
+	void updateTerritories();
 public:
 	GameData();
+	GameData(const GameData& other);
 	~GameData();
 	bool verifyTerritory(std::string name); // 'conquista'
 	int createTerritories(std::string type, std::string value); // 'cria'
@@ -57,8 +66,8 @@ public:
 	std::string listTerritories(std::string territory);  // 'lista' (with specific territory)
 	// --
 	int conquerTerritories(std::string name); // 'conquista'
-	void stayPassive(); // 'passa'
-	void advance();	// 'avanca'
+	int stayPassive(); // 'passa'
+	int advance();	// 'avanca'
 	int buyTechnology(std::string type); // 'adquire'
 	int takeObject(std::string type, std::string name); // 'toma'
 	int modifyData(std::string type, std::string number); // 'modifica'

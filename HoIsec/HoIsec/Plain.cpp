@@ -2,7 +2,7 @@
 #include <iostream>
 
 int Plain::counter = 0;
-Plain::Plain() : Continent(TerritoryTypes::PLAIN, PLAIN_RESISTANCE, PLAIN_INIT_PRODS, PLAIN_INIT_GOLD, ++counter)
+Plain::Plain() : Continent(TerritoryTypes::PLAIN, PLAIN_RESISTANCE, PLAIN_FIRST_PRODS, PLAIN_FIRST_GOLD, ++counter)
 {
 	std::cout << "[PLANICE] Construindo... " << Territory::getName() << std::endl;
 }
@@ -17,6 +17,19 @@ std::string Plain::toString()
 
 	oss << "TIPO = 'Planicie'" << Continent::toString();
 	return oss.str();
+}
+Territory* Plain::clone() const
+{
+	return new Plain(*this);
+}
+void Plain::updateResources(int year, int turn)
+{
+	if (year == 1) {
+		prodCreation = PLAIN_FIRST_PRODS;
+	}
+	else if (year == 2) {
+		prodCreation = PLAIN_SECOND_PRODS;
+	}
 }
 Plain::~Plain()
 {

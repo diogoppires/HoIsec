@@ -10,3 +10,8 @@ StockExchange::~StockExchange() {
 void StockExchange::applyTech(){
 	setActiveTrue();
 }
+
+Technology* StockExchange::clone() const
+{
+	return new StockExchange(*this);
+}

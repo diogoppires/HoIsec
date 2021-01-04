@@ -10,6 +10,7 @@ class Missile : public Technology
 public:
 	Missile();
 	void applyTech() override;
+	Technology* clone() const override;
 	virtual ~Missile() override;
 };
 

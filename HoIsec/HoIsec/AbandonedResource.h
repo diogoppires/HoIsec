@@ -11,6 +11,7 @@ public:
     AbandonedResource(GameData* gD);
     std::string applyEvent() const override;
     std::string toString() const override;
+    Event* clone() const override;
     virtual ~AbandonedResource() override;
 };
 #endif // !ABANDONEDRESOURCE_H

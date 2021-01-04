@@ -14,7 +14,7 @@ private:
 	void TerritoryFactory(TerritoryTypes type);
 public:
 	World();
-	World(const World& copy) = delete;
+	World(const World& copy);
 	~World();
 	std::string toString();
 	std::string toStringConquerd();
@@ -25,7 +25,7 @@ public:
 	void addTerritories(TerritoryTypes type, int num);
 	int getTerritoriesSize();
 	void clearTerritories();
-	void operator=(const World& copy) = delete;
+	World& operator=(const World& orig) ;
 };
 
 #endif // WORLD_H

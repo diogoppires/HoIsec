@@ -12,6 +12,7 @@ protected:
 public:
 	Technology(int price);
 	virtual void applyTech() = 0;
+	virtual Technology* clone() const = 0;
 	void setActiveTrue();
 	void setActiveFalse();
 	bool getActive() const;

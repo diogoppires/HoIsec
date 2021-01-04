@@ -7,6 +7,13 @@ SafeBox::SafeBox()
 	std::cout << "[SAFEBOX] Construindo..." << std::endl;
 }
 
+SafeBox::SafeBox(const SafeBox& orig)
+{
+	gold = orig.gold;
+	maxGold = orig.maxGold;
+	std::cout << "[SAFEBOX] Contruindo por copia..." << std::endl;
+}
+
 int SafeBox::getSafeBox() const
 {
 	return gold;

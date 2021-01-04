@@ -11,6 +11,11 @@ void Drone::applyTech() {
 	army->setMaxMiliForce(MAX_MILIFORCE_WITH_DRONE);
 }
 
+Technology* Drone::clone() const
+{
+	return new Drone(*this);
+}
+
 Drone::~Drone() {
 	std::cout << "[DRONE] Destruindo...\n"; // DEBUG
 }

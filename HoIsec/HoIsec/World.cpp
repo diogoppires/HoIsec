@@ -30,12 +30,14 @@ World::World()
 	std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
+World::World(const World& copy)
+{
+	*this = copy;
+}
+
 World::~World() {
 	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
-	for (Territory* t : territories)
-	{
-		delete t;
-	}
+	clearTerritories();
 	std::cout << "[WORLD] Destruindo..." << std::endl;
 }
 std::string World::toString() { 
@@ -99,4 +101,27 @@ void World::addTerritories(TerritoryTypes type, int num) {
 int World::getTerritoriesSize()
 {
 	return (int)territories.size();	//This is safe to cast because there won't be more than MAX_INT territories.
+}
+
+void World::clearTerritories()
+{
+	for (Territory* t : territories)
+	{
+		delete t;
+	}
+	territories.clear();
+}
+
+World& World::operator=(const World& orig)
+{
+	if (this == &orig)
+		return *this;
+	for (auto t : territories) {
+		delete t;
+	}
+	territories.clear();
+	for (auto t : orig.territories) {
+		territories.push_back(t->clone());
+	}
+	return *this;
 }

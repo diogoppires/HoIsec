@@ -18,6 +18,11 @@ std::string DiplomaticAlliance::toString() const
     return EVENT_DIPLOMATIC_ALLIANCE;
 }
 
+Event* DiplomaticAlliance::clone() const
+{
+    return new DiplomaticAlliance(*this);
+}
+
 DiplomaticAlliance::~DiplomaticAlliance()
 {
     std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Destruindo...\n";

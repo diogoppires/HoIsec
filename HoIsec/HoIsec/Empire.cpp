@@ -18,6 +18,23 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.gene
 	std::cout << "[EMPIRE] Construindo... " << std::endl;
 }
 
+Empire::Empire(const Empire& orig) : storage(orig.storage) , safe(orig.safe), army(orig.army),utils()
+{
+	for (auto t : orig.empire) {
+		empire.push_back(t->clone());
+	}
+
+	stockExchange = orig.stockExchange->clone();
+	centralBank = orig.centralBank->clone();
+	drone = orig.drone->clone();
+	missiles = orig.missiles->clone();
+	defenses = orig.defenses->clone();
+
+	score = orig.score;
+	prodCreation = orig.prodCreation;
+	goldCreation = orig.goldCreation;
+}
+
 //getter
 
 int Empire::getGold() const
