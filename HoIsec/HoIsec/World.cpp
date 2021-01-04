@@ -30,6 +30,11 @@ World::World()
 	std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
+World::World(const World& copy)
+{
+	*this = copy;
+}
+
 World::~World() {
 	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
 	clearTerritories();
@@ -105,4 +110,18 @@ void World::clearTerritories()
 		delete t;
 	}
 	territories.clear();
+}
+
+World& World::operator=(const World& orig)
+{
+	if (this == &orig)
+		return *this;
+	for (auto t : territories) {
+		delete t;
+	}
+	territories.clear();
+	for (auto t : orig.territories) {
+		territories.push_back(t->clone());
+	}
+	return *this;
 }

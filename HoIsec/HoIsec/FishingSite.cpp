@@ -19,6 +19,11 @@ std::string FishingSite::toString()
 	return oss.str();
 }
 
+Territory* FishingSite::clone() const
+{
+	return new FishingSite(*this);
+}
+
 void FishingSite::updateResources(int year, int turn)
 {
 	if (year == 1) {

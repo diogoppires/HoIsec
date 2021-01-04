@@ -7,6 +7,14 @@ Storage::Storage()
 	std::cout << "[STORAGE] Construindo...\n";
 }
 
+Storage::Storage(const Storage& orig)
+{
+	this->products = orig.products;
+	this->maxProducts = orig.maxProducts;
+	std::cout << "[STORAGE] Contruindo por copia..." << std::endl;
+
+}
+
 int Storage::getProducts() const
 {
 	return products;

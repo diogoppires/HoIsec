@@ -36,6 +36,7 @@ private:
 public:
 	//Constructor
 	Empire(Territory* initial);
+	Empire(const Empire& orig);
 
 	//Getter
 	int getGold() const;
@@ -82,7 +83,6 @@ public:
 	void resetEmpire();
 
 	Territory* getLastConquer();
-	
 	//toString
 	std::string toString() const;
 	//Destructor

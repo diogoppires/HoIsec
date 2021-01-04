@@ -18,6 +18,11 @@ std::string InitTerritory::toString()
 	return oss.str();
 }
 
+Territory* InitTerritory::clone() const
+{
+	return new InitTerritory(*this);
+}
+
 void InitTerritory::updateResources(int year, int turn)
 {
 }

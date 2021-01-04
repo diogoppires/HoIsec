@@ -10,6 +10,7 @@ class Defenses : public Technology
 public:
 	Defenses();
 	void applyTech() override;
+	Technology* clone() const override;
 	virtual ~Defenses() override;
 };
 

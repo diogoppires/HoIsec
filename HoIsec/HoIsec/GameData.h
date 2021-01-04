@@ -15,6 +15,7 @@
 class GameData
 {
 private:
+	static int erro = 0;
 	Utils converter;
 	std::vector<Event*> events;
 
@@ -53,6 +54,7 @@ private:
 	void updateTerritories();
 public:
 	GameData();
+	GameData(const GameData& other);
 	~GameData();
 	bool verifyTerritory(std::string name); // 'conquista'
 	int createTerritories(std::string type, std::string value); // 'cria'

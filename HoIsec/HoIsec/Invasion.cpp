@@ -47,6 +47,11 @@ std::string Invasion::toString() const
 	return EVENT_INVASION;
 }
 
+Event* Invasion::clone() const
+{
+	return new Invasion(*this);
+}
+
 Invasion::~Invasion()
 {
 	std::cout << "[EVENTO - INVASAO] Destruindo...\n";

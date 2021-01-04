@@ -140,7 +140,29 @@ GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRIT
 	std::cout << "[GAMEDATA] Construindo...\n";
 }
 
+GameData::GameData(const GameData& other) : world(other.world), empire(other.empire), converter()
+{
+	for (auto e : other.events) {
+		events.push_back(e->clone());
+	}
+
+	year = other.year;
+	turn = other.turn;
+	phase = other.phase;
+	luckyFactor = other.luckyFactor;
+	canBuyTech = other.canBuyTech;
+	canAddMilitar = other.canAddMilitar;
+	canChangeResorces = other.canChangeResorces;
+	canAttack = other.canAttack;
+	eventMsg = other.eventMsg;
+	eventId = other.eventId;
+	gameOverMsg = other.gameOverMsg;
+}
+
 GameData::~GameData() {
+	for (auto e : events) {
+		delete e;
+	}
 	std::cout << "[GAMEDATA] Destruindo...\n";
 	
 }

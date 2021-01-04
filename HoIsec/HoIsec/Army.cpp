@@ -8,6 +8,13 @@ Army::Army(int miliForce)
 	std::cout << "[ARMY] Contruindo..." << std::endl;
 }
 
+Army::Army(const Army& orig)
+{
+	miliForce = orig.miliForce;
+	maxMiliForce = orig.maxMiliForce;
+	std::cout << "[ARMY] Contruindo por copia..." << std::endl;
+}
+
 Army::~Army() {
 	std::cout << "[ARMY] Destruindo..." << std::endl;
 }

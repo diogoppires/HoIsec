@@ -24,6 +24,8 @@ public:
 
 	virtual ~Territory();
 
+	virtual Territory* clone() const = 0;
+
 	virtual std::string toString();
 
 	virtual void updateResources(int year, int turn) = 0;

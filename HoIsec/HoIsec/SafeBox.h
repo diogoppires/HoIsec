@@ -14,6 +14,7 @@ private:
 public:
 	//Constructor
 	SafeBox();
+	SafeBox(const SafeBox& orig);
 
 	//Getter
 	int getSafeBox() const;

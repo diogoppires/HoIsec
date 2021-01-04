@@ -12,6 +12,7 @@ public:
 	Castle();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
+	Territory* clone() const override;
 	void updateResources(int year, int turn) override;
 	virtual ~Castle() override;
 };

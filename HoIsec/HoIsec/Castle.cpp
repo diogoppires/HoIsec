@@ -19,6 +19,11 @@ std::string Castle::toString()
 	return oss.str();
 }
 
+Territory* Castle::clone() const
+{
+	return new Castle(*this);
+}
+
 void Castle::updateResources(int year, int turn)
 {
 	if (turn == 1 || turn == 2) {

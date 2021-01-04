@@ -14,6 +14,7 @@ private:
 public:
 	//Constructor
 	Storage();
+	Storage(const Storage& orig);
 
 	//Getter
 	int getProducts() const;

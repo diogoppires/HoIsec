@@ -17,6 +17,10 @@ std::string Mine::toString()
 	oss << "TIPO = 'Mina'" << Continent::toString();
 	return oss.str();
 }
+Territory* Mine::clone() const
+{
+	return new Mine(*this);
+}
 void Mine::updateResources(int year, int turn)
 {
 	if (turn > 0 && turn < 4) {

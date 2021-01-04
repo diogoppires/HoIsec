@@ -15,6 +15,7 @@ private:
 public:
 	CentralBank(Storage* empireStorage, SafeBox* empireSafeBox);
 	void applyTech() override;
+	Technology* clone() const override;
 	virtual ~CentralBank() override;
 };
 #endif // !CENTRALBANK_H

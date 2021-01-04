@@ -13,6 +13,7 @@ private:
 
 public:
 	Army(int miliForce);
+	Army(const Army& orig);
 	~Army();
 	bool addMiliForce(int value);
 	bool subMiliForce(int value);

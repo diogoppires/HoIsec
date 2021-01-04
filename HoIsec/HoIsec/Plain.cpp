@@ -18,6 +18,10 @@ std::string Plain::toString()
 	oss << "TIPO = 'Planicie'" << Continent::toString();
 	return oss.str();
 }
+Territory* Plain::clone() const
+{
+	return new Plain(*this);
+}
 void Plain::updateResources(int year, int turn)
 {
 	if (year == 1) {

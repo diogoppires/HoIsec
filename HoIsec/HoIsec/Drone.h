@@ -11,6 +11,7 @@ class Drone : public Technology
 public:
 	Drone(Army* army);
 	void applyTech() override;
+	Technology* clone() const override;
 	virtual ~Drone() override;
 };
 
