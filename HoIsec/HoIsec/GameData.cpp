@@ -49,12 +49,10 @@ void GameData::getTypeAndNumber(std::string& type, int& num, std::string info)
 void GameData::setInitialValues()
 {
 	initialValues();
-	addEvents();
 	clearObjects(); 
+	addEvents();
 	new (&world) World();
 	new (&empire) Empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME));
-	
-	
 }
 
 void GameData::setFinalMsg()
@@ -579,7 +577,6 @@ std::string GameData::getEventId()
 
 void GameData::gameLost()
 {
-	setInitialValues();
 	this->phase = Phases::GAMEOVER;
 }
 
