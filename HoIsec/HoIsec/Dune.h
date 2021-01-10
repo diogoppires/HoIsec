@@ -11,7 +11,7 @@ public:
 	Dune();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	Territory* clone() const override;
+	Dune* clone() const override;
 	void setInitValue() override;
 	void updateResources(int year, int turn) override;
 	virtual ~Dune() override;

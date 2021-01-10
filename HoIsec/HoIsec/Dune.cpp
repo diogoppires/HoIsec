@@ -20,7 +20,7 @@ std::string Dune::toString()
 	oss << "TIPO = 'Duna'" << Continent::toString();
 	return oss.str();
 }
-Territory* Dune::clone() const
+Dune* Dune::clone() const
 {
 	return new Dune(*this);
 }

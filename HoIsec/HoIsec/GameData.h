@@ -96,6 +96,8 @@ public:
 	//---
 
 	void generateLuckyFactor();
+
+	GameData& operator=(const GameData& other);
 };
 #endif // !GAMEDATA_H
 

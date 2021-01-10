@@ -20,7 +20,7 @@ public:
 	Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints);
 
 	virtual ~Territory();
-
+	 
 	virtual Territory* clone() const = 0;
 
 	virtual std::string toString();

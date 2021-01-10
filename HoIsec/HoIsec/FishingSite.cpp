@@ -21,7 +21,7 @@ std::string FishingSite::toString()
 	return oss.str();
 }
 
-Territory* FishingSite::clone() const
+FishingSite* FishingSite::clone() const
 {
 	return new FishingSite(*this);
 }

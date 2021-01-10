@@ -14,7 +14,7 @@ void CentralBank::applyTech() {
 	empireSafeBox->setMaxGold(MAX_SAFEBOX_WITH_CENTRALBANK);
 }
 
-Technology* CentralBank::clone() const
+CentralBank* CentralBank::clone() const
 {
 	return new CentralBank(*this);
 }

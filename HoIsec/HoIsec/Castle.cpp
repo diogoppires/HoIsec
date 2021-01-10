@@ -21,7 +21,7 @@ std::string Castle::toString()
 	return oss.str();
 }
 
-Territory* Castle::clone() const
+Castle* Castle::clone() const
 {
 	return new Castle(*this);
 }

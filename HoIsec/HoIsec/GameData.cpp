@@ -144,23 +144,11 @@ GameData::GameData() : converter() {
 	std::cout << "[GAMEDATA] Construindo...\n";
 }
 
-GameData::GameData(const GameData& other) : world(other.world), empire(other.empire), converter()
+GameData::GameData(const GameData& other)
 {
-	for (auto e : other.events) {
-		events.push_back(e->clone());
-	}
-
-	year = other.year;
-	turn = other.turn;
-	phase = other.phase;
-	luckyFactor = other.luckyFactor;
-	canBuyTech = other.canBuyTech;
-	canAddMilitar = other.canAddMilitar;
-	canChangeResorces = other.canChangeResorces;
-	canAttack = other.canAttack;
-	eventMsg = other.eventMsg;
-	eventId = other.eventId;
-	gameOverMsg = other.gameOverMsg;
+	world = nullptr;
+	empire = nullptr;
+	*this = other;
 }
 
 GameData::~GameData() {
@@ -609,5 +597,33 @@ int GameData::getLuckyFactor() const {
 void GameData::generateLuckyFactor(){
 	this->luckyFactor = converter.generateLuckFactor();
 }
+
+GameData& GameData::operator=(const GameData& other)
+{
+	if (this != &other) {
+		clearObjects();
+
+		for (auto e : other.events) {
+			events.push_back(e->clone());
+		}
+		world = new World(*other.world);
+		empire = new Empire(*other.empire);
+
+		year = other.year;
+		turn = other.turn;
+		phase = other.phase;
+		luckyFactor = other.luckyFactor;
+		canBuyTech = other.canBuyTech;
+		canAddMilitar = other.canAddMilitar;
+		canChangeResorces = other.canChangeResorces;
+		canAttack = other.canAttack;
+		eventMsg = other.eventMsg;
+		eventId = other.eventId;
+		gameOverMsg = other.gameOverMsg;
+		converter = other.converter;
+	}
+	return *this;
+}
+
 
 

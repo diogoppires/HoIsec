@@ -11,7 +11,7 @@ public:
     DiplomaticAlliance(GameData* gD);
     std::string applyEvent() const override;
     std::string toString() const override;
-    Event* clone() const override;
+    DiplomaticAlliance* clone() const override;
     virtual ~DiplomaticAlliance() override;
 };
 

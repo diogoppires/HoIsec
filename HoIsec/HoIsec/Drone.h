@@ -12,7 +12,7 @@ public:
 	Drone(Army* army);
 	void applyTech() override;
 	int useEffect(Territory* terr) override { return 0; }
-	Technology* clone() const override;
+	Drone* clone() const override;
 	virtual ~Drone() override;
 };
 

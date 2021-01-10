@@ -14,7 +14,7 @@ public:
 	CentralBank(Storage* empireStorage, SafeBox* empireSafeBox);
 	void applyTech() override;
 	int useEffect(Territory* terr) override { return 0; }
-	Technology* clone() const override;
+	CentralBank* clone() const override;
 	virtual ~CentralBank() override;
 };
 #endif // !CENTRALBANK_H

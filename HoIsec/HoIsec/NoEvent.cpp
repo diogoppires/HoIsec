@@ -21,7 +21,7 @@ std::string NoEvent::toString() const
 	return EVENT_NO;
 }
 
-Event* NoEvent::clone() const
+NoEvent* NoEvent::clone() const
 {
 	return new NoEvent(*this);
 }
