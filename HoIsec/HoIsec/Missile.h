@@ -1,8 +1,6 @@
 #pragma once
 #ifndef MISSILE_H
 #define MISSILE_H
-#include <iostream>
-#include "Empire.h"
 #include "Technology.h"
 
 class Missile : public Technology
@@ -10,6 +8,7 @@ class Missile : public Technology
 public:
 	Missile();
 	void applyTech() override;
+	int useEffect(Territory* terr) override { return 0; }
 	Technology* clone() const override;
 	virtual ~Missile() override;
 };

@@ -4,9 +4,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <sstream>
-#include <algorithm>
 #include "data.h"
 
 class FileReader {

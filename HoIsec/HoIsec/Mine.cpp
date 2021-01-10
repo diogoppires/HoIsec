@@ -1,4 +1,6 @@
 #include "Mine.h"
+#include <iostream>
+#include <sstream>
 
 int Mine::counter = 0;
 Mine::Mine() : Continent(TerritoryTypes::MINE, MINE_RESISTANCE, MINE_FIRST_PRODS, MINE_FIRST_GOLD, ++counter)

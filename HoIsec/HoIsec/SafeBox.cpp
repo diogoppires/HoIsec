@@ -1,4 +1,7 @@
 #include "SafeBox.h"
+#include <iostream>
+#include <sstream>
+#include "data.h"
 
 SafeBox::SafeBox()
 {

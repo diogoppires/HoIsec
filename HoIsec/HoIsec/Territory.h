@@ -1,9 +1,6 @@
 #pragma once
 #ifndef TERRITORY_H
 #define TERRITORY_H
-#include <iostream>
-#include <string>
-#include <sstream>
 #include <vector>
 #include "data.h"
 

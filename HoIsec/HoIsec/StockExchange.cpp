@@ -1,4 +1,6 @@
 #include "StockExchange.h"
+#include <iostream>
+#include "data.h"
 
 StockExchange::StockExchange() : Technology(PRICE_TECH_STOCKEXCHANGE) {
 	std::cout << "[StockExchange] Construindo...\n";

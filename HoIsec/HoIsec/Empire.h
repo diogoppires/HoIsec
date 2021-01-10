@@ -7,11 +7,7 @@
 #include "SafeBox.h"
 #include "Army.h"
 #include "Territory.h"
-#include "StockExchange.h"
-#include "CentralBank.h"
-#include "Missile.h"
-#include "Drone.h"
-#include "Defenses.h"
+#include "Technology.h"
 
 class Empire
 {
@@ -57,6 +53,8 @@ public:
 	void activeDrone();
 	void activeDefenses();
 	void activeMissiles();
+
+	int useEffectDefenses(Territory* terr);
 
 	//Checkers of Techs
 	bool haveStockExchange() const;

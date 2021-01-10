@@ -1,7 +1,6 @@
 #include "AbandonedResource.h"
-#include "GameData.h"
 #include <iostream>
-#include <string>
+#include <sstream>
 
 AbandonedResource::AbandonedResource(GameData* gD) : Event(gD)
 {
@@ -10,14 +9,28 @@ AbandonedResource::AbandonedResource(GameData* gD) : Event(gD)
 
 std::string AbandonedResource::applyEvent() const
 {
+	std::ostringstream final;
+	final << "Evento: Recurso Abandonado Encontrado\n\n";
+
 	if(getGameData()->getYear() == 1){
-		getGameData()->getEmpire().receiveProds(ABANDONED_PRODUCT_QTY);
-		return ABANDONED_PRODUCT;
+		if ((*getGameData()->getEmpire()).getProds() < (*getGameData()->getEmpire()).getMaxStorage()) {
+			(*getGameData()->getEmpire()).receiveProds(ABANDONED_PRODUCT_QTY);
+			final << ABANDONED_PRODUCT << "\n\n O produto foi adicionado com sucesso.\n";
+		}
+		else {
+			final << ABANDONED_PRODUCT << "\n\n Nao tem capacidade para adicionar produtos ao armazem do imperio. \n";
+		}
 	}
 	else {
-		getGameData()->getEmpire().receiveProds(ABANDONED_GOLD_QTY);
-		return ABANDONED_GOLD;
+		if ((*getGameData()->getEmpire()).getGold() < (*getGameData()->getEmpire()).getMaxSafeBox()) {
+			(*getGameData()->getEmpire()).receiveProds(ABANDONED_GOLD_QTY);
+			final << ABANDONED_PRODUCT << "\n\n A unidade de ouro foi adicionada com sucesso.\n";
+		}
+		else {
+			final << ABANDONED_PRODUCT << "\n\n Nao tem capacidade para adicionar ouro ao cofre do imperio. \n";
+		}
 	}
+	return final.str();
 }
 
 std::string AbandonedResource::toString() const

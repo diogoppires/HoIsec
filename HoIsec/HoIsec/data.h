@@ -91,12 +91,12 @@
 
 
 //EVENTS INFORMATION
-#define ABANDONED_PRODUCT "Produto abandonado!\n Um produto abandonado foi encontrado e fornece ao armazem do seu imperio uma unidade de produtos. Caso ja tenha sido atingido o valor maximo permitido, este recurso sera desperdicado!"
-#define ABANDONED_GOLD "Ouro abandonado!\n Foi encontrado ouro abandonado e decidiu guarda-lo no seu cofre. Caso ja tenha sido atingido o valor maximo permitido, este recurso sera desperdicado!"
-#define INVASION_FAILED "Invasao! Um imperio concorrente tentou conquistar um territorio do seu imperio mas os seus soldados estavam atentos e impediram esta invasao. A invasao foi FALHADA."
-#define INVASION_SUCCESS "Invasao! Um imperio concorrente conseguiu conquistar um territorio do seu imperio! Territorio perdido: "
-#define DIPLOMATIC_ALLIANCE "Juntos somos mais fortes! Foi assinada uma alianca com um imperio e em consequencia disto a sua forca militar aumenta uma unidade. Caso já tenha sido atingido o valor maximo permitido, a sua forca militar nao sera incrementada!"
-#define NO_EVENT "zZzZzZzZzZz... Nao ocorreu nada! Podem dormir todos descansados (por enquanto...)."
+#define ABANDONED_PRODUCT " TIPO: Produto\n Um produto abandonado foi encontrado que fornece ao armazem\n\t do seu imperio uma unidade de produtos."
+#define ABANDONED_GOLD " TIPO: Ouro\n Foi encontrado ouro abandonado que fornece ao cofre\n\t do seu imperio uma unidade de ouro."
+#define INVASION_FAILED " O imperio concorrente tentou conquistar um territorio do teu imperio\n\t mas os teus soldados estavam atentos e impediram esta invasao.\n O Territorio ainda te pertence."
+#define INVASION_SUCCESS " O imperio concorrente venceu a batalha!\n O Territorio foi perdido."
+#define DIPLOMATIC_ALLIANCE " Juntos somos mais fortes!\n Foi assinada uma alianca com um imperio e em consequencia disto\n\t foi oferecido uma unidade de forca militar."
+#define NO_EVENT " ...zZzZzZzZzZz...\n\n Nao ocorreu nada!\n Podem dormir todos descansados (por enquanto...)."
 
 //EVENTS DATA
 #define ABANDONED_PRODUCT_QTY 1

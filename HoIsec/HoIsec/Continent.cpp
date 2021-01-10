@@ -1,5 +1,6 @@
 #include "Continent.h"
 #include <iostream>
+#include <sstream>
 
 Continent::Continent(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter) : Territory(type, resistance, prodCreation, goldCreation, CONTINENT_WINPOINTS, counter)
 {

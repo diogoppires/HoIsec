@@ -1,4 +1,6 @@
 #include "Missile.h"
+#include <iostream>
+#include "data.h"
 
 Missile::Missile(): Technology(PRICE_TECH_MISSILES) {
 	std::cout << "[MISSILE] Construindo...\n";

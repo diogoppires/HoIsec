@@ -1,8 +1,8 @@
 #pragma once
 #ifndef DRONE_H
 #define DRONE_H
-#include <iostream>
-#include "Empire.h"
+
+#include "Army.h"
 #include "Technology.h"
 
 class Drone : public Technology
@@ -11,6 +11,7 @@ class Drone : public Technology
 public:
 	Drone(Army* army);
 	void applyTech() override;
+	int useEffect(Territory* terr) override { return 0; }
 	Technology* clone() const override;
 	virtual ~Drone() override;
 };

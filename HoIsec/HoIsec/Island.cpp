@@ -1,4 +1,6 @@
 #include "Island.h"
+#include <iostream>
+#include <sstream>
 
 Island::Island(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter) : Territory(type, resistance, prodCreation, goldCreation, ISLAND_WINPOINTS, counter)
 {

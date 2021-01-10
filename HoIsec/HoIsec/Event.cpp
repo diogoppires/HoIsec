@@ -1,7 +1,5 @@
 #include "Event.h"
-#include "GameData.h"
-#include <string>
-
+#include <iostream>
 
 Event::Event(GameData* gD)
 {

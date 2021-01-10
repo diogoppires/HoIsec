@@ -1,4 +1,6 @@
 #include "Territory.h"
+#include <iostream>
+#include <sstream>
 
 Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints, int counter):converter(){
 	name = buildName(type, counter);

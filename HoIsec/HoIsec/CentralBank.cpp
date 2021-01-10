@@ -1,4 +1,6 @@
 #include "CentralBank.h"
+#include <iostream>
+#include "data.h"
 
 CentralBank::CentralBank(Storage* empireStorage, SafeBox* empireSafeBox) : Technology(PRICE_TECH_CENTRALBANK) {
 	this->empireStorage = empireStorage;

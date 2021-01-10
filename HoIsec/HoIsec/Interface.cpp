@@ -1,5 +1,8 @@
 #include "Interface.h"
 #include <limits>
+#include <algorithm>
+#include <iostream>
+#include <sstream>
 
 
 //Menus
@@ -29,6 +32,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
 	conquerMenu.push_back(" ~~> fevento <nome-evento>\n");
 	conquerMenu.push_back(" ---------\n\n");
+	conquerMenu.push_back(" ~~> info <tec|evento>\n");
 	conquerMenu.push_back(" ~~> ajuda\n");
 	conquerMenu.push_back(" ~~> sair\n");
 }
@@ -47,6 +51,7 @@ void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 	exchangeMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
 	exchangeMenu.push_back(" ~~> fevento <nome-evento>\n");
 	exchangeMenu.push_back(" ---------\n\n");
+	exchangeMenu.push_back(" ~~> info <tec|evento>\n");
 	exchangeMenu.push_back(" ~~> ajuda\n");
 	exchangeMenu.push_back(" ~~> sair\n");
 }
@@ -65,15 +70,17 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
 	shopMenu.push_back(" ~~> fevento <nome-evento>\n");
 	shopMenu.push_back(" ---------\n\n");
+	shopMenu.push_back(" ~~> info <tec|evento>\n");
 	shopMenu.push_back(" ~~> ajuda\n");
 	shopMenu.push_back(" ~~> sair\n");
 }
 void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 {
-	std::ostringstream oss;
-	oss << "\n EVENTO: " << gD->getEventMsg() << "\n\n";
-	eventMenu.push_back(oss.str());
 	eventMenu.push_back("\n - Comandos do Jogo - 4a Fase | Eventos\n\n");
+	std::ostringstream oss;
+	oss << "\n Evento Ocorrido: " << gD->getEventId() << "\n\n";
+	eventMenu.push_back(oss.str());
+	eventMenu.push_back(" ~~> ultimoe\n\n");
 	eventMenu.push_back(" ~~> lista <nome>\n");
 	eventMenu.push_back(" ~~> avanca\n\n");
 	eventMenu.push_back(" ~~> grava <nome>\n");
@@ -84,9 +91,11 @@ void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 	eventMenu.push_back(" ~~> modifica <ouro|prod> <N>\n");
 	eventMenu.push_back(" ~~> fevento <nome-evento>\n");
 	eventMenu.push_back(" ---------\n\n");
+	eventMenu.push_back(" ~~> info <tec|evento>\n");
 	eventMenu.push_back(" ~~> ajuda\n");
 	eventMenu.push_back(" ~~> sair\n");
 }
+
 //void Interface::fillFirstMenu(std::vector<std::string>& firstMenu) {
 //	firstMenu.push_back("\n - Comandos do Jogo -\n\n");
 //	firstMenu.push_back(" ~~> cria <tipo> <n>\n");
@@ -109,6 +118,8 @@ void Interface::fillInitHelpMenu(std::vector<std::string>& words)
 	words.push_back(" \t * Ativa um momento de jogo que tenha sido guardado.\n");
 	words.push_back(" ~~> apaga <nome>\n");
 	words.push_back(" \t * Apaga um momento de jogo identificado com um nome.\n\n");
+	words.push_back(" ~~> info <tec|evento>\n");
+	words.push_back(" \t * Mostra a informacao relativa a tecnologias ou eventos. \n");
 	words.push_back(" ~~> sair \n");
 	words.push_back(" \t * Termina o jogo por completo.\n");
 	words.push_back("\n-----------------------------\n");
@@ -125,7 +136,6 @@ void Interface::fillConquerHelpMenu(std::vector<std::string>& words)
 	words.push_back(" \t * Avanca para a proxima fase.\n\n");
 	fillDefaultHelpMenu(words);
 }
-
 
 void Interface::fillExchangeHelpMenu(std::vector<std::string>& words)
 {
@@ -159,6 +169,8 @@ void Interface::fillShopHelpMenu(std::vector<std::string>& words)
 void Interface::fillEventHelpMenu(std::vector<std::string>& words)
 {
 	words.push_back("\n --- AJUDA (4a Fase) --- \n\n");
+	words.push_back(" ~~> ultimoe\n");
+	words.push_back(" \t * Mostra informacao relativa ao ultimo evento.");
 	words.push_back(" ~~> avanca\n");
 	words.push_back(" \t * Avanca para a proxima fase.\n\n");
 	fillDefaultHelpMenu(words);
@@ -173,7 +185,7 @@ void Interface::fillDefaultHelpMenu(std::vector<std::string>& words)
 	words.push_back(" Indicando um nome de um territorio: \n");
 	words.push_back(" \t * Lista informacao sobre o territorio.\n\n");
 	words.push_back("--- [DEBUG] ---\n");
-	words.push_back("Estes comandos servem apenas para atividades de testes.\n");
+	words.push_back(" Estes comandos servem apenas para atividades de teste.\n");
 	words.push_back(" ~~> toma <qual> <nome>\n");
 	words.push_back(" \t * A tecnologio ou territorio passam a ser do imperio.\n");
 	words.push_back(" ~~> modifica <ouro|prod> <N>\n");
@@ -189,12 +201,12 @@ void Interface::fillDefaultHelpMenu(std::vector<std::string>& words)
 	words.push_back(" ~~> apaga <nome>\n");
 	words.push_back(" \t * Apaga um momento de jogo identificado com um nome.\n\n");
 	words.push_back("-------------------\n\n");
+	 words.push_back(" ~~> info <tec | evento>\n");
+	words.push_back(" \t * Mostra a informacao relativa a tecnologias ou eventos. \n");
 	words.push_back(" ~~> sair \n");
 	words.push_back(" \t * Termina o jogo por completo.\n");
 	words.push_back("\n-----------------------------\n");
 }
-
-
 
 //This method will break a string up in order to save his arguments into a vector
 //for a later usage.
@@ -425,7 +437,6 @@ void Interface::opDelete(std::string name)
 	}
 	std::cout << "[HoIsec] Nao existe uma gravacao com esse nome.\n";
 }
-
 void Interface::opTake(std::string type, std::string name)
 {
 	system("cls");
@@ -495,15 +506,44 @@ void Interface::opForceEvent(std::string fullmsg)
 		std::cout << "[HoIsec] O nome inserido e invalido. Introduza um nome valido.\n";
 	}
 	else {
-		std::cout << "[HoIsec] Evento forcado - " << gD->getEventMsg() << std::endl;
+		std::cout << "[HoIsec] Evento forcado!!\n\n " << gD->getEventMsg() << std::endl;
 	}
-}
 
+	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	system("cls");
+}
 void Interface::opHelp()
 {
 	system("cls");
 	pickHelpMenu();
 	std::cout << "\n[HoIsec] Pressione algum botao para voltar.\n";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	system("cls");
+}
+void Interface::opInfo(const std::string type)
+{
+	system("cls");
+	if (type == "tec") {
+		showTechInfo();
+		std::cout << "\n[HoIsec] Pressione algum botao para voltar.\n";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	else if (type == "evento") {
+		showEventInfo();
+		std::cout << "\n[HoIsec] Pressione algum botao para voltar.\n";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	else {
+		std::cout << "[HoIsec] Comando desconhecido...\n";
+	}
+	system("cls");
+}
+void Interface::opLastEvent()
+{
+	system("cls");
+	std::cout << gD->getEventMsg() << std::endl;
+	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	system("cls");
 }
@@ -516,6 +556,7 @@ std::string Interface::readString(const std::string msg)
 	getline(std::cin, s);
 	return s;
 }
+
 std::string Interface::choose(const std::vector<std::string> menu)
 {
 	if (gD->getPhase() != Phases::NONE && gD->getPhase() != Phases::GAMEOVER) {
@@ -524,9 +565,9 @@ std::string Interface::choose(const std::vector<std::string> menu)
 		std::cout << "\n------------------------------------------------------\n";
 		std::cout << "\t\t\tIMPERIO";
 		std::cout << "\n PONTUACAO: " << gD->allPoints();
-		std::cout << "\n PRODUTOS: " << gD->getEmpire().getProds() << "\t\tMAX: " << gD->getEmpire().getMaxStorage() << "\tPRODUCAO: " << gD->getEmpire().getProdsCreation();
-		std::cout << "\n OURO: " << gD->getEmpire().getGold() << "\t\tMAX: " << gD->getEmpire().getMaxSafeBox() << "\tPRODUCAO: " << gD->getEmpire().getGoldCreation();
-		std::cout << "\n FORCA MILITAR: " << gD->getEmpire().getMiliForce() << "\tMAX: " << gD->getEmpire().getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
+		std::cout << "\n PRODUTOS: " << (*gD->getEmpire()).getProds() << "\t\tMAX: " << (*gD->getEmpire()).getMaxStorage() << "\tPRODUCAO: " << (*gD->getEmpire()).getProdsCreation();
+		std::cout << "\n OURO: " << (*gD->getEmpire()).getGold() << "\t\tMAX: " << (*gD->getEmpire()).getMaxSafeBox() << "\tPRODUCAO: " << (*gD->getEmpire()).getGoldCreation();
+		std::cout << "\n FORCA MILITAR: " << (*gD->getEmpire()).getMiliForce() << "\tMAX: " << (*gD->getEmpire()).getMaxMiliForce() << "\tULTIMO FATOR SORTE: " << gD->getLuckyFactor();
 		std::cout << "\n\t\t\t\tULTIMO EVENTO: " << gD->getEventId();
 		std::cout << "\n------------------------------------------------------\n";
 	}
@@ -570,6 +611,82 @@ void Interface::pickHelpMenu()
 	for (unsigned int i = 0; i < menu.size(); i++) {
 		std::cout << menu[i];
 	}	
+}
+
+void Interface::showTechInfo()
+{
+	std::vector<std::string> info;
+
+	info.push_back("-------- Tecnologias --------\n\n");
+	info.push_back(" ~~> Drones Militares\n");
+	info.push_back(" \t * Aumenta o maximo da forca militar para 5.\n");
+	info.push_back(" \t * Adquirido?: "); ((*gD->getEmpire()).haveDrone()) ? info.push_back("SIM\n") : info.push_back("NAO\n");
+	info.push_back(" \t * Custo : 3 unidades de ouro\n\n");
+	info.push_back(" ~~> Missieis Teleguiados\n");
+	info.push_back(" \t * Possibilita o ataque a territorios do tipo ilha.\n");
+	info.push_back(" \t * Adquirido?: "); ((*gD->getEmpire()).haveMissiles()) ? info.push_back("SIM\n") : info.push_back("NAO\n");
+	info.push_back(" \t * Custo : 4 unidades de ouro\n\n");
+	info.push_back(" ~~> Defesas Territoriais\n");
+	info.push_back(" \t * Acrescenta uma unidade a resistencia do territorio invadido,\n\t\t durante um evento de invasao.\n");
+	info.push_back(" \t * Adquirido?: "); ((*gD->getEmpire()).haveDefenses()) ? info.push_back("SIM\n") : info.push_back("NAO\n");
+	info.push_back(" \t * Custo : 4 unidades de ouro\n\n");
+	info.push_back(" ~~> Bolsa de Valores\n");
+	info.push_back(" \t * Abilita a possibilidade de trocas entre produtos e ouro.\n");
+	info.push_back(" \t * Adquirido?: "); ((*gD->getEmpire()).haveStockExchange()) ? info.push_back("SIM\n") : info.push_back("NAO\n");
+	info.push_back(" \t * Custo : 2 unidades de ouro\n\n");
+	info.push_back(" ~~> Banco Central\n");
+	info.push_back(" \t * Aumenta a capacidade maxima de ouro e produtos em 2 unidades\n");
+	info.push_back(" \t * Adquirido?: "); ((*gD->getEmpire()).haveCentralBank()) ? info.push_back("SIM\n") : info.push_back("NAO\n");
+	info.push_back(" \t * Custo : 3 unidades de ouro\n\n");
+
+	for (unsigned int i = 0; i < info.size(); i++) {
+		std::cout << info[i];
+	}
+}
+
+void Interface::showEventInfo()
+{
+	std::vector<std::string> info;
+
+	info.push_back("-------- Eventos --------\n\n");
+	info.push_back(" ~~> Recurso Abandonado\n");
+	info.push_back(" \t * (fevento recurso)\n");
+	info.push_back(" \t * Neste evento e encontrado um recurso que sera adicionado ao imperio.\n");
+	info.push_back(" \t * Caso o cofre ou o armazem do imperio estejam cheios o produto e perdido.\n");
+	info.push_back(" \t * Se o evento ocorrer durante o ano 1 encotra um produto,\n");
+	info.push_back(" \t\t se for o ano 2 encontra uma unidade de ouro.\n\n");
+	info.push_back(" ~~> Invasao\n");
+	info.push_back(" \t * (fevento invasao)\n");
+	info.push_back(" \t * Se este evento ocorrer o ultimo territorio conquistado pelo jogador, sofre\n");
+	info.push_back(" \t\t um ataque por parte de um imperio desconhecido.\n");
+	info.push_back(" \t * E sorteado um fator sorte entre 1 e 6 que é adicionado a forca de invasao que\n");
+	info.push_back(" \t\t tem o valor 2 no primeiro ano e 3 no segundo ano.\n");
+	info.push_back(" \t * Se o o valor final da forca de invasao for inferior a resistencia do territorio a\n");
+	info.push_back(" \t\t a invasao falha. Caso seja se concretize entao o territorio deixa de fazer parte do \n");
+	info.push_back(" \t\t imperio. \n");
+	info.push_back(" \t * Se o imperio tiver apenas o territorio inicial este podera ser invadido e caso a invasao\n");
+	info.push_back(" \t\t tenha sucesso leva a perda do jogo.\n\n");
+	info.push_back(" ~~> Alianca Diplomatica\n");
+	info.push_back(" \t * (fevento alianca)\n");
+	info.push_back(" \t * No caso deste evento ocorrer, e adicionado um valor a forca militar, caso esta ja nao esteja no maximo.\n\n");
+	info.push_back(" ~~> Sem Evento \n");
+	info.push_back(" \t * (fevento nada)\n");
+	info.push_back(" \t * Nao acontece nada e jogo continua.\n");
+
+	for (unsigned int i = 0; i < info.size(); i++) {
+		std::cout << info[i];
+	}
+}
+
+void Interface::drawEvent()
+{
+	system("cls");
+	gD->drawEvent();
+	std::cout << gD->getEventMsg() << std::endl;
+
+	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	system("cls");
 }
 
 void Interface::initMenu(std::string cmd, std::vector<std::string> words)
@@ -645,6 +762,9 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 	else if (cmd == "fevento" && words.size() == 1) {
 		opForceEvent(words[0]);
 	}
+	else if (cmd == "info" && words.size() == 1) {
+		opInfo(words[0]);
+	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		opHelp();
 	}
@@ -694,6 +814,9 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 	else if (cmd == "fevento" && words.size() == 1) {
 		opForceEvent(words[0]);
 	}
+	else if (cmd == "info" && words.size() == 1) {
+		opInfo(words[0]);
+	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		opHelp();
 	}
@@ -724,7 +847,7 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
 		opAdvance();
-		gD->drawEvent();
+		drawEvent();
 	}
 	else if (cmd == "grava" && words.size() == 1) {
 		opSave(words[0]);
@@ -743,6 +866,9 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 	}
 	else if (cmd == "fevento" && words.size() == 1) {
 		opForceEvent(words[0]);
+	}
+	else if (cmd == "info" && words.size() == 1) {
+		opInfo(words[0]);
 	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		opHelp();
@@ -766,6 +892,9 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 			opList(words[0]);
 		}
 	}
+	else if(cmd == "ultimoe" && words.size() == 0){
+		opLastEvent();
+	}
 	else if (cmd == "avanca" && words.size() == 0) {
 		opAdvance();
 	}
@@ -787,11 +916,18 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 	else if (cmd == "fevento" && words.size() == 1) {
 		opForceEvent(words[0]);
 	}
+	else if (cmd == "info" && words.size() == 1) {
+		opInfo(words[0]);
+	}
 	else if (cmd == "ajuda" && words.size() == 0) {
 		opHelp(); 
 	}
 	else if (cmd == "sair") {
 		std::cout << "[HoIsec] O jogo vai terminar...\n";
+	}
+	else {
+		system("cls");
+		std::cout << "[HoIsec] Comando desconhecido...\n";
 	}
 }
 
@@ -803,12 +939,12 @@ void Interface::gameOver()
 	gD->setInitialValues();
 }
 
-
 Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
 	std::cout << "[INTERFACE] Construindo..." << std::endl;
 }
+
 void Interface::run()
 {
 	std::vector<std::string> menu;
@@ -836,6 +972,7 @@ void Interface::run()
 		}
 	} while (cmd != "sair");
 }
+
 Interface::~Interface()
 {	
 	delete(gD);

@@ -1,4 +1,6 @@
 #include "Castle.h"
+#include <iostream>
+#include <sstream>
 
 int Castle::counter = 0;
 Castle::Castle() : Continent(TerritoryTypes::CASTLE, CASTLE_RESISTANCE, CASTLE_FIRST_PRODS, CASTLE_FIRST_GOLD, ++counter)

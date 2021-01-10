@@ -1,4 +1,6 @@
 #include "InitTerritory.h"
+#include <iostream>
+#include <sstream>
 
 InitTerritory::InitTerritory() : Territory(INITIAL_TERRITORY_NAME, INITIAL_RESISTANCE, INITIAL_PROD_CREATION, INITIAL_GOLD_CREATION, INITIAL_WINPOINTS)
 {
