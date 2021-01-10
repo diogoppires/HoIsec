@@ -8,6 +8,9 @@
 #include "Plain.h"
 #include "FishingSite.h"
 #include "PiratesRefugee.h"
+#include <iostream>
+#include <sstream>
+
 
 void World::TerritoryFactory(TerritoryTypes type)
 {

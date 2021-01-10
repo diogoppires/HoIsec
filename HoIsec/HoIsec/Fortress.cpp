@@ -1,4 +1,6 @@
 #include "Fortress.h"
+#include <iostream>
+#include <sstream>
 
 int Fortress::counter = 0;
 Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, FORTRESS_FIRST_PRODS, FORTRESS_FIRST_GOLD, ++counter)

@@ -1,4 +1,7 @@
 #include "FileReader.h"
+#include <algorithm>
+#include <sstream>
+#include <iostream>
 
 bool FileReader::is_number(const std::string& s)
 {
@@ -26,15 +29,11 @@ bool FileReader::verifyData(const std::string& data)
 	return false;
 }
 
-
-
 FileReader::FileReader(std::string fileName): converter() {
 	fileI.open(fileName);
 	std::cout << "[FILEREADER] Construindo...\n";
 
 }
-
-
 
 std::vector<std::string> FileReader::readFile()
 {
@@ -51,7 +50,6 @@ std::vector<std::string> FileReader::readFile()
 	else {
 		std::cerr << "[ERROR] Error opening file!"; // cout e cerr are equal but they can be directioned to distinct files.
 	}
-
 	
 	return info;
 }

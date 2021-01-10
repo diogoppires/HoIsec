@@ -1,4 +1,5 @@
 #include "Technology.h"
+#include <iostream>
 
 Technology::Technology(int price) {
 	setActiveFalse();

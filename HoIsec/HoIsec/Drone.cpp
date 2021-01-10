@@ -1,4 +1,6 @@
 #include "Drone.h"
+#include <iostream>
+#include "data.h"
 
 Drone::Drone(Army* army):Technology(PRICE_TECH_DRONE) {
 	this->army = army;

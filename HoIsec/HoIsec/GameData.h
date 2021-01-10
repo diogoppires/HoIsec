@@ -3,23 +3,19 @@
 #define GAMEDATA_H
 #include "World.h"
 #include "Empire.h"
-#include "FileReader.h"
-#include "Event.h"
 #include "data.h"
-#include "Continent.h"
-#include "Island.h"
-#include <iostream>
-#include <sstream>
+#include <vector>
+#include <string>
 
-
+class Event;
 class GameData
 {
 private:
 	Utils converter;
 	std::vector<Event*> events;
 
-	World world;
-	Empire empire;
+	World* world;
+	Empire* empire;
 	int year;
 	int turn;
 	Phases phase;
@@ -90,7 +86,7 @@ public:
 	void setInitialValues();
 
 	//Getter
-	Empire& getEmpire();
+	Empire* getEmpire();
 	int getYear() const;
 	void setYear(int year);
 	int getTurn() const;

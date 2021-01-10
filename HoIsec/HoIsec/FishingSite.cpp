@@ -1,4 +1,6 @@
 #include "FishingSite.h"
+#include <iostream>
+#include <sstream>
 
 int FishingSite::counter = 0;
 FishingSite::FishingSite() : Island(TerritoryTypes::FISHINGSITE, FISHING_RESISTANCE, FISHING_FIRST_GOLD, FISHING_FIRST_PRODS, ++counter)

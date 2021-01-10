@@ -1,8 +1,14 @@
 #include "Mountain.h"
+#include <iostream>
+#include <sstream>
+
 
 int Mountain::counter = 0;
+
 Mountain::Mountain() : Continent(TerritoryTypes::MOUNTAIN, MOUNTAIN_RESISTANCE, MOUNTAIN_FIRST_PRODS, MOUNTAIN_FIRST_GOLD, ++counter)
 {
+	turnConquer = 0;
+	yearConquer = 0;
 	std::cout << "[MONTANHA] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Mountain::getTerritoryType()

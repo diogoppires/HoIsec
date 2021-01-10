@@ -1,5 +1,6 @@
 #include "Army.h"
-
+#include <iostream>
+#include "data.h"
 
 Army::Army(int miliForce)
 {

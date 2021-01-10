@@ -1,10 +1,6 @@
 #pragma once
 #ifndef ARMY_H
 #define ARMY_H
-#include <iostream>
-#include <sstream>
-#include <string>
-#include "data.h"
 class Army
 {
 private:

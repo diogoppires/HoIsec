@@ -1,6 +1,7 @@
 #include "NoEvent.h"
 #include "data.h"
 #include <iostream>
+#include <sstream>
 
 NoEvent::NoEvent(GameData* gD) : Event(gD)
 {
@@ -9,7 +10,10 @@ NoEvent::NoEvent(GameData* gD) : Event(gD)
 
 std::string NoEvent::applyEvent() const
 {
-	return NO_EVENT;
+	std::ostringstream final;
+	final << "Evento: Sem Evento\n\n" << NO_EVENT;
+
+	return final.str();
 }
 
 std::string NoEvent::toString() const

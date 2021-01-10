@@ -1,5 +1,6 @@
 #include "DiplomaticAlliance.h"
-#include "GameData.h"
+#include <iostream>
+#include <sstream>
 
 DiplomaticAlliance::DiplomaticAlliance(GameData* gD) : Event(gD)
 {
@@ -8,9 +9,18 @@ DiplomaticAlliance::DiplomaticAlliance(GameData* gD) : Event(gD)
 
 std::string DiplomaticAlliance::applyEvent() const
 {
-    GameData* gD = Event::getGameData();
-    gD->getEmpire().increaseArmy(DIPLOMATIC_ALLIANCE_QTY);
-    return DIPLOMATIC_ALLIANCE;
+    std::ostringstream final;
+    final << "Evento: Alianca Diplomatica\n\n";
+
+    if ((*getGameData()->getEmpire()).getMiliForce() < (*getGameData()->getEmpire()).getMaxMiliForce()) {
+        (*getGameData()->getEmpire()).increaseArmy(DIPLOMATIC_ALLIANCE_QTY);
+        final << DIPLOMATIC_ALLIANCE << "\n\n A forca militar do imperio aumentou 1 unidade.\n";
+    }
+    else {
+        final << DIPLOMATIC_ALLIANCE << "\n\n A forca militar encontra-se no maximo.  \n";
+    }
+    
+    return final.str();
 }
 
 std::string DiplomaticAlliance::toString() const

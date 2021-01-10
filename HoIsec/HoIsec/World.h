@@ -2,8 +2,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include "Territory.h"
-#include <iostream>
-#include <sstream>
+#include <string>
 #include <vector>
 
 class World

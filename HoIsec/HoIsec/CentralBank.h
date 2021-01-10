@@ -1,8 +1,6 @@
 #pragma once
 #ifndef CENTRALBANK_H
 #define CENTRALBANK_H
-#include <iostream>
-#include "Empire.h"
 #include "Technology.h"
 #include "Storage.h"
 #include "SafeBox.h"
@@ -15,6 +13,7 @@ private:
 public:
 	CentralBank(Storage* empireStorage, SafeBox* empireSafeBox);
 	void applyTech() override;
+	int useEffect(Territory* terr) override { return 0; }
 	Technology* clone() const override;
 	virtual ~CentralBank() override;
 };

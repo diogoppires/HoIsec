@@ -1,4 +1,11 @@
 #include "Empire.h"
+#include "StockExchange.h"
+#include "CentralBank.h"
+#include "Missile.h"
+#include "Drone.h"
+#include "Defenses.h"
+#include <iostream>
+#include <sstream>
 
 Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
 {
@@ -134,6 +141,11 @@ void Empire::activeDefenses()
 void Empire::activeMissiles()
 {
 	missiles->applyTech();
+}
+
+int Empire::useEffectDefenses(Territory * terr)
+{
+	return defenses->useEffect(terr);
 }
 
 //Checkers of Techs

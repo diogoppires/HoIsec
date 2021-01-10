@@ -1,10 +1,7 @@
 #pragma once
 #ifndef SAFEBOX_H
 #define SAFEBOX_H
-#include <iostream>
 #include <string>
-#include <sstream>
-#include "data.h"
 
 class SafeBox
 {

@@ -1,4 +1,7 @@
 #include "Storage.h"
+#include <iostream>
+#include <sstream>
+#include "data.h"
 
 Storage::Storage()
 {

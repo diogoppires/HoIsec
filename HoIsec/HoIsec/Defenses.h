@@ -1,15 +1,15 @@
 #pragma once
 #ifndef DEFENSES_H
 #define DEFENSES_H
-#include <iostream>
-#include "Empire.h"
 #include "Technology.h"
+#include "Territory.h"
 
 class Defenses : public Technology
 {
 public:
 	Defenses();
 	void applyTech() override;
+	int useEffect(Territory * terr) override;
 	Technology* clone() const override;
 	virtual ~Defenses() override;
 };

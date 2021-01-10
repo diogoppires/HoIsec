@@ -1,10 +1,8 @@
 #pragma once
 #ifndef INTERFACE_H
 #define INTERFACE_H
-#include <iostream>
 #include <vector>
 #include <string>
-#include <sstream>
 #include "GameData.h"
 #include "Recording.h"
 
@@ -49,11 +47,17 @@ private:
 	void opModify(std::string type, std::string value);
 	void opForceEvent(std::string fullmsg);
 	void opHelp();
+	void opInfo(const std::string type);
+	void opLastEvent();
+
 
 	std::string readString(const std::string msg);
 	std::string choose(const std::vector<std::string> menu);
 	void pickMenu(std::vector<std::string>& menu);
 	void pickHelpMenu();
+	void showTechInfo();
+	void showEventInfo();
+	void drawEvent();
 	void initMenu(std::string cmd, std::vector<std::string> words);
 	void conquerMenu(std::string cmd, std::vector<std::string> words);
 	void exchangeMenu(std::string cmd, std::vector<std::string> words);

@@ -3,6 +3,11 @@
 #include "DiplomaticAlliance.h"
 #include "Invasion.h"
 #include "NoEvent.h"
+#include "FileReader.h"
+#include "Continent.h"
+#include "Island.h"
+#include <iostream>
+#include <sstream>
 
 void GameData::initialValues()
 {
@@ -20,8 +25,8 @@ void GameData::initialValues()
 
 void GameData::clearObjects()
 {	
-	(&world)->~World();
-	(&empire)->~Empire();
+	delete empire;
+	delete world;
 	for (Event* ev : events) {
 		delete ev;
 	}
@@ -51,22 +56,22 @@ void GameData::setInitialValues()
 	initialValues();
 	clearObjects(); 
 	addEvents();
-	new (&world) World();
-	new (&empire) Empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME));
+	world = new World();
+	empire = new Empire(world->getSpecificTerritory(INITIAL_TERRITORY_NAME));
 }
 
 void GameData::setFinalMsg()
 {
 	std::ostringstream oss;
-	oss << "Pontos de territorios: " << empire.getTerritoryScore();
-	if (empire.getTerritoryScore() == world.getTerritoriesSize() + empire.getEmpireSize()) {
+	oss << "Pontos de territorios: " << empire->getTerritoryScore();
+	if (empire->getTerritoryScore() == world->getTerritoriesSize() + empire->getEmpireSize()) {
 		oss << " (POSSUI bonus Imperador Supremo)" << std::endl;
 	}
 	else {
 		oss << " (NAO POSSUI bonus Imperador Supremo)" << std::endl;
 	}
-	oss << "Pontos de tecnologias: " << empire.getTechScore();
-	if (empire.getTechScore() == ALL_TECH + EXTRA_SCIENTIFIC_BONUS) {
+	oss << "Pontos de tecnologias: " << empire->getTechScore();
+	if (empire->getTechScore() == ALL_TECH + EXTRA_SCIENTIFIC_BONUS) {
 		oss << " (POSSUI bonus cientifico)" << std::endl;
 	}
 	else {
@@ -78,7 +83,7 @@ void GameData::setFinalMsg()
 
 void GameData::updateTerritories()
 {
-	for (Territory* t : world.getTerritories()) {
+	for (Territory* t : world->getTerritories()) {
 		t->updateResources(year,turn);
 	}
 }
@@ -88,8 +93,8 @@ void GameData::advancePhase()
 	switch (phase)
 	{
 		case Phases::NONE:			phase = Phases::CONQUER;			break;
-		case Phases::CONQUER:		empire.receiveProds(empire.getProdsCreation());
-									empire.receiveGold(empire.getGoldCreation());
+		case Phases::CONQUER:		empire->receiveProds(empire->getProdsCreation());
+									empire->receiveGold(empire->getGoldCreation());
 									phase = Phases::COLLECTION;			break;
 		case Phases::COLLECTION:	phase = Phases::SHOP;				break;
 		case Phases::SHOP:			phase = Phases::EVENTS;				break;
@@ -101,7 +106,6 @@ void GameData::advancePhase()
 	}
 	else if (turn == LIMIT_TURN && year == LIMIT_YEAR) {
 		setFinalMsg();
-		setInitialValues();
 		phase = Phases::GAMEOVER;
 	}
 
@@ -132,7 +136,9 @@ void GameData::addEvents()
 	events.push_back(none);
 }
 
-GameData::GameData() : world(), empire(world.getSpecificTerritory(INITIAL_TERRITORY_NAME)), converter() {
+GameData::GameData() : converter() {
+	world = new World();
+	empire = new Empire(world->getSpecificTerritory(INITIAL_TERRITORY_NAME)),
 	initialValues();
 	addEvents();
 	std::cout << "[GAMEDATA] Construindo...\n";
@@ -158,11 +164,8 @@ GameData::GameData(const GameData& other) : world(other.world), empire(other.emp
 }
 
 GameData::~GameData() {
-	for (auto e : events) {
-		delete e;
-	}
+	clearObjects();
 	std::cout << "[GAMEDATA] Destruindo...\n";
-	
 }
 
 bool GameData::verifyTerritory(std::string name) {
@@ -182,7 +185,7 @@ int GameData::createTerritories(std::string type, std::string value){
 
 	if (verifyInteger(value)) {
 		quant = std::stoi(value);
-		world.addTerritories(converter.StringToTerritoryTypes(type), quant);
+		world->addTerritories(converter.StringToTerritoryTypes(type), quant);
 		return 1;
 	}
 	return 0;
@@ -201,14 +204,14 @@ bool GameData::loadTerritories(std::string fileName) {
 	std::vector<std::string>::iterator it;
 	for (it = infoReceived.begin(); it != infoReceived.end(); it++) {
 		getTypeAndNumber(type, num, (*it));
-		world.addTerritories(converter.StringToTerritoryTypes(type), num);
+		world->addTerritories(converter.StringToTerritoryTypes(type), num);
 	}
 	return true;
 }
 
 bool GameData::initializeGame()
 {
-	if (world.getTerritoriesSize() > 1) {
+	if (world->getTerritoriesSize() > 1) {
 		advancePhase();
 		return true;
 	}
@@ -217,14 +220,14 @@ bool GameData::initializeGame()
 
 std::string GameData::listTerritoriesConquered() {
 
-	return world.toStringConquerd();
+	return world->toStringConquerd();
 }
 std::string GameData::listTerritoriesNotConquered()
 {
-	return world.toStringNotConquerd();
+	return world->toStringNotConquerd();
 }
 std::string GameData::listTerritories(std::string name) {
-	return world.getInfoTerritory(name);
+	return world->getInfoTerritory(name);
 }
 /**
 * This method is for conquer the Territory with name = 'name'.
@@ -238,14 +241,14 @@ std::string GameData::listTerritories(std::string name) {
 *	(-5) -> if the canAttack is false.
 */
 int GameData::conquerTerritories(std::string name) {
-	Territory* chosenTerr = world.getSpecificTerritory(name);
+	Territory* chosenTerr = world->getSpecificTerritory(name);
 	if (canAttack) {
 		if (chosenTerr != nullptr) {
 
 			if (dynamic_cast<Island*>(chosenTerr)) {
-				if (empire.getEmpireSize() < 5)
+				if (empire->getEmpireSize() < 5)
 					return -3;
-				if (!empire.haveMissiles())
+				if (!empire->haveMissiles())
 					return -4;
 			}
 
@@ -253,7 +256,7 @@ int GameData::conquerTerritories(std::string name) {
 				return -1;
 			}
 			generateLuckyFactor();
-			int attackResult = empire.attack(chosenTerr, getLuckyFactor());
+			int attackResult = empire->attack(chosenTerr, getLuckyFactor());
 			canAttack = false;
 			return attackResult; // 0 / 1 .
 		}
@@ -281,7 +284,7 @@ int GameData::buyTechnology(std::string type) {
 			if (!activeTech(tech)) {
 				return -2;
 			}
-			empire.spendGold(price);
+			empire->spendGold(price);
 			canBuyTech = false;
 			return 1;
 		}
@@ -303,9 +306,9 @@ int GameData::buyTechnology(std::string type) {
 int GameData::takeObject(std::string type, std::string name)
 {
 	if (type == TAKE_TYPE_TERRITORY) {
-		Territory* terr = world.getSpecificTerritory(name);
+		Territory* terr = world->getSpecificTerritory(name);
 		if (terr != nullptr) {
-			return empire.addTerritory(terr) ? 1 : -1;
+			return empire->addTerritory(terr) ? 1 : -1;
 		}
 		return -3;
 	}
@@ -343,14 +346,14 @@ int GameData::modifyData(std::string type, std::string number)
 	}
 
 	if (type == MODIFY_TYPE_PRODUCTS) {
-		switch (empire.setProds(value))
+		switch (empire->setProds(value))
 		{
 		case 1: return 1;
 		case 2: return -1;
 		}
 	}
 	if (type == MODIFY_TYPE_GOLD) {
-		switch (empire.setGold(value))
+		switch (empire->setGold(value))
 		{
 		case 1: return 2;
 		case 2: return -2;
@@ -370,10 +373,10 @@ int GameData::moreGold()
 	if (!canChangeResorces)
 		return -2;
 
-	if (empire.getProds() >= COST_CHANGE) {
-		if (empire.getGold() < empire.getMaxSafeBox()) {
-			empire.receiveGold(1);
-			empire.spendProds(COST_CHANGE);
+	if (empire->getProds() >= COST_CHANGE) {
+		if (empire->getGold() < empire->getMaxSafeBox()) {
+			empire->receiveGold(1);
+			empire->spendProds(COST_CHANGE);
 			canChangeResorces = false;
 			return 1;
 		}
@@ -392,10 +395,10 @@ int GameData::moreProd()
 	if (!canChangeResorces)
 		return -2;
 
-	if (empire.getGold() >= COST_CHANGE) {
-		if (empire.getProds() < empire.getMaxStorage()) {
-			empire.receiveProds(1);
-			empire.spendGold(COST_CHANGE);
+	if (empire->getGold() >= COST_CHANGE) {
+		if (empire->getProds() < empire->getMaxStorage()) {
+			empire->receiveProds(1);
+			empire->spendGold(COST_CHANGE);
 			canChangeResorces = false;
 			return 1;
 		}
@@ -414,11 +417,11 @@ int GameData::moreMilitary()
 	if (!canAddMilitar)
 		return -2;
 	
-	if (empire.getGold() >= COST_ADD_MILITAR || empire.getProds() >= COST_ADD_MILITAR) {
-		if (empire.getMiliForce() < empire.getMaxMiliForce()) {
-			empire.increaseArmy(1);
-			empire.spendGold(COST_ADD_MILITAR);
-			empire.spendProds(COST_ADD_MILITAR);
+	if (empire->getGold() >= COST_ADD_MILITAR || empire->getProds() >= COST_ADD_MILITAR) {
+		if (empire->getMiliForce() < empire->getMaxMiliForce()) {
+			empire->increaseArmy(1);
+			empire->spendGold(COST_ADD_MILITAR);
+			empire->spendProds(COST_ADD_MILITAR);
 			canAddMilitar = false;
 			return 1;
 		}
@@ -426,10 +429,8 @@ int GameData::moreMilitary()
 	}
 	return 0;
 }
-
 bool GameData::forceEvent(std::string nameEvent)
 {
-	std::transform(nameEvent.begin(), nameEvent.end(), nameEvent.begin(), ::tolower);
 	if (nameEvent == FEVENT_RESOURCE) {
 		eventMsg = events.at(0)->applyEvent();
 		eventId = events.at(0)->toString();
@@ -454,45 +455,42 @@ bool GameData::forceEvent(std::string nameEvent)
 		return 0;
 	}
 }
-
-
 bool GameData::activeTech(Techs type)
 {
 	switch (type) {
 	case Techs::DRONE:
-		if (!empire.haveDrone()) {
-			empire.activeDrone();
+		if (!empire->haveDrone()) {
+			empire->activeDrone();
 			return true;
 		}
 		break;
 	case Techs::MISSILES:
-		if (!empire.haveMissiles()) {
-			empire.activeMissiles();
+		if (!empire->haveMissiles()) {
+			empire->activeMissiles();
 			return true;
 		}
 		break;
 	case Techs::DEFENSES:
-		if (!empire.haveDefenses()) {
-			empire.activeDefenses();
+		if (!empire->haveDefenses()) {
+			empire->activeDefenses();
 			return true;
 		}
 		break;
 	case Techs::CENTRALBANK:
-		if (!empire.haveCentralBank()) {
-			empire.activeCentralBank();
+		if (!empire->haveCentralBank()) {
+			empire->activeCentralBank();
 			return true;
 		}
 		break;
 	case Techs::STOCKEXCHANGE:
-		if (!empire.haveStockExchange()) {
-			empire.activeStockExchange();
+		if (!empire->haveStockExchange()) {
+			empire->activeStockExchange();
 			return true;
 		}
 		break;
 	}
 	return false;
 }
-
 int GameData::receveCost(Techs type)
 {
 	int price = 0;
@@ -514,12 +512,11 @@ int GameData::receveCost(Techs type)
 		break;
 	}
 
-	if (empire.getGold() >= price) {
+	if (empire->getGold() >= price) {
 		return price;
 	}
 	return 0;
 }
-
 bool GameData::verifyInteger(std::string value)
 {
 	for (int i = 0; i < value.length(); i++)
@@ -527,28 +524,23 @@ bool GameData::verifyInteger(std::string value)
 			return false;
 	return true;
 }
-
-
-
 int GameData::allPoints()
 {
-	int all = getEmpire().getTerritoryScore();
-	all += getEmpire().getTechScore();
-	if (world.getTerritoriesSize() == empire.getEmpireSize()) {
+	int all = getEmpire()->getTerritoryScore();
+	all += getEmpire()->getTechScore();
+	if (world->getTerritoriesSize() == empire->getEmpireSize()) {
 		all += EXTRA_SUPREME_EMPEROR;
 	}
 	return all;
 }
-
 int GameData::stayPassive()
 {
 	if (!canAttack)
 		return 0;
-	empire.updateEmpire();
+	empire->updateEmpire();
 	canAttack = false;
 	return 1;
 }
-
 int GameData::advance()
 {
 	if (phase == Phases::CONQUER && canAttack == true) {
@@ -557,7 +549,6 @@ int GameData::advance()
 	advancePhase();
 	return 1;
 }
-
 void GameData::drawEvent() {
 	int eventOpt = converter.generateNumber(N_EVENTS);
 	Event* choosenEv = events.at(eventOpt);
@@ -591,7 +582,7 @@ std::string GameData::getGameOverMsg()
 }
 
 //Getter
-Empire& GameData::getEmpire()
+Empire* GameData::getEmpire()
 {
 	return empire;
 }
