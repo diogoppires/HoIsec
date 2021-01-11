@@ -12,6 +12,9 @@ void Interface::fillInitMenu(std::vector<std::string>& initMenu)
 	initMenu.push_back(" ~~> carrega <nomeFicheiro>\n");
 	initMenu.push_back(" ~~> cria <tipo> <n>\n");
 	initMenu.push_back(" ~~> iniciar\n\n");
+
+	initMenu.push_back(" ~~> lista <nome|'jogos'>\n\n");
+	initMenu.push_back(" ~~> grava <nome>\n");
 	initMenu.push_back(" ~~> ativa <nome>\n");
 	initMenu.push_back(" ~~> apaga <nome>\n\n");
 	initMenu.push_back(" ~~> ajuda\n");
@@ -23,7 +26,7 @@ void Interface::fillConquerMenu(std::vector<std::string>& conquerMenu)
 	conquerMenu.push_back(" ~~> conquista <nome>\n");
 	conquerMenu.push_back(" ~~> passa\n");
 	conquerMenu.push_back(" ~~> avanca\n\n");
-	conquerMenu.push_back(" ~~> lista <nome>\n\n");
+	conquerMenu.push_back(" ~~> lista <nome|'jogos'>\n\n");
 	conquerMenu.push_back(" ~~> grava <nome>\n");
 	conquerMenu.push_back(" ~~> ativa <nome>\n");
 	conquerMenu.push_back(" ~~> apaga <nome>\n\n");
@@ -42,7 +45,7 @@ void Interface::fillExchangeMenu(std::vector<std::string>& exchangeMenu)
 	exchangeMenu.push_back(" ~~> maisouro\n"); 
 	exchangeMenu.push_back(" ~~> maisprod\n");
 	exchangeMenu.push_back(" ~~> avanca\n\n");
-	exchangeMenu.push_back(" ~~> lista <nome>\n");
+	exchangeMenu.push_back(" ~~> lista <nome|'jogos'>\n");
 	exchangeMenu.push_back(" ~~> grava <nome>\n");
 	exchangeMenu.push_back(" ~~> ativa <nome>\n");
 	exchangeMenu.push_back(" ~~> apaga <nome>\n\n");
@@ -60,7 +63,7 @@ void Interface::fillShopMenu(std::vector<std::string>& shopMenu)
 	shopMenu.push_back("\n - Comandos do Jogo - 3a Fase | Loja HoIsec\n\n");
 	shopMenu.push_back(" ~~> maismilitar\n");
 	shopMenu.push_back(" ~~> adquire <tipo>\n");
-	shopMenu.push_back(" ~~> lista <nome>\n");
+	shopMenu.push_back(" ~~> lista <nome|'jogos'>\n");
 	shopMenu.push_back(" ~~> avanca\n\n");
 	shopMenu.push_back(" ~~> grava <nome>\n");
 	shopMenu.push_back(" ~~> ativa <nome>\n");
@@ -81,7 +84,7 @@ void Interface::fillEventMenu(std::vector<std::string>& eventMenu)
 	oss << "\n Evento Ocorrido: " << gD->getEventId() << "\n\n";
 	eventMenu.push_back(oss.str());
 	eventMenu.push_back(" ~~> ultimoe\n\n");
-	eventMenu.push_back(" ~~> lista <nome>\n");
+	eventMenu.push_back(" ~~> lista <nome|'jogos'>\n");
 	eventMenu.push_back(" ~~> avanca\n\n");
 	eventMenu.push_back(" ~~> grava <nome>\n");
 	eventMenu.push_back(" ~~> ativa <nome>\n");
@@ -184,6 +187,8 @@ void Interface::fillDefaultHelpMenu(std::vector<std::string>& words)
 	words.push_back(" \t * A informacao e apresentada dividida entre territorios conquistados e livres.\n");
 	words.push_back(" Indicando um nome de um territorio: \n");
 	words.push_back(" \t * Lista informacao sobre o territorio.\n\n");
+	words.push_back(" Com o argumento 'jogos': \n");
+	words.push_back(" \t * Lista os estados de jogo guardados em memoria.\n\n");
 	words.push_back("--- [DEBUG] ---\n");
 	words.push_back(" Estes comandos servem apenas para atividades de teste.\n");
 	words.push_back(" ~~> toma <qual> <nome>\n");
@@ -548,6 +553,21 @@ void Interface::opLastEvent()
 	system("cls");
 }
 
+void Interface::opListGameSaves()
+{
+	system("cls");
+	std::cout << "\n---- Gravacoes do Jogo ----\n\n";
+	if (recordings.size() == 0) {
+		std::cout << " ~~> Sem gravacoes.\n";
+	}
+	else {
+		for (auto r : recordings) {
+			std::cout << " * Nome: " << r->getName() << "\n" << r->getGameData()->toString() << std::endl;
+		}
+		std::cout << std::endl;
+	}
+}
+
 //Methods to make the code looks smoother
 std::string Interface::readString(const std::string msg)
 {
@@ -699,7 +719,12 @@ void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 			opList();
 		}
 		else if (words.size() == 1) {
-			opList(words[0]);
+			if (words[0] == "jogos") {
+				opListGameSaves();
+			}
+			else {
+				opList(words[0]);
+			}
 		}
 	}
 	else if (cmd == "cria" && words.size() == 2) {
@@ -707,6 +732,9 @@ void Interface::initMenu(std::string cmd, std::vector<std::string> words)
 	}
 	else if (cmd == "iniciar" && words.size() == 0) {
 		opGameInit();
+	}
+	else if (cmd == "grava" && words.size() == 1) {
+		opSave(words[0]);
 	}
 	else if (cmd == "ativa" && words.size() == 1) {
 		opRecover(words[0]);
@@ -741,7 +769,12 @@ void Interface::conquerMenu(std::string cmd, std::vector<std::string> words)
 			opList();
 		}
 		else if (words.size() == 1) {
-			opList(words[0]);
+			if (words[0] == "jogos") {
+				opListGameSaves();
+			}
+			else {
+				opList(words[0]);
+			}
 		}
 	}
 	else if (cmd == "grava" && words.size() == 1) {
@@ -790,7 +823,12 @@ void Interface::exchangeMenu(std::string cmd, std::vector<std::string> words)
 			opList();
 		}
 		else if (words.size() == 1) {
-			opList(words[0]);
+			if (words[0] == "jogos") {
+				opListGameSaves();
+			}
+			else {
+				opList(words[0]);
+			}
 		}
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
@@ -842,7 +880,12 @@ void Interface::shopMenu(std::string cmd, std::vector<std::string> words)
 			opList();
 		}
 		else if (words.size() == 1) {
-			opList(words[0]);
+			if (words[0] == "jogos") {
+				opListGameSaves();
+			}
+			else {
+				opList(words[0]);
+			}
 		}
 	}
 	else if (cmd == "avanca" && words.size() == 0) {
@@ -889,7 +932,12 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 			opList();
 		}
 		else if (words.size() == 1) {
-			opList(words[0]);
+			if (words[0] == "jogos") {
+				opListGameSaves();
+			}
+			else {
+				opList(words[0]);
+			}
 		}
 	}
 	else if(cmd == "ultimoe" && words.size() == 0){

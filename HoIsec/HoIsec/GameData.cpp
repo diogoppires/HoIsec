@@ -598,6 +598,19 @@ void GameData::generateLuckyFactor(){
 	this->luckyFactor = converter.generateLuckFactor();
 }
 
+std::string GameData::toString()
+{
+	std::ostringstream oss;
+	
+	oss << "   Turno: " << turn << " | Ano: " << year << std::endl;
+	oss << "   Territorios do Mundo: \n";
+	for (auto t : world->getTerritories()) {
+		oss << "\t ~~> " << t->getName() ;
+		(t->isConquered()) ? oss << " - Conquistado\n" : oss << "\n";
+	}
+	return oss.str();;
+}
+
 GameData& GameData::operator=(const GameData& other)
 {
 	if (this != &other) {
