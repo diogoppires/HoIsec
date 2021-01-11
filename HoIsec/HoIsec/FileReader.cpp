@@ -48,7 +48,7 @@ std::vector<std::string> FileReader::readFile()
 		}
 	}
 	else {
-		std::cerr << "[ERROR] Error opening file!"; // cout e cerr are equal but they can be directioned to distinct files.
+		std::cerr << "[FILEREADER] Erro ao abrir o ficheiro.\n"; // cout e cerr are equal but they can be directioned to distinct files.
 	}
 	
 	return info;
