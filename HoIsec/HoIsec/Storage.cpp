@@ -1,5 +1,5 @@
 #include "Storage.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 #include "data.h"
 
@@ -7,14 +7,14 @@ Storage::Storage()
 {
 	maxProducts = MAX_STORAGE;
 	products = 0;
-	std::cout << "[STORAGE] Construindo...\n";
+	//std::cout << "[STORAGE] Construindo...\n";
 }
 
 Storage::Storage(const Storage& orig)
 {
 	this->products = orig.products;
 	this->maxProducts = orig.maxProducts;
-	std::cout << "[STORAGE] Contruindo por copia..." << std::endl;
+	//std::cout << "[STORAGE] Contruindo por copia..." << std::endl;
 
 }
 
@@ -75,5 +75,5 @@ std::string Storage::toString() const
 
 Storage::~Storage()
 {
-	std::cout << "[STORAGE] Destruindo..." << std::endl;
+	//std::cout << "[STORAGE] Destruindo..." << std::endl;
 }

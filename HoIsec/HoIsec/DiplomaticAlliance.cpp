@@ -1,10 +1,10 @@
 #include "DiplomaticAlliance.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 DiplomaticAlliance::DiplomaticAlliance(GameData* gD) : Event(gD)
 {
-    std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Construindo...\n";
+    //std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Construindo...\n";
 }
 
 std::string DiplomaticAlliance::applyEvent() const
@@ -35,5 +35,5 @@ DiplomaticAlliance* DiplomaticAlliance::clone() const
 
 DiplomaticAlliance::~DiplomaticAlliance()
 {
-    std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Destruindo...\n";
+   // std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Destruindo...\n";
 }

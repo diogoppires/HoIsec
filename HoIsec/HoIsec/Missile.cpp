@@ -1,9 +1,9 @@
 #include "Missile.h"
-#include <iostream>
+//#include <iostream>
 #include "data.h"
 
 Missile::Missile(): Technology(PRICE_TECH_MISSILES) {
-	std::cout << "[MISSILE] Construindo...\n";
+	//std::cout << "[MISSILE] Construindo...\n";
 }
 
 void Missile::applyTech(){
@@ -16,5 +16,5 @@ Missile* Missile::clone() const
 }
 
 Missile::~Missile() {
-	std::cout << "[MISSILE] Destruindo...\n";
+	//std::cout << "[MISSILE] Destruindo...\n";
 }

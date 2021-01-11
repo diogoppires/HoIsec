@@ -1,11 +1,11 @@
 #include "Castle.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 int Castle::counter = 0;
 Castle::Castle() : Continent(TerritoryTypes::CASTLE, CASTLE_RESISTANCE, CASTLE_FIRST_PRODS, CASTLE_FIRST_GOLD, ++counter)
 {
-	std::cout << "[CASTELO] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[CASTELO] Construindo... " << Territory::getName() << std::endl;
 }
 
 TerritoryTypes Castle::getTerritoryType()
@@ -43,5 +43,5 @@ void Castle::updateResources(int year, int turn)
 
 Castle::~Castle()
 {
-	std::cout << "[CASTELO] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[CASTELO] Destruindo... " << Territory::getName() << std::endl;
 }

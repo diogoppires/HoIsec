@@ -1,11 +1,11 @@
 #include "NoEvent.h"
 #include "data.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 NoEvent::NoEvent(GameData* gD) : Event(gD)
 {
-	std::cout << "[EVENTO - SEM EVENTO] Construindo...\n";
+	//std::cout << "[EVENTO - SEM EVENTO] Construindo...\n";
 }
 
 std::string NoEvent::applyEvent() const
@@ -28,5 +28,5 @@ NoEvent* NoEvent::clone() const
 
 NoEvent::~NoEvent()
 {
-	std::cout << "[EVENTO - SEM EVENTO] Destruindo...\n";
+	//std::cout << "[EVENTO - SEM EVENTO] Destruindo...\n";
 }

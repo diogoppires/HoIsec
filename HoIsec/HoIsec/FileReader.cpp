@@ -31,7 +31,7 @@ bool FileReader::verifyData(const std::string& data)
 
 FileReader::FileReader(std::string fileName): converter() {
 	fileI.open(fileName);
-	std::cout << "[FILEREADER] Construindo...\n";
+	//std::cout << "[FILEREADER] Construindo...\n";
 
 }
 
@@ -48,7 +48,7 @@ std::vector<std::string> FileReader::readFile()
 		}
 	}
 	else {
-		std::cerr << "[ERROR] Error opening file!"; // cout e cerr are equal but they can be directioned to distinct files.
+		std::cerr << "[FILEREADER] Erro ao abrir o ficheiro!\n"; // cout e cerr are equal but they can be directioned to distinct files.
 	}
 	
 	return info;
@@ -57,5 +57,5 @@ std::vector<std::string> FileReader::readFile()
 FileReader::~FileReader()
 {
 	fileI.close();
-	std::cout << "[FILEREADER] Destruindo...\n";
+	//std::cout << "[FILEREADER] Destruindo...\n";
 }

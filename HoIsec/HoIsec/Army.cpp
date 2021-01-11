@@ -1,23 +1,23 @@
 #include "Army.h"
-#include <iostream>
+//#include <iostream>
 #include "data.h"
 
 Army::Army(int miliForce)
 {
 	this->maxMiliForce = MAX_MILIFORCE;
 	this->miliForce = miliForce;
-	std::cout << "[ARMY] Contruindo..." << std::endl;
+	//std::cout << "[ARMY] Contruindo..." << std::endl;
 }
 
 Army::Army(const Army& orig)
 {
 	miliForce = orig.miliForce;
 	maxMiliForce = orig.maxMiliForce;
-	std::cout << "[ARMY] Contruindo por copia..." << std::endl;
+	//std::cout << "[ARMY] Contruindo por copia..." << std::endl;
 }
 
 Army::~Army() {
-	std::cout << "[ARMY] Destruindo..." << std::endl;
+	//std::cout << "[ARMY] Destruindo..." << std::endl;
 }
 
 bool Army::addMiliForce(int value) {

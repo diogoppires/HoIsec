@@ -1,10 +1,10 @@
 #include "Island.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 Island::Island(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter) : Territory(type, resistance, prodCreation, goldCreation, ISLAND_WINPOINTS, counter)
 {
-	std::cout << "[ILHA] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[ILHA] Construindo... " << Territory::getName() << std::endl;
 }
 
 std::string Island::getTerritoryCategory() const
@@ -22,6 +22,6 @@ std::string Island::toString()
 
 Island::~Island()
 {
-	std::cout << "[ILHA] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[ILHA] Destruindo... " << Territory::getName() << std::endl;
 }
 

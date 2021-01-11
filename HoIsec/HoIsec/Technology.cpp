@@ -1,13 +1,13 @@
 #include "Technology.h"
-#include <iostream>
+//#include <iostream>
 
 Technology::Technology(int price) {
 	setActiveFalse();
 	this->price = price;
-	std::cout << "[TECHNOLOGY] Construindo...\n"; //DEBUG
+	//std::cout << "[TECHNOLOGY] Construindo...\n"; //DEBUG
 }
 Technology::~Technology() {
-	std::cout << "[TECHNOLOGY] Destruindo...\n"; //DEBUG
+	//std::cout << "[TECHNOLOGY] Destruindo...\n"; //DEBUG
 }
 void Technology::setActiveTrue() {
 	this->active = true;

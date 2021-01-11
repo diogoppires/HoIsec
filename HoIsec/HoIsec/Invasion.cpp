@@ -1,11 +1,11 @@
 #include "Invasion.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 
 Invasion::Invasion(GameData* gD) : Event(gD)
 {
-	std::cout << "[EVENTO - INVASAO] Construindo...\n";
+	//std::cout << "[EVENTO - INVASAO] Construindo...\n";
 }
 
 //SE TIVER TECNOLOGIA 'DEFESAS TERRITORIAIS' É ACRESCENTADO 1 NÍVEL DE RESISTENCIA AO TERRITORIO
@@ -71,5 +71,5 @@ Invasion* Invasion::clone() const
 
 Invasion::~Invasion()
 {
-	std::cout << "[EVENTO - INVASAO] Destruindo...\n";
+	//std::cout << "[EVENTO - INVASAO] Destruindo...\n";
 }

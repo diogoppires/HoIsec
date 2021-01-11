@@ -1,5 +1,5 @@
 #include "Mountain.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 
@@ -9,7 +9,7 @@ Mountain::Mountain() : Continent(TerritoryTypes::MOUNTAIN, MOUNTAIN_RESISTANCE, 
 {
 	turnConquer = 0;
 	yearConquer = 0;
-	std::cout << "[MONTANHA] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[MONTANHA] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Mountain::getTerritoryType()
 {
@@ -46,5 +46,5 @@ void Mountain::updateResources(int year,int turn)
 }
 Mountain::~Mountain()
 {
-	std::cout << "[MONTANHA] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[MONTANHA] Destruindo... " << Territory::getName() << std::endl;
 }

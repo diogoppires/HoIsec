@@ -1,5 +1,5 @@
 #include "SafeBox.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 #include "data.h"
 
@@ -7,14 +7,14 @@ SafeBox::SafeBox()
 {
 	maxGold = MAX_SAFEBOX;
 	gold = 0;
-	std::cout << "[SAFEBOX] Construindo..." << std::endl;
+	//std::cout << "[SAFEBOX] Construindo..." << std::endl;
 }
 
 SafeBox::SafeBox(const SafeBox& orig)
 {
 	gold = orig.gold;
 	maxGold = orig.maxGold;
-	std::cout << "[SAFEBOX] Contruindo por copia..." << std::endl;
+	//std::cout << "[SAFEBOX] Contruindo por copia..." << std::endl;
 }
 
 int SafeBox::getSafeBox() const
@@ -72,5 +72,5 @@ std::string SafeBox::toString() const
 
 SafeBox::~SafeBox()
 {
-	std::cout << "[SAFEBOX] Destruindo..." << std::endl;
+	//std::cout << "[SAFEBOX] Destruindo..." << std::endl;
 }

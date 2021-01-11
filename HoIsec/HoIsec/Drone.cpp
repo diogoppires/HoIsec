@@ -1,10 +1,10 @@
 #include "Drone.h"
-#include <iostream>
+//#include <iostream>
 #include "data.h"
 
 Drone::Drone(Army* army):Technology(PRICE_TECH_DRONE) {
 	this->army = army;
-	std::cout << "[DRONE] Construindo...\n"; // DEBUG
+	//std::cout << "[DRONE] Construindo...\n"; // DEBUG
 
 }
 
@@ -19,6 +19,6 @@ Drone* Drone::clone() const
 }
 
 Drone::~Drone() {
-	std::cout << "[DRONE] Destruindo...\n"; // DEBUG
+	//std::cout << "[DRONE] Destruindo...\n"; // DEBUG
 }
 

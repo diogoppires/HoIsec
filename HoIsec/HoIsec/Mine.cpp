@@ -1,11 +1,11 @@
 #include "Mine.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 int Mine::counter = 0;
 Mine::Mine() : Continent(TerritoryTypes::MINE, MINE_RESISTANCE, MINE_FIRST_PRODS, MINE_FIRST_GOLD, ++counter)
 {
-	std::cout << "[MINA] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[MINA] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Mine::getTerritoryType()
 {
@@ -38,5 +38,5 @@ void Mine::updateResources(int year, int turn)
 }
 Mine::~Mine()
 {
-	std::cout << "[MINA] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[MINA] Destruindo... " << Territory::getName() << std::endl;
 }

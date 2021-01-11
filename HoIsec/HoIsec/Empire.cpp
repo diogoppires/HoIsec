@@ -4,7 +4,7 @@
 #include "Missile.h"
 #include "Drone.h"
 #include "Defenses.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.generateArmy())
@@ -22,7 +22,7 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.gene
 	goldCreation = 0;
 	updateEmpire();
 
-	std::cout << "[EMPIRE] Construindo... " << std::endl;
+	//std::cout << "[EMPIRE] Construindo... " << std::endl;
 }
 
 Empire::Empire(const Empire& orig) : storage(orig.storage) , safe(orig.safe), army(orig.army),utils()
@@ -310,5 +310,5 @@ Empire::~Empire()
 	delete drone;
 	delete missiles;
 	delete defenses;
-	std::cout << "[EMPIRE] Destruindo... " << std::endl;
+	//std::cout << "[EMPIRE] Destruindo... " << std::endl;
 }

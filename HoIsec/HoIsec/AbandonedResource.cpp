@@ -1,10 +1,10 @@
 #include "AbandonedResource.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 AbandonedResource::AbandonedResource(GameData* gD) : Event(gD)
 {
-	std::cout << "[EVENTO - RECURSO ABANDONADO] Construindo...\n";
+	//std::cout << "[EVENTO - RECURSO ABANDONADO] Construindo...\n";
 }
 
 std::string AbandonedResource::applyEvent() const
@@ -45,5 +45,5 @@ AbandonedResource* AbandonedResource::clone() const
 
 AbandonedResource::~AbandonedResource()
 {
-	std::cout << "[EVENTO - RECURSO ABANDONADO] Destruindo...\n";
+	//std::cout << "[EVENTO - RECURSO ABANDONADO] Destruindo...\n";
 }

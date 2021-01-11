@@ -6,7 +6,7 @@
 #include "FileReader.h"
 #include "Continent.h"
 #include "Island.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 void GameData::initialValues()
@@ -141,7 +141,7 @@ GameData::GameData() : converter() {
 	empire = new Empire(world->getSpecificTerritory(INITIAL_TERRITORY_NAME)),
 	initialValues();
 	addEvents();
-	std::cout << "[GAMEDATA] Construindo...\n";
+	//std::cout << "[GAMEDATA] Construindo...\n";
 }
 
 GameData::GameData(const GameData& other)
@@ -153,7 +153,7 @@ GameData::GameData(const GameData& other)
 
 GameData::~GameData() {
 	clearObjects();
-	std::cout << "[GAMEDATA] Destruindo...\n";
+	//std::cout << "[GAMEDATA] Destruindo...\n";
 }
 
 bool GameData::verifyTerritory(std::string name) {
@@ -178,7 +178,6 @@ int GameData::createTerritories(std::string type, std::string value){
 	}
 	return 0;
 }
-
 //Receive from a file territories types and the number of times the user wants to create a territory.
 bool GameData::loadTerritories(std::string fileName) {
 	FileReader file(fileName);
@@ -196,7 +195,6 @@ bool GameData::loadTerritories(std::string fileName) {
 	}
 	return true;
 }
-
 bool GameData::initializeGame()
 {
 	if (world->getTerritoriesSize() > 1) {
@@ -205,7 +203,6 @@ bool GameData::initializeGame()
 	}
 	return false;
 }
-
 std::string GameData::listTerritoriesConquered() {
 
 	return world->toStringConquerd();

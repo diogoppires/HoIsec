@@ -1,11 +1,11 @@
 #include "CentralBank.h"
-#include <iostream>
+//#include <iostream>
 #include "data.h"
 
 CentralBank::CentralBank(Storage* empireStorage, SafeBox* empireSafeBox) : Technology(PRICE_TECH_CENTRALBANK) {
 	this->empireStorage = empireStorage;
 	this->empireSafeBox = empireSafeBox;
-	std::cout << "[CENTRALBANK] Construindo...\n"; // DEBUG
+	//std::cout << "[CENTRALBANK] Construindo...\n"; // DEBUG
 }
 
 void CentralBank::applyTech() {
@@ -20,5 +20,5 @@ CentralBank* CentralBank::clone() const
 }
 
 CentralBank::~CentralBank() {
-	std::cout << "[CENTRALBANK] Desstruindo...\n"; // DEBUG
+	//std::cout << "[CENTRALBANK] Desstruindo...\n"; // DEBUG
 }

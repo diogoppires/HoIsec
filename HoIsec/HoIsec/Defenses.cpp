@@ -1,9 +1,9 @@
 #include "Defenses.h"
-#include <iostream>
+//#include <iostream>
 #include "data.h"
 
 Defenses::Defenses() : Technology(PRICE_TECH_DEFENSES){
-	std::cout << "[DEFENSES] Construindo...\n"; // DEBUG
+	//std::cout << "[DEFENSES] Construindo...\n"; // DEBUG
 }
 
 void Defenses::applyTech() {
@@ -21,5 +21,5 @@ Defenses* Defenses::clone() const
 }
 
 Defenses::~Defenses() {
-	std::cout << "[DEFENSES] Destruindo...\n"; // DEBUG
+	//std::cout << "[DEFENSES] Destruindo...\n"; // DEBUG
 }

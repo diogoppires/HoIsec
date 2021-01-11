@@ -1,12 +1,12 @@
 #include "Dune.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 
 int Dune::counter = 0;
 Dune::Dune() : Continent(TerritoryTypes::DUNE, DUNE_RESISTANCE, DUNE_FIRST_PRODS, DUNE_FIRST_GOLD, ++counter)
 {
-	std::cout << "[DUNA] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[DUNA] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Dune::getTerritoryType()
 {
@@ -33,5 +33,5 @@ void Dune::updateResources(int year, int turn)
 }
 Dune::~Dune()
 {
-	std::cout << "[DUNA] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[DUNA] Destruindo... " << Territory::getName() << std::endl;
 }

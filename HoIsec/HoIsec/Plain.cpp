@@ -1,11 +1,11 @@
 #include "Plain.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 int Plain::counter = 0;
 Plain::Plain() : Continent(TerritoryTypes::PLAIN, PLAIN_RESISTANCE, PLAIN_FIRST_PRODS, PLAIN_FIRST_GOLD, ++counter)
 {
-	std::cout << "[PLANICE] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[PLANICE] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Plain::getTerritoryType()
 {
@@ -38,5 +38,5 @@ void Plain::updateResources(int year, int turn)
 }
 Plain::~Plain()
 {
-	std::cout << "[PLANICE] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[PLANICE] Destruindo... " << Territory::getName() << std::endl;
 }

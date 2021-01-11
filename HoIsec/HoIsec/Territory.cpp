@@ -1,5 +1,5 @@
 #include "Territory.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int winPoints, int counter):converter(){
@@ -9,7 +9,7 @@ Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int 
 	this->goldCreation = goldCreation;
 	this->winPoints = winPoints;
 	this->conquered = false;
-	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+	//std::cout << "[TERRITORY] Construindo... " << name << std::endl;
 }
 
 Territory::Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints)
@@ -20,11 +20,11 @@ Territory::Territory(std::string initName, int initResistance, int initProdCreat
 	this->goldCreation = initGoldCreation;
 	this->winPoints = initWinPoints;
 	this->conquered = false;
-	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+	//std::cout << "[TERRITORY] Construindo... " << name << std::endl;
 }
 
 Territory::~Territory() {
-	std::cout << "[TERRITORY] Destruindo... " << name << std::endl;
+	//std::cout << "[TERRITORY] Destruindo... " << name << std::endl;
 }
 
 std::string Territory::toString() {

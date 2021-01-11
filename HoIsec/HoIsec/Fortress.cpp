@@ -1,11 +1,11 @@
 #include "Fortress.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 int Fortress::counter = 0;
 Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, FORTRESS_FIRST_PRODS, FORTRESS_FIRST_GOLD, ++counter)
 {
-	std::cout << "[FORTALEZA] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[FORTALEZA] Construindo... " << Territory::getName() << std::endl;
 }
 TerritoryTypes Fortress::getTerritoryType()
 {
@@ -32,5 +32,5 @@ void Fortress::updateResources(int year, int turn)
 }
 Fortress::~Fortress()
 {
-	std::cout << "[FORTALEZA] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[FORTALEZA] Destruindo... " << Territory::getName() << std::endl;
 }

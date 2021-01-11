@@ -1,10 +1,10 @@
 #include "InitTerritory.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 InitTerritory::InitTerritory() : Territory(INITIAL_TERRITORY_NAME, INITIAL_RESISTANCE, INITIAL_PROD_CREATION, INITIAL_GOLD_CREATION, INITIAL_WINPOINTS)
 {
-	std::cout << "[TERRITORIO INICIAL] Construindo... " << Territory::getName() << std::endl;
+	//std::cout << "[TERRITORIO INICIAL] Construindo... " << Territory::getName() << std::endl;
 }
 
 TerritoryTypes InitTerritory::getTerritoryType()
@@ -36,7 +36,7 @@ void InitTerritory::updateResources(int year, int turn)
 
 InitTerritory::~InitTerritory()
 {
-	std::cout << "[TERRITORIO INICIAL] Destruindo... " << Territory::getName() << std::endl;
+	//std::cout << "[TERRITORIO INICIAL] Destruindo... " << Territory::getName() << std::endl;
 }
 
 

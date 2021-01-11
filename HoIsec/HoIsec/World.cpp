@@ -8,7 +8,7 @@
 #include "Plain.h"
 #include "FishingSite.h"
 #include "PiratesRefugee.h"
-#include <iostream>
+//#include <iostream>
 #include <sstream>
 
 
@@ -30,7 +30,7 @@ void World::TerritoryFactory(TerritoryTypes type)
 World::World()
 {
 	addTerritories(TerritoryTypes::INITIAL, 1);
-	std::cout << "[WORLD] Construindo..." << std::endl;
+	//std::cout << "[WORLD] Construindo..." << std::endl;
 }
 
 World::World(const World& copy)
@@ -39,9 +39,9 @@ World::World(const World& copy)
 }
 
 World::~World() {
-	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
+	//std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
 	clearTerritories();
-	std::cout << "[WORLD] Destruindo..." << std::endl;
+	//std::cout << "[WORLD] Destruindo..." << std::endl;
 }
 std::string World::toString() { 
 	std::ostringstream oss;
