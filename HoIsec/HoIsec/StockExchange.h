@@ -9,7 +9,7 @@ public:
 	StockExchange();
 	void applyTech() override;
 	int useEffect(Territory* terr) override { return 0; }
-	Technology* clone() const override;
+	StockExchange* clone() const override;
 	virtual ~StockExchange() override;
 };
 #endif // !STOCKEXCHANGE_H

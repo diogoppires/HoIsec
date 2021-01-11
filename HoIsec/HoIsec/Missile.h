@@ -9,7 +9,7 @@ public:
 	Missile();
 	void applyTech() override;
 	int useEffect(Territory* terr) override { return 0; }
-	Technology* clone() const override;
+	Missile* clone() const override;
 	virtual ~Missile() override;
 };
 

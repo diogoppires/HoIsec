@@ -10,7 +10,7 @@ void Missile::applyTech(){
 	setActiveTrue();
 }
 
-Technology* Missile::clone() const
+Missile* Missile::clone() const
 {
 	return new Missile(*this);
 }

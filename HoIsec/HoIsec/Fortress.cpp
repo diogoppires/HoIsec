@@ -19,7 +19,7 @@ std::string Fortress::toString()
 	oss << "TIPO = 'Fortaleza'" << Continent::toString();
 	return oss.str();
 }
-Territory* Fortress::clone() const
+Fortress* Fortress::clone() const
 {
 	return new Fortress(*this);
 }

@@ -12,7 +12,7 @@ public:
 	Fortress();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	Territory* clone() const override;
+	Fortress* clone() const override;
 	void setInitValue() override;
 	void updateResources(int year, int turn) override;
 	virtual ~Fortress() override;

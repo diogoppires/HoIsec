@@ -96,6 +96,8 @@ public:
 	//---
 
 	void generateLuckyFactor();
+	std::string toString();
+	GameData& operator=(const GameData& other);
 };
 #endif // !GAMEDATA_H
 

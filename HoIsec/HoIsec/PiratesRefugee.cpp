@@ -21,7 +21,7 @@ std::string PiratesRefugee::toString()
 	return oss.str();
 }
 
-Territory* PiratesRefugee::clone() const
+PiratesRefugee* PiratesRefugee::clone() const
 {
 	return new PiratesRefugee(*this);
 }

@@ -20,7 +20,7 @@ std::string InitTerritory::toString()
 	return oss.str();
 }
 
-Territory* InitTerritory::clone() const
+InitTerritory* InitTerritory::clone() const
 {
 	return new InitTerritory(*this);
 }

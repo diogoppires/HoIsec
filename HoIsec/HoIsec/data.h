@@ -22,7 +22,7 @@
 
 //TERRITORIES CATEGORY
 #define CONTINENT "continente"
-#define ISLAND "island"
+#define ISLAND "ilha"
 #define INIT_TERRITORY "territorio_inicial"
 
 //WIN POINTS

@@ -15,7 +15,7 @@ int Defenses::useEffect(Territory* terr)
 	return terr->getResistance() + ((active) ? 1 : 0);
 }
 
-Technology* Defenses::clone() const
+Defenses* Defenses::clone() const
 {
 	return new Defenses(*this);
 }

@@ -12,7 +12,7 @@ public:
 	FishingSite();
 	TerritoryTypes getTerritoryType() override;
 	std::string toString() override;
-	Territory* clone() const override;
+	FishingSite* clone() const override;
 	void setInitValue() override;
 	void updateResources(int year, int turn) override;
 	virtual ~FishingSite() override;

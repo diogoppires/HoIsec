@@ -7,6 +7,7 @@ Continent::Continent(TerritoryTypes type, int resistance, int prodCreation, int 
 	std::cout << "[CONTINENTE] Construindo... " << Territory::getName() << std::endl;
 }
 
+
 std::string Continent::getTerritoryCategory() const
 {
 	return CONTINENT;
@@ -24,3 +25,4 @@ Continent::~Continent()
 {
 	std::cout << "[CONTINENTE] Destruindo... " << Territory::getName() << std::endl;
 }
+

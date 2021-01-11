@@ -11,7 +11,7 @@ public:
     Invasion(GameData* gD);
     std::string applyEvent() const override;
     std::string toString() const override;
-    Event* clone() const override;
+    Invasion* clone() const override;
     virtual ~Invasion() override;
 };
 

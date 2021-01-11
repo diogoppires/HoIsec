@@ -10,7 +10,7 @@ public:
 	Defenses();
 	void applyTech() override;
 	int useEffect(Territory * terr) override;
-	Technology* clone() const override;
+	Defenses* clone() const override;
 	virtual ~Defenses() override;
 };
 

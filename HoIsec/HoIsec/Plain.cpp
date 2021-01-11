@@ -19,7 +19,7 @@ std::string Plain::toString()
 	oss << "TIPO = 'Planicie'" << Continent::toString();
 	return oss.str();
 }
-Territory* Plain::clone() const
+Plain* Plain::clone() const
 {
 	return new Plain(*this);
 }

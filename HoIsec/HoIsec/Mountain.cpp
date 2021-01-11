@@ -23,7 +23,7 @@ std::string Mountain::toString()
 	oss << "TIPO = 'Montanha'" << Continent::toString();
 	return oss.str();
 }
-Territory* Mountain::clone() const
+Mountain* Mountain::clone() const
 {
 	return new Mountain(*this);
 }

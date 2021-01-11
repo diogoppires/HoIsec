@@ -49,6 +49,7 @@ private:
 	void opHelp();
 	void opInfo(const std::string type);
 	void opLastEvent();
+	void opListGameSaves();
 
 
 	std::string readString(const std::string msg);
