@@ -4,7 +4,10 @@
 
 Island::Island(TerritoryTypes type, int resistance, int prodCreation, int goldCreation, int counter) : Territory(type, resistance, prodCreation, goldCreation, ISLAND_WINPOINTS, counter)
 {
+#ifdef DEBUG
 	std::cout << "[ILHA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }
 
 std::string Island::getTerritoryCategory() const
@@ -22,6 +25,9 @@ std::string Island::toString()
 
 Island::~Island()
 {
+#ifdef DEBUG
 	std::cout << "[ILHA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }
 

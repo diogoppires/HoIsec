@@ -6,18 +6,27 @@ Army::Army(int miliForce)
 {
 	this->maxMiliForce = MAX_MILIFORCE;
 	this->miliForce = miliForce;
+#ifdef DEBUG
 	std::cout << "[ARMY] Contruindo..." << std::endl;
+#endif // DEBUG
+
 }
 
 Army::Army(const Army& orig)
 {
 	miliForce = orig.miliForce;
 	maxMiliForce = orig.maxMiliForce;
+#ifdef DEBUG
 	std::cout << "[ARMY] Contruindo por copia..." << std::endl;
+#endif // DEBUG
+
 }
 
 Army::~Army() {
+#ifdef DEBUG
 	std::cout << "[ARMY] Destruindo..." << std::endl;
+#endif // DEBUG
+
 }
 
 bool Army::addMiliForce(int value) {

@@ -4,7 +4,10 @@
 
 DiplomaticAlliance::DiplomaticAlliance(GameData* gD) : Event(gD)
 {
+#ifdef DEBUG
     std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Construindo...\n";
+#endif // DEBUG
+
 }
 
 std::string DiplomaticAlliance::applyEvent() const
@@ -35,5 +38,8 @@ DiplomaticAlliance* DiplomaticAlliance::clone() const
 
 DiplomaticAlliance::~DiplomaticAlliance()
 {
+#ifdef DEBUG
     std::cout << "[EVENTO - ALIANCA DIPLOMATICA] Destruindo...\n";
+#endif // DEBUG
+
 }

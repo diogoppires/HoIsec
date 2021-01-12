@@ -3,7 +3,10 @@
 #include "data.h"
 
 Missile::Missile(): Technology(PRICE_TECH_MISSILES) {
+#ifdef DEBUG
 	std::cout << "[MISSILE] Construindo...\n";
+#endif // DEBUG
+
 }
 
 void Missile::applyTech(){
@@ -16,5 +19,8 @@ Missile* Missile::clone() const
 }
 
 Missile::~Missile() {
+#ifdef DEBUG
 	std::cout << "[MISSILE] Destruindo...\n";
+#endif // DEBUG
+
 }

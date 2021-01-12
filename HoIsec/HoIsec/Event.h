@@ -2,6 +2,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 #include "GameData.h"
+#include "data.h"
 
 class GameData;
 class Event

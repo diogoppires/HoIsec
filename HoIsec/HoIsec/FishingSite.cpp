@@ -5,7 +5,10 @@
 int FishingSite::counter = 0;
 FishingSite::FishingSite() : Island(TerritoryTypes::FISHINGSITE, FISHING_RESISTANCE, FISHING_FIRST_GOLD, FISHING_FIRST_PRODS, ++counter)
 {
+#ifdef DEBUG
 	std::cout << "[PESCARIA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }
 
 TerritoryTypes FishingSite::getTerritoryType()
@@ -43,5 +46,7 @@ void FishingSite::updateResources(int year, int turn)
 
 FishingSite::~FishingSite()
 {
+#ifdef DEBUG
 	std::cout << "[PESCARIA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }

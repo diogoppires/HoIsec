@@ -5,7 +5,10 @@
 int Mine::counter = 0;
 Mine::Mine() : Continent(TerritoryTypes::MINE, MINE_RESISTANCE, MINE_FIRST_PRODS, MINE_FIRST_GOLD, ++counter)
 {
+#ifdef DEBUG
 	std::cout << "[MINA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }
 TerritoryTypes Mine::getTerritoryType()
 {
@@ -38,5 +41,7 @@ void Mine::updateResources(int year, int turn)
 }
 Mine::~Mine()
 {
+#ifdef DEBUG
 	std::cout << "[MINA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }

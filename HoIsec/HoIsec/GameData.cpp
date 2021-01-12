@@ -141,7 +141,10 @@ GameData::GameData() : converter() {
 	empire = new Empire(world->getSpecificTerritory(INITIAL_TERRITORY_NAME)),
 	initialValues();
 	addEvents();
+#ifdef DEBUG
 	std::cout << "[GAMEDATA] Construindo...\n";
+#endif // DEBUG
+
 }
 
 GameData::GameData(const GameData& other)
@@ -153,7 +156,10 @@ GameData::GameData(const GameData& other)
 
 GameData::~GameData() {
 	clearObjects();
+#ifdef DEBUG
 	std::cout << "[GAMEDATA] Destruindo...\n";
+#endif // DEBUG
+
 }
 
 bool GameData::verifyTerritory(std::string name) {

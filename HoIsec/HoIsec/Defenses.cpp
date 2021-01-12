@@ -3,7 +3,10 @@
 #include "data.h"
 
 Defenses::Defenses() : Technology(PRICE_TECH_DEFENSES){
-	std::cout << "[DEFENSES] Construindo...\n"; // DEBUG
+#ifdef DEBUG
+	std::cout << "[DEFENSES] Construindo...\n";
+#endif // DEBUG
+
 }
 
 void Defenses::applyTech() {
@@ -21,5 +24,8 @@ Defenses* Defenses::clone() const
 }
 
 Defenses::~Defenses() {
+#ifdef DEBUG
 	std::cout << "[DEFENSES] Destruindo...\n"; // DEBUG
+#endif // DEBUG
+
 }

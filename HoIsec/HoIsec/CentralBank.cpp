@@ -5,7 +5,10 @@
 CentralBank::CentralBank(Storage* empireStorage, SafeBox* empireSafeBox) : Technology(PRICE_TECH_CENTRALBANK) {
 	this->empireStorage = empireStorage;
 	this->empireSafeBox = empireSafeBox;
-	std::cout << "[CENTRALBANK] Construindo...\n"; // DEBUG
+#ifdef DEBUG
+	std::cout << "[CENTRALBANK] Construindo...\n";
+#endif // DEBUG
+
 }
 
 void CentralBank::applyTech() {
@@ -20,5 +23,8 @@ CentralBank* CentralBank::clone() const
 }
 
 CentralBank::~CentralBank() {
+#ifdef DEBUG
 	std::cout << "[CENTRALBANK] Desstruindo...\n"; // DEBUG
+#endif // DEBUG
+
 }

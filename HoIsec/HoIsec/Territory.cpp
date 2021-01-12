@@ -9,7 +9,10 @@ Territory::Territory(TerritoryTypes type, int resistance, int prodCreation, int 
 	this->goldCreation = goldCreation;
 	this->winPoints = winPoints;
 	this->conquered = false;
+#ifdef DEBUG
 	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+#endif // DEBUG
+
 }
 
 Territory::Territory(std::string initName, int initResistance, int initProdCreation, int initGoldCreation, int initWinPoints)
@@ -20,11 +23,17 @@ Territory::Territory(std::string initName, int initResistance, int initProdCreat
 	this->goldCreation = initGoldCreation;
 	this->winPoints = initWinPoints;
 	this->conquered = false;
+
+#ifdef DEBUG
 	std::cout << "[TERRITORY] Construindo... " << name << std::endl;
+#endif // DEBUG
 }
 
 Territory::~Territory() {
+#ifdef DEBUG
 	std::cout << "[TERRITORY] Destruindo... " << name << std::endl;
+#endif // DEBUG
+
 }
 
 std::string Territory::toString() {

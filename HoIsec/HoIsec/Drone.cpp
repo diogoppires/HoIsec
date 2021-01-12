@@ -4,8 +4,9 @@
 
 Drone::Drone(Army* army):Technology(PRICE_TECH_DRONE) {
 	this->army = army;
+#ifdef DEBUG
 	std::cout << "[DRONE] Construindo...\n"; // DEBUG
-
+#endif // DEBUG
 }
 
 void Drone::applyTech() {
@@ -19,6 +20,8 @@ Drone* Drone::clone() const
 }
 
 Drone::~Drone() {
+#ifdef DEBUG
 	std::cout << "[DRONE] Destruindo...\n"; // DEBUG
+#endif // DEBUG
 }
 

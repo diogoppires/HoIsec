@@ -9,7 +9,9 @@ Mountain::Mountain() : Continent(TerritoryTypes::MOUNTAIN, MOUNTAIN_RESISTANCE, 
 {
 	turnConquer = 0;
 	yearConquer = 0;
+#ifdef DEBUG
 	std::cout << "[MONTANHA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }
 TerritoryTypes Mountain::getTerritoryType()
 {
@@ -46,5 +48,7 @@ void Mountain::updateResources(int year,int turn)
 }
 Mountain::~Mountain()
 {
+#ifdef DEBUG
 	std::cout << "[MONTANHA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }

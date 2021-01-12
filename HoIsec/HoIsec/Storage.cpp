@@ -7,15 +7,19 @@ Storage::Storage()
 {
 	maxProducts = MAX_STORAGE;
 	products = 0;
+#ifdef DEBUG
 	std::cout << "[STORAGE] Construindo...\n";
+#endif // DEBUG
+
 }
 
 Storage::Storage(const Storage& orig)
 {
 	this->products = orig.products;
 	this->maxProducts = orig.maxProducts;
+#ifdef DEBUG
 	std::cout << "[STORAGE] Contruindo por copia..." << std::endl;
-
+#endif // DEBUG
 }
 
 int Storage::getProducts() const
@@ -75,5 +79,8 @@ std::string Storage::toString() const
 
 Storage::~Storage()
 {
+#ifdef DEBUG
 	std::cout << "[STORAGE] Destruindo..." << std::endl;
+#endif // DEBUG
+
 }

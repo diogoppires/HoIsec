@@ -4,7 +4,9 @@
 
 AbandonedResource::AbandonedResource(GameData* gD) : Event(gD)
 {
+#ifdef DEBUG
 	std::cout << "[EVENTO - RECURSO ABANDONADO] Construindo...\n";
+#endif // DEBUG
 }
 
 std::string AbandonedResource::applyEvent() const
@@ -45,5 +47,8 @@ AbandonedResource* AbandonedResource::clone() const
 
 AbandonedResource::~AbandonedResource()
 {
+#ifdef DEBUG
 	std::cout << "[EVENTO - RECURSO ABANDONADO] Destruindo...\n";
+#endif // DEBUG
+
 }

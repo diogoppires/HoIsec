@@ -21,8 +21,10 @@ Empire::Empire(Territory* initial) : storage(), safe(), utils(), army(utils.gene
 	prodCreation = 0;
 	goldCreation = 0;
 	updateEmpire();
-
+#ifdef DEBUG
 	std::cout << "[EMPIRE] Construindo... " << std::endl;
+#endif // _DEBUG
+
 }
 
 Empire::Empire(const Empire& orig) : storage(orig.storage) , safe(orig.safe), army(orig.army),utils()
@@ -310,5 +312,8 @@ Empire::~Empire()
 	delete drone;
 	delete missiles;
 	delete defenses;
+#ifdef DEBUG
 	std::cout << "[EMPIRE] Destruindo... " << std::endl;
+#endif // DEBUG
+
 }

@@ -5,7 +5,10 @@
 
 Invasion::Invasion(GameData* gD) : Event(gD)
 {
+#ifdef DEBUG
 	std::cout << "[EVENTO - INVASAO] Construindo...\n";
+#endif // DEBUG
+
 }
 
 //SE TIVER TECNOLOGIA 'DEFESAS TERRITORIAIS' É ACRESCENTADO 1 NÍVEL DE RESISTENCIA AO TERRITORIO
@@ -71,5 +74,8 @@ Invasion* Invasion::clone() const
 
 Invasion::~Invasion()
 {
+#ifdef DEBUG
 	std::cout << "[EVENTO - INVASAO] Destruindo...\n";
+#endif // DEBUG
+
 }

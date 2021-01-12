@@ -7,14 +7,20 @@ SafeBox::SafeBox()
 {
 	maxGold = MAX_SAFEBOX;
 	gold = 0;
+#ifdef DEBUG
 	std::cout << "[SAFEBOX] Construindo..." << std::endl;
+#endif // DEBUG
+
 }
 
 SafeBox::SafeBox(const SafeBox& orig)
 {
 	gold = orig.gold;
 	maxGold = orig.maxGold;
+#ifdef DEBUG
 	std::cout << "[SAFEBOX] Contruindo por copia..." << std::endl;
+#endif // DEBUG
+
 }
 
 int SafeBox::getSafeBox() const
@@ -72,5 +78,7 @@ std::string SafeBox::toString() const
 
 SafeBox::~SafeBox()
 {
+#ifdef DEBUG
 	std::cout << "[SAFEBOX] Destruindo..." << std::endl;
+#endif // DEBUG
 }

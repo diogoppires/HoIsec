@@ -30,7 +30,10 @@ void World::TerritoryFactory(TerritoryTypes type)
 World::World()
 {
 	addTerritories(TerritoryTypes::INITIAL, 1);
+#ifdef DEBUG
 	std::cout << "[WORLD] Construindo..." << std::endl;
+#endif // DEBUG
+
 }
 
 World::World(const World& copy)
@@ -39,9 +42,16 @@ World::World(const World& copy)
 }
 
 World::~World() {
+#ifdef DEBUG
 	std::cout << "[WORLD] Vou para dentro do vetor 'Territorios' destruir..." << std::endl;
+#endif // DEBUG
+
 	clearTerritories();
+
+#ifdef DEBUG
 	std::cout << "[WORLD] Destruindo..." << std::endl;
+#endif // DEBUG
+
 }
 std::string World::toString() { 
 	std::ostringstream oss;

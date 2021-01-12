@@ -990,7 +990,9 @@ void Interface::gameOver()
 Interface::Interface(GameData* gD)
 {	
 	this->gD = gD;
+#ifdef DEBUG
 	std::cout << "[INTERFACE] Construindo..." << std::endl;
+#endif // DEBUG
 }
 
 void Interface::run()
@@ -1027,6 +1029,9 @@ Interface::~Interface()
 	for (auto r : recordings) {
 		delete r;
 	}
+#ifdef DEBUG
 	std::cout << "[INTERFACE] Destruindo..." << std::endl;
+#endif // DEBUG
+
 
 }

@@ -5,7 +5,9 @@
 int Fortress::counter = 0;
 Fortress::Fortress() : Continent(TerritoryTypes::FORTRESS, FORTRESS_RESISTANCE, FORTRESS_FIRST_PRODS, FORTRESS_FIRST_GOLD, ++counter)
 {
+#ifdef DEBUG
 	std::cout << "[FORTALEZA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }
 TerritoryTypes Fortress::getTerritoryType()
 {
@@ -32,5 +34,7 @@ void Fortress::updateResources(int year, int turn)
 }
 Fortress::~Fortress()
 {
+#ifdef DEBUG
 	std::cout << "[FORTALEZA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }

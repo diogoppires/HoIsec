@@ -6,7 +6,9 @@
 int Dune::counter = 0;
 Dune::Dune() : Continent(TerritoryTypes::DUNE, DUNE_RESISTANCE, DUNE_FIRST_PRODS, DUNE_FIRST_GOLD, ++counter)
 {
+#ifdef DEBUG
 	std::cout << "[DUNA] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
 }
 TerritoryTypes Dune::getTerritoryType()
 {
@@ -33,5 +35,8 @@ void Dune::updateResources(int year, int turn)
 }
 Dune::~Dune()
 {
+#ifdef DEBUG
 	std::cout << "[DUNA] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }

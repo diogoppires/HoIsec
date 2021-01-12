@@ -5,7 +5,10 @@
 int Plain::counter = 0;
 Plain::Plain() : Continent(TerritoryTypes::PLAIN, PLAIN_RESISTANCE, PLAIN_FIRST_PRODS, PLAIN_FIRST_GOLD, ++counter)
 {
+#ifdef DEBUG
 	std::cout << "[PLANICE] Construindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }
 TerritoryTypes Plain::getTerritoryType()
 {
@@ -38,5 +41,8 @@ void Plain::updateResources(int year, int turn)
 }
 Plain::~Plain()
 {
+#ifdef DEBUG
 	std::cout << "[PLANICE] Destruindo... " << Territory::getName() << std::endl;
+#endif // DEBUG
+
 }

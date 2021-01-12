@@ -2,6 +2,7 @@
 #ifndef TECHNOLOGY_H
 #define TECHNOLOGY_H
 #include "Territory.h"
+#include "data.h"
 class Technology {
 protected:
 	bool active;
