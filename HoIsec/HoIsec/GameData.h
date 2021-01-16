@@ -43,7 +43,6 @@ private:
 	void addEvents();
 	bool verifyInteger(std::string value);
 
-	
 	void setFinalMsg();
 
 	void updateTerritories();
@@ -69,7 +68,7 @@ public:
 	int moreGold(); // 'maisouro'
 	int moreProd(); // 'maisprod'
 	int moreMilitary(); // 'maismilitar'
-	bool forceEvent(std::string nameEvent);
+	bool forceEvent(std::string nameEvent); // 'fevento'
 
 	//Events
 	void drawEvent();

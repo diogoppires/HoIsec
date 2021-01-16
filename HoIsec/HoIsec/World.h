@@ -23,6 +23,7 @@ public:
 	std::vector<Territory*> getTerritories() const;
 	void addTerritories(TerritoryTypes type, int num);
 	int getTerritoriesSize();
+	int getTerritoriesScore();
 	void clearTerritories();
 	World& operator=(const World& orig) ;
 };

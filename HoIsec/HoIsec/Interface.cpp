@@ -981,10 +981,12 @@ void Interface::eventMenu(std::string cmd, std::vector<std::string> words)
 
 void Interface::gameOver()
 {
+	system("cls");
 	std::cout << gD->getGameOverMsg() << std::endl;
 	std::cout << "\n[HoIsec] Pressione algum botao para voltar ao menu principal.\n";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	gD->setInitialValues();
+	system("cls");
 }
 
 Interface::Interface(GameData* gD)

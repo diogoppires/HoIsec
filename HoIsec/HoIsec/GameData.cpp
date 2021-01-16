@@ -64,7 +64,7 @@ void GameData::setFinalMsg()
 {
 	std::ostringstream oss;
 	oss << "Pontos de territorios: " << empire->getTerritoryScore();
-	if (empire->getTerritoryScore() == world->getTerritoriesSize() + empire->getEmpireSize()) {
+	if (empire->getTerritoryScore() == world->getTerritoriesScore()) {
 		oss << " (POSSUI bonus Imperador Supremo)" << std::endl;
 	}
 	else {
@@ -289,6 +289,7 @@ int GameData::buyTechnology(std::string type) {
 /**
 * This method is for conquer the Territory with name = 'name'.
 * return:
+*	( 3) -> if game is won
 *	( 2) -> if the technology has been active with success
 *	( 1) -> if the territory has been add with success
 *	( 0) -> if type is not valid

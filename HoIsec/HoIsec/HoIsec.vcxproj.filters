@@ -259,6 +259,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
+    <Text Include="territorios.txt" />
+    <Text Include="todos.txt" />
   </ItemGroup>
 </Project>

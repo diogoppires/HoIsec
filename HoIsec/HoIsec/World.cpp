@@ -115,7 +115,13 @@ int World::getTerritoriesSize()
 {
 	return (int)territories.size();	//This is safe to cast because there won't be more than MAX_INT territories.
 }
-
+int World::getTerritoriesScore()
+{
+	int terrScore = 0;
+	for (auto t : territories)
+		terrScore += t->getWinPoints();
+	return terrScore;
+}
 void World::clearTerritories()
 {
 	for (Territory* t : territories)

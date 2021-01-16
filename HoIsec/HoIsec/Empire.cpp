@@ -65,10 +65,12 @@ int Empire::getProdsCreation() const
 {
 	return prodCreation;
 }
-
 int Empire::getTerritoryScore() const
 {
-	return score;
+	int terrScore = 0;
+	for (auto t : empire)
+		terrScore += t->getWinPoints();
+	return terrScore;
 }
 
 int Empire::getTechScore() const
